@@ -3,7 +3,7 @@
 Game::Game() {
     _initWindow();
     _shape.setRadius(100.f);
-    _shape.setFillColor(sf::Color::Green);
+    
 }
 
 Game::~Game() {
@@ -23,7 +23,8 @@ void Game::updateSFMLEvents() {
 }
 
 void Game::update() {
-    updateSFMLEvents();
+    //updateSFMLEvents();
+    _shape.setFillColor(sf::Color::Green);
 }
 
 void Game::render() {
@@ -34,6 +35,7 @@ void Game::render() {
 
 void Game::run() {
     while (_window->isOpen()) {
+        updateSFMLEvents();
         update();
         render();
     }
