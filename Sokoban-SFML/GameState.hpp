@@ -1,11 +1,13 @@
 #pragma once
 
 #include "State.hpp"
+#include "Entity.hpp"
 
 class GameState : public State
 {
 private:
 	sf::CircleShape _shape;
+	Entity _player;
 public:
 	GameState();
 	~GameState();
