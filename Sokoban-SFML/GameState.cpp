@@ -12,10 +12,10 @@ void GameState::handleInput() {
 
 }
 
-void GameState::update() {
+void GameState::update(sf::Time deltaTime) {
 
 }
 
-void GameState::render() {
+void GameState::render(sf::RenderWindow& window) {
 
 }
