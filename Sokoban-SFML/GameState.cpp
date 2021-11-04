@@ -1,6 +1,8 @@
 #include "GameState.hpp"
 
-GameState::GameState() {
+GameState::GameState(Game* game) :
+	State(game)
+{
 
 }
 

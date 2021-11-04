@@ -5,7 +5,7 @@
 class GameState : public State
 {
 public:
-	GameState();
+	GameState(Game* game);
 	~GameState();
 
 	void handleInput() override;
