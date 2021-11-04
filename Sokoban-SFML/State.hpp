@@ -1,5 +1,6 @@
 #pragma once
 
+#include <iostream>
 #include <vector>
 #include <SFML/Graphics.hpp>
  
@@ -27,7 +28,7 @@ public:
 
 	Game* getGame() const;
 
-	virtual void handleInput() = 0;
+	virtual void handleInput(const sf::Time deltaTime) = 0;
 	virtual void update(const sf::Time deltaTime) = 0;
 	virtual void render(sf::RenderWindow* window) = 0;
 };
