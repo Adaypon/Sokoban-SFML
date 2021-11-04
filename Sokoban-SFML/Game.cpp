@@ -1,7 +1,5 @@
 #include "Game.hpp"
 
-float Game::_framesPerSecond = 60.0f;
-
 Game::Game() :
     _window(new sf::RenderWindow(sf::VideoMode(200, 200), "SFML works!")),
     _shape(100.f),
@@ -58,4 +56,34 @@ void Game::run() {
         }
         render(); // keep render not only when it updates
     }
+}
+
+float Game::getFPS() {
+    return _framesPerSecond;
+}
+
+void Game::setFPS(float fps) {
+    _framesPerSecond = fps;
+    _window->setFramerateLimit(_framesPerSecond);
+    _timePerFrame = sf::seconds(1.0f / _framesPerSecond);
+}
+
+sf::Vector2u Game::getResolution() {
+    return _window->getSize();
+}
+
+void Game::setResolution(unsigned width, unsigned height) {
+    delete _window;
+    _windowWidth = width;
+    _windowHeight = height;
+    _window = new sf::RenderWindow(sf::VideoMode(_windowWidth, _windowHeight), _titleBarText);
+}
+
+std::string Game::getTitleBarText() {
+    return _titleBarText;
+}
+
+void Game::setTitleBarText(const std::string& text) {
+    _titleBarText = text;
+    _window->setTitle(_titleBarText);
 }
