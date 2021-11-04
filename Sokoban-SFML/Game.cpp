@@ -12,10 +12,19 @@ Game::Game() :
     _window = new sf::RenderWindow(sf::VideoMode(_windowWidth, _windowHeight), _titleBarText);
     _window->setFramerateLimit(_framesPerSecond);
     _window->setVerticalSyncEnabled(_VSyncFlag);
+    _initStates();
+    changeState(State::eState::Play);
 }
 
 Game::~Game() {
     delete _window;
+    for (State* state : _states) {
+        delete state;
+    }
+}
+
+void Game::_initStates() {
+    _states[State::eState::Play] = new GameState(this);
 }
 
 /*
@@ -64,6 +73,10 @@ void Game::run() {
         }
         render(); // keep render not only when it updates
     }
+}
+
+void Game::changeState(State::eState state) {
+    _currentState = _states[state];
 }
 
 float Game::getFPS() {

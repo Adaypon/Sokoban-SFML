@@ -15,10 +15,7 @@ private:
 
 public:
 	enum eState {
-		Menu,
-		Level_select,
 		Play,
-		Exit,
 		STATE_COUNT
 	};
 

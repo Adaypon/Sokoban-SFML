@@ -27,6 +27,7 @@ private:
 	
 	State* _currentState;
 	std::array<State*, State::eState::STATE_COUNT> _states;
+	void _initStates();
 	//void _initWindow();
 
 public:
@@ -37,6 +38,8 @@ public:
 	void update();
 	void render();
 	void run();
+
+	void changeState(State::eState state);
 
 	float getFPS();
 	void setFPS(float fps);
