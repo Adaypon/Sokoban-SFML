@@ -146,6 +146,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Game.cpp" />
+    <ClCompile Include="GameState.cpp" />
     <ClCompile Include="Level.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="SceneManager.cpp" />
@@ -153,6 +154,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Game.hpp" />
+    <ClInclude Include="GameState.hpp" />
     <ClInclude Include="Level.hpp" />
     <ClInclude Include="SceneManager.hpp" />
     <ClInclude Include="State.hpp" />
