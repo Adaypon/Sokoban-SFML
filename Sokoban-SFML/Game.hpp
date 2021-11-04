@@ -16,6 +16,7 @@ private:
 	float _framesPerSecond;
 	unsigned _windowWidth;
 	unsigned _windowHeight;
+	bool _VSyncFlag;
 	std::string _titleBarText;
 	sf::Time _timePerFrame; // how much time should elapse before each update and render of one frame
 	
@@ -32,6 +33,9 @@ public:
 
 	float getFPS();
 	void setFPS(float fps);
+
+	bool getVSync();
+	void setVSync(bool flag);
 
 	sf::Vector2u getResolution();
 	void setResolution(unsigned width, unsigned height);

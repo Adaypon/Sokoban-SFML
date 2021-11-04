@@ -2,15 +2,16 @@
 
 Game::Game() :
     _framesPerSecond(60.0f),
-    _windowWidth(200),
-    _windowHeight(200),
+    _windowWidth(1280),
+    _windowHeight(720),
     _titleBarText("Sokoban"),
+    _VSyncFlag(true),
     _shape(100.f),
     _timePerFrame(sf::seconds(1.0f / _framesPerSecond))
 {
     _window = new sf::RenderWindow(sf::VideoMode(_windowWidth, _windowHeight), _titleBarText);
     _window->setFramerateLimit(_framesPerSecond);
-    _window->setVerticalSyncEnabled(true);
+    _window->setVerticalSyncEnabled(_VSyncFlag);
 }
 
 Game::~Game() {
@@ -71,6 +72,15 @@ void Game::setFPS(float fps) {
     _framesPerSecond = fps;
     _window->setFramerateLimit(_framesPerSecond);
     _timePerFrame = sf::seconds(1.0f / _framesPerSecond);
+}
+
+bool Game::getVSync() {
+    return _VSyncFlag;
+}
+
+void Game::setVSync(bool flag) {
+    _VSyncFlag = flag;
+    _window->setVerticalSyncEnabled(_VSyncFlag);
 }
 
 sf::Vector2u Game::getResolution() {
