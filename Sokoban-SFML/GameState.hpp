@@ -9,7 +9,7 @@ public:
 	~GameState();
 
 	void handleInput() override;
-	void update(sf::Time deltaTime) override;
+	void update(const sf::Time deltaTime) override;
 	void render(sf::RenderWindow& window) override;
 };
 

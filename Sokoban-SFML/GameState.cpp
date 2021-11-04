@@ -12,7 +12,7 @@ void GameState::handleInput() {
 
 }
 
-void GameState::update(sf::Time deltaTime) {
+void GameState::update(const sf::Time deltaTime) {
 
 }
 
