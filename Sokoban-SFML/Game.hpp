@@ -8,11 +8,11 @@
 
 class Game {
 private:
-	sf::RenderWindow* _window;
+	sf::RenderWindow _window;
 	sf::Event _event;
 	sf::CircleShape _shape;
 
-	void _initWindow();
+	//void _initWindow();
 
 public:
 	Game();
