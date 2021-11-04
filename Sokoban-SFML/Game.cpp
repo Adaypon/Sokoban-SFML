@@ -13,7 +13,7 @@ Game::Game() :
     _window->setFramerateLimit(_framesPerSecond);
     _window->setVerticalSyncEnabled(_VSyncFlag);
     _initStates();
-    changeState(State::eState::Play);
+    changeState(State::eState::Menu);
 }
 
 Game::~Game() {
@@ -24,7 +24,10 @@ Game::~Game() {
 }
 
 void Game::_initStates() {
+    _states[State::eState::Menu] = new MenuState(this);
+    _states[State::eState::LevelSelect] = new LevelSelectState(this);
     _states[State::eState::Play] = new GameState(this);
+    _states[State::eState::Exit] = new ExitState(this);
 }
 
 /*

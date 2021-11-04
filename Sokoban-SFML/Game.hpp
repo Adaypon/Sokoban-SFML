@@ -10,7 +10,10 @@
 #include <SFML/Audio.hpp>
 
 #include "State.hpp"
+#include "MenuState.hpp"
+#include "LevelSelectState.hpp"
 #include "GameState.hpp"
+#include "ExitState.hpp"
 
 class Game {
 private:
