@@ -10,6 +10,7 @@
 #include <SFML/Audio.hpp>
 
 #include "State.hpp"
+#include "GameState.hpp"
 
 class Game {
 private:

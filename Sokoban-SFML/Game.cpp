@@ -39,7 +39,8 @@ void Game::update() {
 
 void Game::render() {
     _window->clear();
-    _window->draw(_shape);
+    //_window->draw(_shape);
+    _currentState->render(_window);
     _window->display();
 }
 
@@ -56,7 +57,8 @@ void Game::run() {
         // then we're going updating stuff
         while (timeSinceLastUpdate > _timePerFrame) {
             timeSinceLastUpdate -= _timePerFrame; // in case of frames dropping
-            update();
+            //update();
+            _currentState->update(sf::seconds(1));
             updateSFMLEvents();
             //std::cout << "a";
         }

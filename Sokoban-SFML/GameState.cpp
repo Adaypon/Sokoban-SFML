@@ -18,6 +18,6 @@ void GameState::update(const sf::Time deltaTime) {
 
 }
 
-void GameState::render(sf::RenderWindow& window) {
+void GameState::render(sf::RenderWindow* window) {
 
 }
