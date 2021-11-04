@@ -30,7 +30,7 @@ private:
 	State* _currentState;
 	std::array<State*, State::eState::STATE_COUNT> _states;
 	void _initStates();
-	//void _initWindow();
+	void _initWindow();
 
 public:
 	Game();

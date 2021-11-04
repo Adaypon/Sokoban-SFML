@@ -8,9 +8,7 @@ Game::Game() :
     _VSyncFlag(true),
     _timePerFrame(sf::seconds(1.0f / _framesPerSecond))
 {
-    _window = new sf::RenderWindow(sf::VideoMode(_windowWidth, _windowHeight), _titleBarText);
-    _window->setFramerateLimit(_framesPerSecond);
-    _window->setVerticalSyncEnabled(_VSyncFlag);
+    _initWindow();
     _initStates();
     changeState(State::eState::Play);
 }
@@ -22,6 +20,12 @@ Game::~Game() {
     }
 }
 
+void Game::_initWindow() {
+    _window = new sf::RenderWindow(sf::VideoMode(_windowWidth, _windowHeight), _titleBarText);
+    _window->setFramerateLimit(_framesPerSecond);
+    _window->setVerticalSyncEnabled(_VSyncFlag);
+}
+
 void Game::_initStates() {
     _states[State::eState::Menu] = new MenuState();
     _states[State::eState::LevelSelect] = new LevelSelectState();
@@ -29,11 +33,6 @@ void Game::_initStates() {
     _states[State::eState::Exit] = new ExitState();
 }
 
-/*
-void Game::_initWindow() {
-    _window = new sf::RenderWindow(sf::VideoMode(200, 200), "SFML works!");
-}
-*/
 
 void Game::updateSFMLEvents() {
     while (_window->pollEvent(_event)) {
