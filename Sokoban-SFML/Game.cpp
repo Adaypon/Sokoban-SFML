@@ -82,6 +82,10 @@ void Game::changeState(State::eState state) {
     _currentState = _states[state];
 }
 
+sf::RenderWindow* Game::getWindow() const {
+    return _window;
+}
+
 float Game::getFPS() const {
     return _framesPerSecond;
 }

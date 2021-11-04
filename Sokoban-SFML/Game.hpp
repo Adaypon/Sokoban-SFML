@@ -44,6 +44,8 @@ public:
 
 	void changeState(State::eState state);
 
+	sf::RenderWindow* getWindow() const;
+
 	float getFPS() const;
 	void setFPS(float fps);
 
