@@ -1,11 +1,16 @@
 #include "Game.hpp"
 
 Game::Game() :
-    _window(new sf::RenderWindow(sf::VideoMode(200, 200), "SFML works!")),
+    _framesPerSecond(60.0f),
+    _windowWidth(200),
+    _windowHeight(200),
+    _titleBarText("Sokoban"),
     _shape(100.f),
     _timePerFrame(sf::seconds(1.0f / _framesPerSecond))
 {
-    
+    _window = new sf::RenderWindow(sf::VideoMode(_windowWidth, _windowHeight), _titleBarText);
+    _window->setFramerateLimit(_framesPerSecond);
+    _window->setVerticalSyncEnabled(true);
 }
 
 Game::~Game() {
