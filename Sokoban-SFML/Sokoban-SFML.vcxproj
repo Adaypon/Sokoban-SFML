@@ -145,6 +145,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="ExitState.cpp" />
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="GameState.cpp" />
     <ClCompile Include="Level.cpp" />
@@ -155,6 +156,7 @@
     <ClCompile Include="State.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="ExitState.hpp" />
     <ClInclude Include="Game.hpp" />
     <ClInclude Include="GameState.hpp" />
     <ClInclude Include="Level.hpp" />
