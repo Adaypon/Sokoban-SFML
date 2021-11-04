@@ -13,7 +13,7 @@ Game::Game() :
     _window->setFramerateLimit(_framesPerSecond);
     _window->setVerticalSyncEnabled(_VSyncFlag);
     _initStates();
-    changeState(State::eState::Menu);
+    changeState(State::eState::Play);
 }
 
 Game::~Game() {
@@ -46,7 +46,7 @@ void Game::updateSFMLEvents() {
 
 void Game::update() {
     //updateSFMLEvents();
-    _shape.setFillColor(sf::Color::Green);
+    _currentState->update(sf::seconds(1));
 }
 
 void Game::render() {
@@ -69,8 +69,7 @@ void Game::run() {
         // then we're going updating stuff
         while (timeSinceLastUpdate > _timePerFrame) {
             timeSinceLastUpdate -= _timePerFrame; // in case of frames dropping
-            //update();
-            _currentState->update(sf::seconds(1));
+            update();
             updateSFMLEvents();
             //std::cout << "a";
         }

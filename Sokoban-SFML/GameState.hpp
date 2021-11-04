@@ -4,6 +4,8 @@
 
 class GameState : public State
 {
+private:
+	sf::CircleShape _shape;
 public:
 	GameState(Game* game);
 	~GameState();
