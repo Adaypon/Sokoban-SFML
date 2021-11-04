@@ -8,6 +8,10 @@ GameState::~GameState() {
 
 }
 
+void GameState::handleInput() {
+
+}
+
 void GameState::update() {
 
 }
