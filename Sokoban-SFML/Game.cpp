@@ -6,7 +6,6 @@ Game::Game() :
     _windowHeight(720),
     _titleBarText("Sokoban"),
     _VSyncFlag(true),
-    _shape(100.f),
     _timePerFrame(sf::seconds(1.0f / _framesPerSecond))
 {
     _window = new sf::RenderWindow(sf::VideoMode(_windowWidth, _windowHeight), _titleBarText);

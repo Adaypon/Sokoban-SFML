@@ -19,7 +19,6 @@ class Game {
 private:
 	sf::RenderWindow* _window;
 	sf::Event _event;
-	sf::CircleShape _shape;
 
 	float _framesPerSecond;
 	unsigned _windowWidth;
