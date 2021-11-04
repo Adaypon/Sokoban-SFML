@@ -8,6 +8,14 @@ private:
 	std::vector<sf::Texture> _textures;
 
 public:
+	enum eState {
+		Menu,
+		Level_select,
+		Play,
+		Exit,
+		STATE_COUNT
+	};
+
 	State();
 	virtual ~State();
 

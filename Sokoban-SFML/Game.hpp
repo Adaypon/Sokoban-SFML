@@ -1,11 +1,15 @@
 #pragma once
 
 #include <iostream>
+#include <vector>
+#include <array>
 #include <string>
 #include <SFML/System.hpp>
 #include <SFML/Window.hpp>
 #include <SFML/Graphics.hpp>
 #include <SFML/Audio.hpp>
+
+#include "State.hpp"
 
 class Game {
 private:
@@ -20,6 +24,8 @@ private:
 	std::string _titleBarText;
 	sf::Time _timePerFrame; // how much time should elapse before each update and render of one frame
 	
+	State* _currentState;
+	std::array<State*, State::eState::STATE_COUNT> _states;
 	//void _initWindow();
 
 public:
