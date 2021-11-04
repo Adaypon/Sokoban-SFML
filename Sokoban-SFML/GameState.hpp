@@ -7,7 +7,7 @@ class GameState : public State
 private:
 	sf::CircleShape _shape;
 public:
-	GameState(Game* game);
+	GameState();
 	~GameState();
 
 	void handleInput(const sf::Time deltaTime) override;

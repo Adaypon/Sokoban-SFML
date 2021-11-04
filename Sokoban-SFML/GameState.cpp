@@ -1,7 +1,6 @@
 #include "GameState.hpp"
 
-GameState::GameState(Game* game) :
-	State(game),
+GameState::GameState() :
 	_shape(100.f)
 {
 

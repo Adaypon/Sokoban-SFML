@@ -24,10 +24,10 @@ Game::~Game() {
 }
 
 void Game::_initStates() {
-    _states[State::eState::Menu] = new MenuState(this);
-    _states[State::eState::LevelSelect] = new LevelSelectState(this);
-    _states[State::eState::Play] = new GameState(this);
-    _states[State::eState::Exit] = new ExitState(this);
+    _states[State::eState::Menu] = new MenuState();
+    _states[State::eState::LevelSelect] = new LevelSelectState();
+    _states[State::eState::Play] = new GameState();
+    _states[State::eState::Exit] = new ExitState();
 }
 
 /*
