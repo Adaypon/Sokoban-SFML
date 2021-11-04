@@ -7,7 +7,7 @@ Game::Game() {
 }
 
 Game::~Game() {
-	delete _window;
+    delete _window;
 }
 
 void Game::_initWindow() {
@@ -34,7 +34,7 @@ void Game::render() {
 
 void Game::run() {
     while (_window->isOpen()) {
-		update();
-		render();
-	}
+        update();
+        render();
+    }
 }
