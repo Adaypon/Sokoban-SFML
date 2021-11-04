@@ -8,10 +8,16 @@
 
 class Game {
 private:
+	static float _framesPerSecond;
+
 	sf::RenderWindow _window;
 	sf::Event _event;
 	sf::CircleShape _shape;
 
+	// how much time should elapse 
+	// before each update and render of one frame
+	sf::Time _timePerFrame;
+	
 	//void _initWindow();
 
 public:
