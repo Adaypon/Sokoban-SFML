@@ -44,15 +44,15 @@ public:
 
 	void changeState(State::eState state);
 
-	float getFPS();
+	float getFPS() const;
 	void setFPS(float fps);
 
-	bool getVSync();
+	bool getVSync() const;
 	void setVSync(bool flag);
 
-	sf::Vector2u getResolution();
+	sf::Vector2u getResolution() const;
 	void setResolution(unsigned width, unsigned height);
 
-	std::string getTitleBarText();
+	std::string getTitleBarText() const;
 	void setTitleBarText(const std::string& text);
 };

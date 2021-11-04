@@ -82,7 +82,7 @@ void Game::changeState(State::eState state) {
     _currentState = _states[state];
 }
 
-float Game::getFPS() {
+float Game::getFPS() const {
     return _framesPerSecond;
 }
 
@@ -92,7 +92,7 @@ void Game::setFPS(float fps) {
     _timePerFrame = sf::seconds(1.0f / _framesPerSecond);
 }
 
-bool Game::getVSync() {
+bool Game::getVSync() const {
     return _VSyncFlag;
 }
 
@@ -101,7 +101,7 @@ void Game::setVSync(bool flag) {
     _window->setVerticalSyncEnabled(_VSyncFlag);
 }
 
-sf::Vector2u Game::getResolution() {
+sf::Vector2u Game::getResolution() const {
     return _window->getSize();
 }
 
@@ -112,7 +112,7 @@ void Game::setResolution(unsigned width, unsigned height) {
     _window = new sf::RenderWindow(sf::VideoMode(_windowWidth, _windowHeight), _titleBarText);
 }
 
-std::string Game::getTitleBarText() {
+std::string Game::getTitleBarText() const {
     return _titleBarText;
 }
 
