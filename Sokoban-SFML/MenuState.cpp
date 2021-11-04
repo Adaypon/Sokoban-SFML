@@ -10,7 +10,7 @@ MenuState::~MenuState() {
 
 }
 
-void MenuState::handleInput() {
+void MenuState::handleInput(const sf::Time deltaTime) {
 
 }
 

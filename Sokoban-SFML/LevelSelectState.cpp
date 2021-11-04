@@ -10,7 +10,7 @@ LevelSelectState::~LevelSelectState() {
 
 }
 
-void LevelSelectState::handleInput() {
+void LevelSelectState::handleInput(const sf::Time deltaTime) {
 
 }
 
