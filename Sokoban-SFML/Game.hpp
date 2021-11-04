@@ -10,7 +10,7 @@ class Game {
 private:
 	static float _framesPerSecond;
 
-	sf::RenderWindow _window;
+	sf::RenderWindow* _window;
 	sf::Event _event;
 	sf::CircleShape _shape;
 
