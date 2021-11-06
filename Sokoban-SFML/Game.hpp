@@ -41,6 +41,7 @@ public:
 	void render();
 	void run();
 
+	State* getCurrentState() const;
 	void changeState(State::eState state);
 
 	sf::RenderWindow* getWindow() const;

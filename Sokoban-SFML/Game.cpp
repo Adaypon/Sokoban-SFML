@@ -75,6 +75,10 @@ void Game::run() {
     }
 }
 
+State* Game::getCurrentState() const {
+    return _currentState;
+}
+
 void Game::changeState(State::eState state) {
     _currentState = _states[state];
 }
