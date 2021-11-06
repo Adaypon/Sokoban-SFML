@@ -29,6 +29,6 @@ void Entity::update(const sf::Time deltaTime) {
 	}
 }
 
-void Entity::render(sf::RenderTarget* target) {
-	target->draw(_shape);
+void Entity::render(sf::RenderWindow* window) {
+	window->draw(_shape);
 }
