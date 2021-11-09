@@ -5,8 +5,7 @@
 class MenuState : public State
 {
 public:
-	MenuState();
-	~MenuState();
+	MenuState(Game* game);
 
 	void handleInput(const sf::Time deltaTime) override;
 	void update(const sf::Time deltaTime) override;

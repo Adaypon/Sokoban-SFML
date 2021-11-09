@@ -1,10 +1,8 @@
 #include "MenuState.hpp"
 
-MenuState::MenuState() {
-
-}
-
-MenuState::~MenuState() {
+MenuState::MenuState(Game* game) :
+	State(game)
+{
 
 }
 

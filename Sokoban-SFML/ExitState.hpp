@@ -5,8 +5,7 @@
 class ExitState : public State
 {
 public:
-	ExitState();
-	~ExitState();
+	ExitState(Game* game);
 
 	void handleInput(const sf::Time deltaTime) override;
 	void update(const sf::Time deltaTime) override;

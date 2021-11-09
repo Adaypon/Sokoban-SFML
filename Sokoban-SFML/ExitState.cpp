@@ -1,10 +1,8 @@
 #include "ExitState.hpp"
 
-ExitState::ExitState() {
-
-}
-
-ExitState::~ExitState() {
+ExitState::ExitState(Game* game) :
+	State(game)
+{
 
 }
 

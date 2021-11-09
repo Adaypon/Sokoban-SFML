@@ -9,8 +9,7 @@ private:
 	sf::CircleShape _shape;
 	Entity _player;
 public:
-	GameState();
-	~GameState();
+	GameState(Game* game);
 
 	void handleInput(const sf::Time deltaTime) override;
 	void update(const sf::Time deltaTime) override;
