@@ -8,7 +8,7 @@
 
 class State {
 private:
-	std::vector<sf::Texture> _textures;
+	//std::vector<sf::Texture> _textures;
 	
 	// each state has a local pointer on the Game instance
 	// because they are responsible for changing the state
@@ -31,4 +31,8 @@ public:
 	virtual void handleInput(const sf::Time deltaTime) = 0;
 	virtual void update(const sf::Time deltaTime) = 0;
 	virtual void render(sf::RenderWindow* window) = 0;
+
+	// required only for some of the states
+	virtual void pause() {};
+	virtual void resume() {};
 };
