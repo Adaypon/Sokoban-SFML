@@ -1,11 +1,15 @@
 #include "GameState.hpp"
 
-GameState::GameState(Game* game) :
-	State(game),
+GameState::GameState() :
 	_shape(100.f)
 {
 
 }
+
+GameState::~GameState() {
+
+}
+
 
 void GameState::handleInput(const sf::Time deltaTime) {
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::A)) {

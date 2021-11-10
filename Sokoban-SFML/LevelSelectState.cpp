@@ -1,8 +1,10 @@
 #include "LevelSelectState.hpp"
 
-LevelSelectState::LevelSelectState(Game* game) :
-	State(game)
-{
+LevelSelectState::LevelSelectState() {
+
+}
+
+LevelSelectState::~LevelSelectState() {
 
 }
 

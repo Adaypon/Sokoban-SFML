@@ -4,7 +4,7 @@
 #include <vector>
 #include <SFML/Graphics.hpp>
 
-class Game;
+//class Game;
 
 class State {
 private:
@@ -12,7 +12,7 @@ private:
 	
 	// each state has a local pointer on the Game instance
 	// because they are responsible for changing the state
-	Game* _game;
+	// Game* _game;
 
 public:
 	enum eState {
@@ -23,10 +23,10 @@ public:
 		STATE_COUNT
 	};
 
-	State(Game* game);
+	State();
 	virtual ~State();
 
-	Game* getGame() const;
+	// Game* getGame() const;
 
 	virtual void handleInput(const sf::Time deltaTime) = 0;
 	virtual void update(const sf::Time deltaTime) = 0;

@@ -1,16 +1,11 @@
 #include "State.hpp"
 
-State::State(Game* game) :
-	_game(game)
-{
+State::State() {
 
 }
 
 State::~State() {
 
-}
-Game* State::getGame() const {
-	return _game;
 }
 /*
 Game* State::getGame() const {

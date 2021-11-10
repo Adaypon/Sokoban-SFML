@@ -5,7 +5,8 @@
 class LevelSelectState : public State
 {
 public:
-	LevelSelectState(Game* game);
+	LevelSelectState();
+	~LevelSelectState();
 
 	void handleInput(const sf::Time deltaTime) override;
 	void update(const sf::Time deltaTime) override;
