@@ -155,6 +155,7 @@
     <ClCompile Include="MenuState.cpp" />
     <ClCompile Include="SceneManager.cpp" />
     <ClCompile Include="State.cpp" />
+    <ClCompile Include="StateManager.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Entity.hpp" />
@@ -166,6 +167,7 @@
     <ClInclude Include="MenuState.hpp" />
     <ClInclude Include="SceneManager.hpp" />
     <ClInclude Include="State.hpp" />
+    <ClInclude Include="StateManager.hpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

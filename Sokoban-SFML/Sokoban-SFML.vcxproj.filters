@@ -48,6 +48,9 @@
     <ClCompile Include="ExitState.cpp">
       <Filter>States</Filter>
     </ClCompile>
+    <ClCompile Include="StateManager.cpp">
+      <Filter>Исходные файлы</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Game.hpp">
@@ -76,6 +79,9 @@
     </ClInclude>
     <ClInclude Include="ExitState.hpp">
       <Filter>States</Filter>
+    </ClInclude>
+    <ClInclude Include="StateManager.hpp">
+      <Filter>Файлы заголовков</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
