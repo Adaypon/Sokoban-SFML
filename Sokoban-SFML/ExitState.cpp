@@ -8,6 +8,10 @@ ExitState::~ExitState() {
 
 }
 
+void ExitState::init() {
+
+}
+
 void ExitState::handleInput(const sf::Time deltaTime) {
 
 }

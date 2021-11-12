@@ -11,6 +11,10 @@ GameState::~GameState() {
 }
 
 
+void GameState::init() {
+
+}
+
 void GameState::handleInput(const sf::Time deltaTime) {
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::A)) {
 		_player.move(deltaTime, -1.f, 0.f);

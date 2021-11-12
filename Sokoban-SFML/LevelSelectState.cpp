@@ -8,6 +8,10 @@ LevelSelectState::~LevelSelectState() {
 
 }
 
+void LevelSelectState::init() {
+
+}
+
 void LevelSelectState::handleInput(const sf::Time deltaTime) {
 	
 }

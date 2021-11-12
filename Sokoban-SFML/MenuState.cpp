@@ -8,6 +8,10 @@ MenuState::~MenuState() {
 
 }
 
+void MenuState::init() {
+
+}
+
 void MenuState::handleInput(const sf::Time deltaTime) {
 
 }
