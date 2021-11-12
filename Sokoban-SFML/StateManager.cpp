@@ -45,6 +45,7 @@ void StateManager::changeState() {
 
 		_stateStack.push(std::move(_newState));
 		_stateStack.top()->init();
+		_stateStack.top()->resume();
 		_isAdding = false;
 	}
 }
