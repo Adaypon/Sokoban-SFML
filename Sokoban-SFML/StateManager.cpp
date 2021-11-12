@@ -16,6 +16,7 @@ void StateManager::addState(StateRef newState, bool replaceFlag) {
 	_isAdding = true;
 	_newState = std::move(newState);
 	_isReplacing = replaceFlag;
+	//std::cout << "addState(): moved state to _newState" << std::endl;
 }
 
 void StateManager::popState() {
@@ -43,8 +44,11 @@ void StateManager::changeState() {
 			_stateStack.top()->pause();
 		}
 
+		//std::cout << "addState(): pushing _newState" << std::endl;
 		_stateStack.push(std::move(_newState));
+		//std::cout << "addState(): calling top->init()" << std::endl;
 		_stateStack.top()->init();
+		std::cout << "addState(): calling top->resume()" << std::endl;
 		_stateStack.top()->resume();
 		_isAdding = false;
 	}

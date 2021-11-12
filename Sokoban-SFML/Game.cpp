@@ -11,15 +11,17 @@ Game::Game() :
 {
     _initWindow();
     _initStates();
-    changeState(State::eState::Play);
+    //changeState(State::eState::Play);
 }
 
 Game::~Game() {
     //delete _window;
+    /*
     _context->_window.reset();
     for (State* state : _states) {
         delete state;
     }
+    */
 }
 
 void Game::_initWindow() {
@@ -30,10 +32,15 @@ void Game::_initWindow() {
 }
 
 void Game::_initStates() {
+    /*
     _states[State::eState::Menu] = new MenuState();
     _states[State::eState::LevelSelect] = new LevelSelectState();
     _states[State::eState::Play] = new GameState();
     _states[State::eState::Exit] = new ExitState();
+    */
+
+    _context->_states->addState(std::make_unique<MenuState>(_context));
+    _context->_states->changeState();
 }
 
 
@@ -47,13 +54,18 @@ void Game::updateSFMLEvents() {
 
 void Game::update() {
     //updateSFMLEvents();
-    _currentState->update(sf::seconds(1));
+    
+    //_currentState->update(sf::seconds(1));
+    _context->_states->getCurrentState()->update(sf::seconds(1));
 }
 
 void Game::render() {
     _context->_window->clear();
     //_window->draw(_shape);
-    _currentState->render(getWindow());
+    
+    //_currentState->render(getWindow());
+    _context->_states->getCurrentState()->render(getWindow());
+
     _context->_window->display();
 }
 
@@ -76,6 +88,7 @@ void Game::run() {
             * - call update
             * - call draw
             */
+            _context->_states->changeState();
             
             update();
             updateSFMLEvents();
@@ -84,7 +97,7 @@ void Game::run() {
         render(); // keep render not only when it updates
     }
 }
-
+/*
 State* Game::getCurrentState() const {
     return _currentState;
 }
@@ -92,7 +105,7 @@ State* Game::getCurrentState() const {
 void Game::changeState(State::eState state) {
     _currentState = _states[state];
 }
-
+*/
 
 sf::RenderWindow* Game::getWindow() const {
     return _context->_window.get();

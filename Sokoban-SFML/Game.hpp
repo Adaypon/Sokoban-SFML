@@ -21,10 +21,12 @@
 
 
 struct Context {
+	std::unique_ptr<StateManager> _states;
 	std::unique_ptr<SceneManager> _assets;
 	std::unique_ptr<sf::RenderWindow> _window;
 	
 	Context() {
+		_states = std::make_unique<StateManager>();
 		_assets = std::make_unique<SceneManager>();
 		_window = std::make_unique<sf::RenderWindow>();
 	}
@@ -45,8 +47,8 @@ private:
 	sf::Time _timePerFrame; // how much time should elapse before each update and render of one frame
 	
 	// TODO remove _currentState and _states as they're in StateManager
-	State* _currentState;
-	std::array<State*, State::eState::STATE_COUNT> _states;
+	//State* _currentState;
+	//std::array<State*, State::eState::STATE_COUNT> _states;
 	void _initStates();
 	void _initWindow();
 
@@ -60,8 +62,8 @@ public:
 	void run();
 
 	// TODO remove this methods as they're in StateManager
-	State* getCurrentState() const;
-	void changeState(State::eState state);
+	//State* getCurrentState() const;
+	//void changeState(State::eState state);
 
 	sf::RenderWindow* getWindow() const;
 
