@@ -22,6 +22,20 @@ void SceneManager::AddTexture(const std::string& name, const std::string& filePa
 	}
 }
 
+void SceneManager::AddFont(const std::string& name, const std::string& filePath) {
+	auto font = std::make_unique<sf::Font>();
+	if (font->loadFromFile(filePath)) {
+		_fonts[name] = std::move(font);
+	}
+	else {
+		throw std::runtime_error("Unable to load the font file");
+	}
+}
+
 const sf::Texture& SceneManager::getTexture(const std::string& name) const {
 	return *(_textures.at(name).get());
+}
+
+const sf::Font& SceneManager::getFont(const std::string& name) const {
+	return *(_fonts.at(name).get());
 }
