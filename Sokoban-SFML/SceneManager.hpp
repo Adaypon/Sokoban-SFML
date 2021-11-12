@@ -11,7 +11,7 @@ public:
 	SceneManager();
 	~SceneManager();
 
-	void AddTexture(const std::string& name, const std::string& filePath, bool isRepeated = false);
+	void AddTexture(const std::string& name, const std::string& filePath, bool repeatFlag = false);
 
 	sf::Texture* getTexture(const std::string& name) const;
 };

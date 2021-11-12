@@ -10,10 +10,10 @@ SceneManager::~SceneManager() {
 
 }
 
-void SceneManager::AddTexture(const std::string& name, const std::string& filePath, bool repeat) {
+void SceneManager::AddTexture(const std::string& name, const std::string& filePath, bool repeatFlag) {
 	sf::Texture* texture = new sf::Texture();
 	texture->loadFromFile(filePath);
-	texture->setRepeated(repeat);
+	texture->setRepeated(repeatFlag);
 	_textures.insert(std::make_pair(name, texture));
 }
 
