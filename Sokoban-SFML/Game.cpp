@@ -1,6 +1,7 @@
 #include "Game.hpp"
 
 Game::Game() :
+    _context(std::make_shared<Context>()),
     _framesPerSecond(60.0f),
     _windowWidth(1280),
     _windowHeight(720),
@@ -14,16 +15,18 @@ Game::Game() :
 }
 
 Game::~Game() {
-    delete _window;
+    //delete _window;
+    _context->_window.reset();
     for (State* state : _states) {
         delete state;
     }
 }
 
 void Game::_initWindow() {
-    _window = new sf::RenderWindow(sf::VideoMode(_windowWidth, _windowHeight), _titleBarText);
-    _window->setFramerateLimit(_framesPerSecond);
-    _window->setVerticalSyncEnabled(_VSyncFlag);
+    _context->_window->create(sf::VideoMode(_windowWidth, _windowHeight), _titleBarText);
+    //_window = new sf::RenderWindow(sf::VideoMode(_windowWidth, _windowHeight), _titleBarText);
+    _context->_window->setFramerateLimit(_framesPerSecond);
+    _context->_window->setVerticalSyncEnabled(_VSyncFlag);
 }
 
 void Game::_initStates() {
@@ -35,9 +38,9 @@ void Game::_initStates() {
 
 
 void Game::updateSFMLEvents() {
-    while (_window->pollEvent(_event)) {
+    while (_context->_window->pollEvent(_event)) {
         if (_event.type == sf::Event::Closed) {
-            _window->close();
+            _context->_window->close();
         }
     }
 }
@@ -48,17 +51,17 @@ void Game::update() {
 }
 
 void Game::render() {
-    _window->clear();
+    _context->_window->clear();
     //_window->draw(_shape);
-    _currentState->render(_window);
-    _window->display();
+    _currentState->render(getWindow());
+    _context->_window->display();
 }
 
 void Game::run() {
     sf::Clock clock;
     sf::Time timeSinceLastUpdate = sf::Time::Zero;
 
-    while (_window->isOpen()) {
+    while (_context->_window->isOpen()) {
         timeSinceLastUpdate += clock.restart();
         updateSFMLEvents();
 
@@ -67,6 +70,13 @@ void Game::run() {
         // then we're going updating stuff
         while (timeSinceLastUpdate > _timePerFrame) {
             timeSinceLastUpdate -= _timePerFrame; // in case of frames dropping
+            /** TODO
+            * - process state change
+            * - handle input in current state
+            * - call update
+            * - call draw
+            */
+            
             update();
             updateSFMLEvents();
             //std::cout << "a";
@@ -83,9 +93,11 @@ void Game::changeState(State::eState state) {
     _currentState = _states[state];
 }
 
+
 sf::RenderWindow* Game::getWindow() const {
-    return _window;
+    return _context->_window.get();
 }
+
 
 float Game::getFPS() const {
     return _framesPerSecond;
@@ -93,7 +105,7 @@ float Game::getFPS() const {
 
 void Game::setFPS(float fps) {
     _framesPerSecond = fps;
-    _window->setFramerateLimit(_framesPerSecond);
+    _context->_window->setFramerateLimit(_framesPerSecond);
     _timePerFrame = sf::seconds(1.0f / _framesPerSecond);
 }
 
@@ -103,18 +115,23 @@ bool Game::getVSync() const {
 
 void Game::setVSync(bool flag) {
     _VSyncFlag = flag;
-    _window->setVerticalSyncEnabled(_VSyncFlag);
+    _context->_window->setVerticalSyncEnabled(_VSyncFlag);
 }
 
 sf::Vector2u Game::getResolution() const {
-    return _window->getSize();
+    return _context->_window->getSize();
 }
 
 void Game::setResolution(unsigned width, unsigned height) {
+    _windowWidth = width;
+    _windowHeight = height;
+    _context->_window.reset(new sf::RenderWindow(sf::VideoMode(_windowWidth, _windowHeight), _titleBarText));
+    /*
     delete _window;
     _windowWidth = width;
     _windowHeight = height;
     _window = new sf::RenderWindow(sf::VideoMode(_windowWidth, _windowHeight), _titleBarText);
+    */
 }
 
 std::string Game::getTitleBarText() const {
@@ -123,5 +140,6 @@ std::string Game::getTitleBarText() const {
 
 void Game::setTitleBarText(const std::string& text) {
     _titleBarText = text;
-    _window->setTitle(_titleBarText);
+    _context->_window->setTitle(_titleBarText);
 }
+
