@@ -1,6 +1,7 @@
 #include "GameState.hpp"
 
-GameState::GameState() :
+GameState::GameState(std::shared_ptr<Context>& context) :
+	_context(context),
 	_shape(100.f)
 {
 
@@ -38,6 +39,6 @@ void GameState::update(const sf::Time deltaTime) {
 }
 
 void GameState::render(sf::RenderWindow* window) {
-	window->draw(_shape);
-	_player.render(window);
+	_context->_window->draw(_shape);
+	_player.render(_context->_window.get());
 }
