@@ -61,7 +61,7 @@
       <Filter>Objects</Filter>
     </ClCompile>
     <ClCompile Include="Box.cpp">
-      <Filter>Исходные файлы</Filter>
+      <Filter>Objects</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -99,7 +99,7 @@
       <Filter>Objects</Filter>
     </ClInclude>
     <ClInclude Include="Box.hpp">
-      <Filter>Файлы заголовков</Filter>
+      <Filter>Objects</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
