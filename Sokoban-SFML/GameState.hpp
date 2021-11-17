@@ -8,6 +8,7 @@
 #include "Player.hpp"
 #include "Box.hpp"
 #include "Wall.hpp"
+#include "Goal.hpp"
 #include "Game.hpp"
 
 //struct Context;

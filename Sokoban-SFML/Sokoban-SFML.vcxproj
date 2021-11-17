@@ -150,6 +150,7 @@
     <ClCompile Include="ExitState.cpp" />
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="GameState.cpp" />
+    <ClCompile Include="Goal.cpp" />
     <ClCompile Include="Level.cpp" />
     <ClCompile Include="LevelSelectState.cpp" />
     <ClCompile Include="main.cpp" />
@@ -166,6 +167,7 @@
     <ClInclude Include="ExitState.hpp" />
     <ClInclude Include="Game.hpp" />
     <ClInclude Include="GameState.hpp" />
+    <ClInclude Include="Goal.hpp" />
     <ClInclude Include="Level.hpp" />
     <ClInclude Include="LevelSelectState.hpp" />
     <ClInclude Include="MenuState.hpp" />

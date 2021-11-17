@@ -66,6 +66,9 @@
     <ClCompile Include="Wall.cpp">
       <Filter>Objects</Filter>
     </ClCompile>
+    <ClCompile Include="Goal.cpp">
+      <Filter>Исходные файлы</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Game.hpp">
@@ -106,6 +109,9 @@
     </ClInclude>
     <ClInclude Include="Wall.hpp">
       <Filter>Objects</Filter>
+    </ClInclude>
+    <ClInclude Include="Goal.hpp">
+      <Filter>Файлы заголовков</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

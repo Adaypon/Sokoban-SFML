@@ -36,6 +36,7 @@ void GameState::init() {
 	_context->_assets->AddTexture("Wall", "assets/sprites/wall.png");
 	_context->_assets->AddTexture("Box", "assets/sprites/box.png");
 	_context->_assets->AddTexture("Free", "assets/sprites/free.png");
+	_context->_assets->AddTexture("Goal", "assets/sprites/goal.png");
 	_context->_assets->AddTexture("Tileset", "assets/sprites/tileset.png");
 	_context->_assets->AddTexture("Player", "assets/sprites/player.png");
 
@@ -46,6 +47,7 @@ void GameState::init() {
 	createObject(new Player(_context));
 	createObject(new Box(_context));
 	createObject(new Wall(_context));
+	createObject(new Goal(_context));
 }
 
 void GameState::handleInput(const sf::Time deltaTime) {
