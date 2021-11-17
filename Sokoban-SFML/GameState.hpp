@@ -45,8 +45,7 @@ public:
         BoxOnGoal,
         Free,
         Goal,
-        BG,
-        Player
+        BG
     };
 
 
