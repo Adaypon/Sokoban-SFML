@@ -1,7 +1,8 @@
 #include "SceneManager.hpp"
 
 SceneManager::SceneManager() :
-	_textures()
+	_textures(),
+	_fonts()
 {
 	
 }

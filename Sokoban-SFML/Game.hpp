@@ -1,25 +1,17 @@
 #pragma once
 
-#include <iostream>
-#include <vector>
-#include <array>
-#include <string>
 #include <memory>
+#include <string>
+
 #include <SFML/System.hpp>
 #include <SFML/Window.hpp>
 #include <SFML/Graphics.hpp>
 #include <SFML/Audio.hpp>
 
-#include "State.hpp"
-#include "MenuState.hpp"
-#include "LevelSelectState.hpp"
-#include "GameState.hpp"
-#include "ExitState.hpp"
-
 #include "StateManager.hpp"
 #include "SceneManager.hpp"
 
-
+// Data of states, assets and window
 struct Context {
 	std::unique_ptr<StateManager> _states;
 	std::unique_ptr<SceneManager> _assets;

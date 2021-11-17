@@ -153,6 +153,7 @@
     <ClCompile Include="LevelSelectState.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="MenuState.cpp" />
+    <ClCompile Include="Player.cpp" />
     <ClCompile Include="SceneManager.cpp" />
     <ClCompile Include="State.cpp" />
     <ClCompile Include="StateManager.cpp" />
@@ -165,6 +166,7 @@
     <ClInclude Include="Level.hpp" />
     <ClInclude Include="LevelSelectState.hpp" />
     <ClInclude Include="MenuState.hpp" />
+    <ClInclude Include="Player.hpp" />
     <ClInclude Include="SceneManager.hpp" />
     <ClInclude Include="State.hpp" />
     <ClInclude Include="StateManager.hpp" />

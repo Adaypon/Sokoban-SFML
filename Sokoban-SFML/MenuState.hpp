@@ -1,10 +1,9 @@
 #pragma once
 
 #include <memory>
+#include <SFML/Graphics.hpp>
 #include "State.hpp"
 #include "Game.hpp"
-
-struct Context;
 
 class MenuState : public State
 {

@@ -1,4 +1,5 @@
 #include "Game.hpp"
+#include "MenuState.hpp"
 
 Game::Game() :
     _context(std::make_shared<Context>()),

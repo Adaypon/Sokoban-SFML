@@ -1,22 +1,26 @@
 #pragma once
 
 #include <memory>
+#include <SFML/Graphics.hpp>
 #include <vector>
 #include <string>
 #include "State.hpp"
-#include "Entity.hpp"
+//#include "Entity.hpp"
+#include "Player.hpp"
 #include "Game.hpp"
 
-struct Context;
+//struct Context;
 
 class GameState : public State
 {
 private:
 	std::shared_ptr<Context> _context;
-	Entity _player;
+	//Entity _player;
 
     sf::Sprite _background;
     sf::Sprite _sprite;
+
+    std::vector<Entity*> _objects;
 public:
 	GameState(std::shared_ptr<Context>& context);
 	~GameState();
@@ -25,6 +29,10 @@ public:
 	void handleInput(const sf::Time deltaTime) override;
 	void update(const sf::Time deltaTime) override;
 	void render(sf::RenderWindow* window) override;
+    void pause() override;
+    void resume() override;
+
+    void createObject(Entity* object);
 
     // TODO Cells as entities
     

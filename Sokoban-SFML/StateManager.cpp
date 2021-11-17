@@ -48,7 +48,7 @@ void StateManager::changeState() {
 		_stateStack.push(std::move(_newState));
 		//std::cout << "addState(): calling top->init()" << std::endl;
 		_stateStack.top()->init();
-		std::cout << "addState(): calling top->resume()" << std::endl;
+		//std::cout << "addState(): calling top->resume()" << std::endl;
 		_stateStack.top()->resume();
 		_isAdding = false;
 	}

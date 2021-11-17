@@ -16,6 +16,12 @@
     <Filter Include="States">
       <UniqueIdentifier>{0b021a8d-7486-4166-96ba-c1ce34f86b05}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Managers">
+      <UniqueIdentifier>{d03399fc-d71f-49cb-b17f-278a16588239}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Objects">
+      <UniqueIdentifier>{c1aed348-88c8-4320-9027-933bf2ac5a41}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -24,13 +30,7 @@
     <ClCompile Include="Game.cpp">
       <Filter>Исходные файлы</Filter>
     </ClCompile>
-    <ClCompile Include="SceneManager.cpp">
-      <Filter>Исходные файлы</Filter>
-    </ClCompile>
     <ClCompile Include="Level.cpp">
-      <Filter>Исходные файлы</Filter>
-    </ClCompile>
-    <ClCompile Include="Entity.cpp">
       <Filter>Исходные файлы</Filter>
     </ClCompile>
     <ClCompile Include="State.cpp">
@@ -48,21 +48,24 @@
     <ClCompile Include="ExitState.cpp">
       <Filter>States</Filter>
     </ClCompile>
+    <ClCompile Include="SceneManager.cpp">
+      <Filter>Managers</Filter>
+    </ClCompile>
     <ClCompile Include="StateManager.cpp">
-      <Filter>Исходные файлы</Filter>
+      <Filter>Managers</Filter>
+    </ClCompile>
+    <ClCompile Include="Player.cpp">
+      <Filter>Objects</Filter>
+    </ClCompile>
+    <ClCompile Include="Entity.cpp">
+      <Filter>Objects</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Game.hpp">
       <Filter>Файлы заголовков</Filter>
     </ClInclude>
-    <ClInclude Include="SceneManager.hpp">
-      <Filter>Файлы заголовков</Filter>
-    </ClInclude>
     <ClInclude Include="Level.hpp">
-      <Filter>Файлы заголовков</Filter>
-    </ClInclude>
-    <ClInclude Include="Entity.hpp">
       <Filter>Файлы заголовков</Filter>
     </ClInclude>
     <ClInclude Include="State.hpp">
@@ -80,8 +83,17 @@
     <ClInclude Include="ExitState.hpp">
       <Filter>States</Filter>
     </ClInclude>
+    <ClInclude Include="SceneManager.hpp">
+      <Filter>Managers</Filter>
+    </ClInclude>
     <ClInclude Include="StateManager.hpp">
-      <Filter>Файлы заголовков</Filter>
+      <Filter>Managers</Filter>
+    </ClInclude>
+    <ClInclude Include="Player.hpp">
+      <Filter>Objects</Filter>
+    </ClInclude>
+    <ClInclude Include="Entity.hpp">
+      <Filter>Objects</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
