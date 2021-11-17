@@ -60,6 +60,9 @@
     <ClCompile Include="Entity.cpp">
       <Filter>Objects</Filter>
     </ClCompile>
+    <ClCompile Include="Box.cpp">
+      <Filter>Исходные файлы</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Game.hpp">
@@ -94,6 +97,9 @@
     </ClInclude>
     <ClInclude Include="Entity.hpp">
       <Filter>Objects</Filter>
+    </ClInclude>
+    <ClInclude Include="Box.hpp">
+      <Filter>Файлы заголовков</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

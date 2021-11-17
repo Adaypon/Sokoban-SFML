@@ -17,15 +17,15 @@ GameState::~GameState() {
 int GameState::getNumOfSprite(int i, int j) {
 	switch (board1[i][j]) {
 	case '#':   // wall
-		return CellData::Wall;
+		return CellData::WallCell;
 	case 'B':   // box
-		return CellData::Box;
+		return CellData::BoxCell;
 	case 'Q':   // box on goal
-		return CellData::BoxOnGoal;
+		return CellData::BoxOnGoalCell;
 	case '.':   // free cell
-		return CellData::Free;
+		return CellData::FreeCell;
 	case 'x':   // goal
-		return CellData::Goal;
+		return CellData::GoalCell;
 	default:
 		return -1; // just for test
 	}
@@ -44,6 +44,7 @@ void GameState::init() {
 
 	_sprite.setTexture(_context->_assets->getTexture("Tileset"));
 	createObject(new Player(_context));
+	createObject(new Box(_context));
 }
 
 void GameState::handleInput(const sf::Time deltaTime) {

@@ -6,6 +6,7 @@
 #include <string>
 #include "State.hpp"
 #include "Player.hpp"
+#include "Box.hpp"
 #include "Game.hpp"
 
 //struct Context;
@@ -39,12 +40,13 @@ public:
     // ____________________________________________________________
 
     enum CellData {
-        Wall,
-        Box,
-        BoxOnGoal,
-        Free,
-        Goal,
-        BG
+        WallCell,
+        BoxCell,
+        BoxOnGoalCell,
+        FreeCell,
+        GoalCell,
+        BGCell,
+        PlayerCell
     };
 
 
