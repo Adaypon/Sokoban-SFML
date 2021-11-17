@@ -67,7 +67,7 @@
       <Filter>Objects</Filter>
     </ClCompile>
     <ClCompile Include="Goal.cpp">
-      <Filter>Исходные файлы</Filter>
+      <Filter>Objects</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -111,7 +111,7 @@
       <Filter>Objects</Filter>
     </ClInclude>
     <ClInclude Include="Goal.hpp">
-      <Filter>Файлы заголовков</Filter>
+      <Filter>Objects</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
