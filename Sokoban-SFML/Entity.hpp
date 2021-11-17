@@ -12,10 +12,6 @@ private:
 	std::shared_ptr<Context> _context;
 	sf::Sprite _sprite;
 	float _movementSpeed = 15.f;
-/*
-protected:
-	//sf::RectangleShape _shape; // placeholder
-*/
 public:
 	Entity(std::shared_ptr<Context>& context, const std::string& resource);
 	virtual ~Entity();

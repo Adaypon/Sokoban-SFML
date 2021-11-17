@@ -5,7 +5,6 @@
 #include <vector>
 #include <string>
 #include "State.hpp"
-//#include "Entity.hpp"
 #include "Player.hpp"
 #include "Game.hpp"
 

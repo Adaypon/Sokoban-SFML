@@ -43,8 +43,7 @@ void GameState::init() {
 	_background.setTextureRect(_context->_window->getViewport(_context->_window->getDefaultView()));
 
 	_sprite.setTexture(_context->_assets->getTexture("Tileset"));
-	createObject(new Player(_context)); // TODO fix E0079
-	//createObject(new Entity(_context, "Player"));
+	createObject(new Player(_context));
 }
 
 void GameState::handleInput(const sf::Time deltaTime) {
