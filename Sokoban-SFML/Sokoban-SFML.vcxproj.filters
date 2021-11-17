@@ -63,6 +63,9 @@
     <ClCompile Include="Box.cpp">
       <Filter>Objects</Filter>
     </ClCompile>
+    <ClCompile Include="Wall.cpp">
+      <Filter>Objects</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Game.hpp">
@@ -99,6 +102,9 @@
       <Filter>Objects</Filter>
     </ClInclude>
     <ClInclude Include="Box.hpp">
+      <Filter>Objects</Filter>
+    </ClInclude>
+    <ClInclude Include="Wall.hpp">
       <Filter>Objects</Filter>
     </ClInclude>
   </ItemGroup>

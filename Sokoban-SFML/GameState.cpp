@@ -45,6 +45,7 @@ void GameState::init() {
 	_sprite.setTexture(_context->_assets->getTexture("Tileset"));
 	createObject(new Player(_context));
 	createObject(new Box(_context));
+	createObject(new Wall(_context));
 }
 
 void GameState::handleInput(const sf::Time deltaTime) {

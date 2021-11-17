@@ -7,6 +7,7 @@
 #include "State.hpp"
 #include "Player.hpp"
 #include "Box.hpp"
+#include "Wall.hpp"
 #include "Game.hpp"
 
 //struct Context;
