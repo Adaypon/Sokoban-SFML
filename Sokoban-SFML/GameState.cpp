@@ -1,5 +1,4 @@
 #include "GameState.hpp"
-#include "Player.hpp"
 
 GameState::GameState(std::shared_ptr<Context>& context) :
 	_context(context),
