@@ -44,28 +44,57 @@ void GameState::init() {
 	_background.setTextureRect(_context->_window->getViewport(_context->_window->getDefaultView()));
 
 	_sprite.setTexture(_context->_assets->getTexture("Tileset"));
-	createObject(new Player(_context));
+	
+	/*
 	createObject(new Box(_context));
 	createObject(new Wall(_context));
 	createObject(new Goal(_context));
+	*/
+
+	// level
+	for (int i = 0; i < sizeOfGridLine; ++i) {
+		for (int j = 0; j < sizeOfGridLine; ++j) {
+			int numOfSprite = getNumOfSprite(i, j);
+			if (numOfSprite == CellData::WallCell) {
+				createObject(new Wall(_context));
+				_objects.back()->getSprite().setPosition(static_cast<float>(j) * widthOfSprite, static_cast<float>(i) * widthOfSprite);
+			}
+			if (numOfSprite == CellData::BoxCell) {
+				createObject(new Box(_context));
+				_objects.back()->getSprite().setPosition(static_cast<float>(j) * widthOfSprite, static_cast<float>(i) * widthOfSprite);
+			}
+			if (numOfSprite == CellData::GoalCell) {
+				createObject(new Goal(_context));
+				_objects.back()->getSprite().setPosition(static_cast<float>(j) * widthOfSprite, static_cast<float>(i) * widthOfSprite);
+			}
+
+			
+			/*
+			_sprite.setTextureRect(sf::IntRect(numOfSprite * widthOfSprite, 0, widthOfSprite, widthOfSprite));
+			_sprite.setPosition(static_cast<float>(j) * widthOfSprite, static_cast<float>(i) * widthOfSprite);
+			_context->_window->draw(_sprite);
+			*/
+		}
+	}
+	createObject(new Player(_context));
 }
 
 void GameState::handleInput(const sf::Time deltaTime) {
 	
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::A)) {
-		_objects[0]->move(deltaTime, -1.f, 0.f);
+		_objects.back()->move(deltaTime, -1.f, 0.f);
 	}
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::D)) {
-		_objects[0]->move(deltaTime, 1.f, 0.f);
+		_objects.back()->move(deltaTime, 1.f, 0.f);
 	}
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::W)) {
-		_objects[0]->move(deltaTime, 0.f, -1.f);
+		_objects.back()->move(deltaTime, 0.f, -1.f);
 	}
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::S)) {
-		_objects[0]->move(deltaTime, 0.f, 1.f);
+		_objects.back()->move(deltaTime, 0.f, 1.f);
 	}
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::R)) {
-		_objects[0]->getSprite().setPosition(10, 10);
+		_objects.back()->getSprite().setPosition(10, 10);
 	}
 	
 }
@@ -81,17 +110,18 @@ void GameState::update(const sf::Time deltaTime) {
 
 void GameState::render(sf::RenderWindow* window) {
 	_context->_window->draw(_background);
-
-	// level
 	for (int i = 0; i < sizeOfGridLine; ++i) {
 		for (int j = 0; j < sizeOfGridLine; ++j) {
 			int numOfSprite = getNumOfSprite(i, j);
-			_sprite.setTextureRect(sf::IntRect(numOfSprite * widthOfSprite, 0, widthOfSprite, widthOfSprite));
-			_sprite.setPosition(static_cast<float>(j) * widthOfSprite, static_cast<float>(i) * widthOfSprite);
-			_context->_window->draw(_sprite);
+			if (numOfSprite == CellData::FreeCell || numOfSprite == CellData::GoalCell) {
+				_sprite.setTextureRect(sf::IntRect(CellData::FreeCell * widthOfSprite, 0, widthOfSprite, widthOfSprite));
+				_sprite.setPosition(static_cast<float>(j) * widthOfSprite, static_cast<float>(i) * widthOfSprite);
+				_context->_window->draw(_sprite);
+			}
+
+
 		}
 	}
-
 	for (Entity* o : _objects) {
 		o->render(_context->_window.get());
 	}

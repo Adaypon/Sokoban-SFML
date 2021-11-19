@@ -9,6 +9,7 @@
 #include "Box.hpp"
 #include "Wall.hpp"
 #include "Goal.hpp"
+#include "Free.hpp"
 #include "Game.hpp"
 
 //struct Context;
