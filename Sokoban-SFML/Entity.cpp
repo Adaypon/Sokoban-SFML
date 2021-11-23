@@ -30,3 +30,18 @@ sf::Sprite& Entity::getSprite() {
 	return _sprite;
 }
 
+float Entity::X() {
+	return _sprite.getPosition().x;
+}
+
+void Entity::setX(float x) {
+	_sprite.setPosition(x, Y());
+}
+
+float Entity::Y() {
+	return _sprite.getPosition().y;
+}
+
+void Entity::setY(float y) {
+	_sprite.setPosition(X(), y);
+}
