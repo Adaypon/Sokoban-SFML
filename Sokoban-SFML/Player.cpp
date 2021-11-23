@@ -35,6 +35,9 @@ void Player::update(const sf::Time deltaTime) {
 		setX(XStart());
 		setY(YStart());
 	}
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space)) {
+		setVisible(!isVisible());
+	}
 }
 /*
 void Player::render(sf::RenderWindow* window) {

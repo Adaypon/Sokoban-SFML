@@ -13,6 +13,7 @@ private:
 	sf::Sprite _sprite;
 	sf::Vector2f _startPos;
 	sf::Vector2f _prevPos;
+	bool _visible;
 	
 public:
 	Entity(std::shared_ptr<Context>& context, int x, int y, const std::string& resource);
@@ -39,5 +40,8 @@ public:
 
 	float YPrev();
 	void setYPrev(float y);
+
+	bool isVisible();
+	void setVisible(bool visibleFlag);
 };
 

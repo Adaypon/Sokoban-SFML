@@ -3,7 +3,8 @@
 Entity::Entity(std::shared_ptr<Context>& context, int x, int y, const std::string& resource) :
 	_context(context),
 	_startPos(x, y),
-	_prevPos(x, y)
+	_prevPos(x, y),
+	_visible(true)
 {
 	if (resource != "") {
 		_sprite.setTexture((_context->_assets->getTexture(resource)));
@@ -21,7 +22,9 @@ void Entity::update(const sf::Time deltaTime) {
 
 void Entity::render(sf::RenderWindow* window) {
 	//window->draw(_shape);
-	_context->_window->draw(_sprite);
+	if (isVisible()) {
+		_context->_window->draw(_sprite);
+	}
 }
 
 sf::Sprite& Entity::getSprite() {
@@ -74,4 +77,12 @@ float Entity::YPrev() {
 
 void Entity::setYPrev(float y) {
 	_prevPos.y = y;
+}
+
+bool Entity::isVisible() {
+	return _visible;
+}
+
+void Entity::setVisible(bool visibleFlag) {
+	_visible = visibleFlag;
 }
