@@ -1,8 +1,8 @@
 #pragma once
 
-#include "Entity.hpp"
+#include "SolidObject.hpp"
 
-class Box : public Entity
+class Box : public SolidObject
 {
 private:
 

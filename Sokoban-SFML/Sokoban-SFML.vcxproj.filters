@@ -72,6 +72,9 @@
     <ClCompile Include="Free.cpp">
       <Filter>Objects</Filter>
     </ClCompile>
+    <ClCompile Include="SolidObject.cpp">
+      <Filter>Objects</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Game.hpp">
@@ -117,6 +120,9 @@
       <Filter>Objects</Filter>
     </ClInclude>
     <ClInclude Include="Free.hpp">
+      <Filter>Objects</Filter>
+    </ClInclude>
+    <ClInclude Include="SolidObject.hpp">
       <Filter>Objects</Filter>
     </ClInclude>
   </ItemGroup>

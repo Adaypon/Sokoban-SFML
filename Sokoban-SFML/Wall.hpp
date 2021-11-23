@@ -1,8 +1,8 @@
 #pragma once
 
-#include "Entity.hpp"
+#include "SolidObject.hpp"
 
-class Wall : public Entity
+class Wall : public SolidObject
 {
 private:
 
