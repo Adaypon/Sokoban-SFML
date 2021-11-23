@@ -14,10 +14,6 @@ Entity::~Entity() {
 
 }
 
-void Entity::move(const sf::Time deltaTime, const float dir_x, const float dir_y) {
-	_sprite.move(dir_x * _movementSpeed * deltaTime.asSeconds(), dir_y * _movementSpeed * deltaTime.asSeconds());
-}
-
 void Entity::update(const sf::Time deltaTime) {
 	
 }

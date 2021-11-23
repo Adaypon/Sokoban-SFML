@@ -81,22 +81,6 @@ void GameState::init() {
 
 void GameState::handleInput(const sf::Time deltaTime) {
 	
-	if (sf::Keyboard::isKeyPressed(sf::Keyboard::A)) {
-		_objects.back()->move(deltaTime, -1.f, 0.f);
-	}
-	if (sf::Keyboard::isKeyPressed(sf::Keyboard::D)) {
-		_objects.back()->move(deltaTime, 1.f, 0.f);
-	}
-	if (sf::Keyboard::isKeyPressed(sf::Keyboard::W)) {
-		_objects.back()->move(deltaTime, 0.f, -1.f);
-	}
-	if (sf::Keyboard::isKeyPressed(sf::Keyboard::S)) {
-		_objects.back()->move(deltaTime, 0.f, 1.f);
-	}
-	if (sf::Keyboard::isKeyPressed(sf::Keyboard::R)) {
-		_objects.back()->getSprite().setPosition(10, 10);
-	}
-	
 }
 
 void GameState::update(const sf::Time deltaTime) {
