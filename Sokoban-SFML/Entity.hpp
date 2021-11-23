@@ -12,6 +12,7 @@ private:
 	std::shared_ptr<Context> _context;
 	sf::Sprite _sprite;
 	sf::Vector2f _startPos;
+	sf::Vector2f _prevPos;
 	
 public:
 	Entity(std::shared_ptr<Context>& context, int x, int y, const std::string& resource);
@@ -32,5 +33,11 @@ public:
 
 	float YStart();
 	void setYStart(float y);
+
+	float XPrev();
+	void setXPrev(float x);
+
+	float YPrev();
+	void setYPrev(float y);
 };
 

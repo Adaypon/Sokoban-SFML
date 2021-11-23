@@ -2,7 +2,8 @@
 
 Entity::Entity(std::shared_ptr<Context>& context, int x, int y, const std::string& resource) :
 	_context(context),
-	_startPos(x, y)
+	_startPos(x, y),
+	_prevPos(x, y)
 {
 	if (resource != "") {
 		_sprite.setTexture((_context->_assets->getTexture(resource)));
@@ -57,4 +58,20 @@ float Entity::YStart() {
 
 void Entity::setYStart(float y) {
 	_startPos.y = y;
+}
+
+float Entity::XPrev() {
+	return _prevPos.x;
+}
+
+void Entity::setXPrev(float x) {
+	_prevPos.x = x;
+}
+
+float Entity::YPrev() {
+	return _prevPos.y;
+}
+
+void Entity::setYPrev(float y) {
+	_prevPos.y = y;
 }
