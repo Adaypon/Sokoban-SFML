@@ -64,5 +64,7 @@ public:
 
 	int getSpriteWidth();
 	int getSpriteHeight();
+
+	bool isPointWithinSpriteBounds(int x, int y);
 };
 

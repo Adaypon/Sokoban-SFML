@@ -136,3 +136,11 @@ int Entity::getSpriteWidth() {
 int Entity::getSpriteHeight() {
 	return _sprite.getTexture()->getSize().y / _verticalFrames;
 }
+
+bool Entity::isPointWithinSpriteBounds(int x, int y) {
+	if (x >= X() && x < (X() + getSpriteWidth()) &&
+		y >= Y() && y < (Y() + getSpriteHeight())) {
+		return true;
+	}
+	return false;
+}
