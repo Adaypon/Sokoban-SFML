@@ -52,20 +52,20 @@ void GameState::init() {
 	*/
 
 	// level
-	for (int i = 0; i < sizeOfGridLine; ++i) {
-		for (int j = 0; j < sizeOfGridLine; ++j) {
+	for (int i = 0; i < sizeOfGridLine; ++i) { // y \|/
+		for (int j = 0; j < sizeOfGridLine; ++j) { // x ->
 			int numOfSprite = getNumOfSprite(i, j);
 			if (numOfSprite == CellData::WallCell) {
-				createObject(new Wall(_context));
-				_objects.back()->getSprite().setPosition(static_cast<float>(j) * widthOfSprite, static_cast<float>(i) * widthOfSprite);
+				createObject(new Wall(_context, j * widthOfSprite, i * widthOfSprite));
+				//_objects.back()->getSprite().setPosition(static_cast<float>(j) * widthOfSprite, static_cast<float>(i) * widthOfSprite);
 			}
 			if (numOfSprite == CellData::BoxCell) {
-				createObject(new Box(_context));
-				_objects.back()->getSprite().setPosition(static_cast<float>(j) * widthOfSprite, static_cast<float>(i) * widthOfSprite);
+				createObject(new Box(_context, j * widthOfSprite, i * widthOfSprite));
+				//_objects.back()->getSprite().setPosition(static_cast<float>(j) * widthOfSprite, static_cast<float>(i) * widthOfSprite);
 			}
 			if (numOfSprite == CellData::GoalCell) {
-				createObject(new Goal(_context));
-				_objects.back()->getSprite().setPosition(static_cast<float>(j) * widthOfSprite, static_cast<float>(i) * widthOfSprite);
+				createObject(new Goal(_context, j * widthOfSprite, i * widthOfSprite));
+				//_objects.back()->getSprite().setPosition(static_cast<float>(j) * widthOfSprite, static_cast<float>(i) * widthOfSprite);
 			}
 
 			
@@ -76,7 +76,7 @@ void GameState::init() {
 			*/
 		}
 	}
-	createObject(new Player(_context));
+	createObject(new Player(_context, 0, 0));
 }
 
 void GameState::handleInput(const sf::Time deltaTime) {
@@ -109,7 +109,10 @@ void GameState::update(const sf::Time deltaTime) {
 }
 
 void GameState::render(sf::RenderWindow* window) {
+	// render background
 	_context->_window->draw(_background);
+
+	// render grid (free cells)
 	for (int i = 0; i < sizeOfGridLine; ++i) {
 		for (int j = 0; j < sizeOfGridLine; ++j) {
 			int numOfSprite = getNumOfSprite(i, j);
@@ -118,10 +121,10 @@ void GameState::render(sf::RenderWindow* window) {
 				_sprite.setPosition(static_cast<float>(j) * widthOfSprite, static_cast<float>(i) * widthOfSprite);
 				_context->_window->draw(_sprite);
 			}
-
-
 		}
 	}
+
+	// render objects
 	for (Entity* o : _objects) {
 		o->render(_context->_window.get());
 	}

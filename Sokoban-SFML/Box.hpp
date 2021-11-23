@@ -7,5 +7,5 @@ class Box : public Entity
 private:
 
 public:
-	Box(std::shared_ptr<Context>& context);
+	Box(std::shared_ptr<Context>& context, int x, int y);
 };

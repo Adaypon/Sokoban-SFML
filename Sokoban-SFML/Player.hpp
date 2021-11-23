@@ -9,7 +9,7 @@ private:
 	float _movementSpeed = 15.f;
 
 public:
-	Player(std::shared_ptr<Context>& context);
+	Player(std::shared_ptr<Context>& context, int x, int y);
 	//~Player();
 	
 	void move(const sf::Time deltaTime, const float dir_x, const float dir_y) override;

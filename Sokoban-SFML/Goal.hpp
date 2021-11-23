@@ -7,5 +7,5 @@ class Goal : public Entity
 private:
 
 public:
-	Goal(std::shared_ptr<Context>& context);
+	Goal(std::shared_ptr<Context>& context, int x, int y);
 };

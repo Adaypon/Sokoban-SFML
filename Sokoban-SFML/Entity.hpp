@@ -13,7 +13,7 @@ private:
 	sf::Sprite _sprite;
 	float _movementSpeed = 15.f;
 public:
-	Entity(std::shared_ptr<Context>& context, const std::string& resource);
+	Entity(std::shared_ptr<Context>& context, int x, int y, const std::string& resource);
 	virtual ~Entity();
 
 	virtual void move(const sf::Time deltaTime, const float dir_x, const float dir_y);

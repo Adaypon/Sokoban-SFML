@@ -1,10 +1,11 @@
 #include "Entity.hpp"
 
-Entity::Entity(std::shared_ptr<Context>& context, const std::string& resource) :
+Entity::Entity(std::shared_ptr<Context>& context, int x, int y, const std::string& resource) :
 	_context(context)
 {
 	if (resource != "") {
 		_sprite.setTexture((_context->_assets->getTexture(resource)));
+		_sprite.setPosition(x, y);
 	}
 }
 

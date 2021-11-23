@@ -7,5 +7,5 @@ class Free : public Entity
 private:
 
 public:
-	Free(std::shared_ptr<Context>& context);
+	Free(std::shared_ptr<Context>& context, int x, int y);
 };

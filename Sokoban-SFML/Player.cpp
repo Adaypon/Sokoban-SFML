@@ -1,7 +1,7 @@
 #include "Player.hpp"
 
-Player::Player(std::shared_ptr<Context>& context) :
-	Entity(context, "Player")
+Player::Player(std::shared_ptr<Context>& context, int x, int y) :
+	Entity(context, x, y, "Player")
 {
 
 }
