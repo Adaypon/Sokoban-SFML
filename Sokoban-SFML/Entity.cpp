@@ -4,7 +4,8 @@ Entity::Entity(std::shared_ptr<Context>& context, int x, int y, const std::strin
 	_context(context),
 	_startPos(x, y),
 	_prevPos(x, y),
-	_visible(true)
+	_visible(true),
+	_depth(0)
 {
 	if (resource != "") {
 		_sprite.setTexture((_context->_assets->getTexture(resource)));
@@ -85,4 +86,12 @@ bool Entity::isVisible() {
 
 void Entity::setVisible(bool visibleFlag) {
 	_visible = visibleFlag;
+}
+
+float Entity::getDepth() {
+	return _depth;
+}
+
+void Entity::setDepth(float depth) {
+	_depth = depth;
 }

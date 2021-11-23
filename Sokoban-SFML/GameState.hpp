@@ -4,6 +4,7 @@
 #include <SFML/Graphics.hpp>
 #include <vector>
 #include <string>
+#include <algorithm>
 #include "State.hpp"
 #include "Player.hpp"
 #include "Box.hpp"
@@ -56,7 +57,7 @@ public:
     std::vector<std::string> board1 = {
         "#######",
         "#.....#",
-        "#.....#",
+        "#..@..#",
         "#..B..#",
         "#.....#",
         "#..x..#",

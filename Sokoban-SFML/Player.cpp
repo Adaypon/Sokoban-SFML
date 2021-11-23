@@ -19,6 +19,8 @@ void Player::move(const sf::Time deltaTime, const float dir_x, const float dir_y
 
 
 void Player::update(const sf::Time deltaTime) {
+	// TODO remake keyboard input cause of too much calls
+	
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::A)) {
 		move(deltaTime, -1.f, 0.f);
 	}
@@ -37,6 +39,12 @@ void Player::update(const sf::Time deltaTime) {
 	}
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space)) {
 		setVisible(!isVisible());
+	}
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Add)) {
+		setDepth(getDepth() + 1);
+	}
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Subtract)) {
+		setDepth(getDepth() - 1);
 	}
 }
 /*

@@ -14,6 +14,7 @@ private:
 	sf::Vector2f _startPos;
 	sf::Vector2f _prevPos;
 	bool _visible;
+	float _depth;
 	
 public:
 	Entity(std::shared_ptr<Context>& context, int x, int y, const std::string& resource);
@@ -43,5 +44,8 @@ public:
 
 	bool isVisible();
 	void setVisible(bool visibleFlag);
+
+	float getDepth();
+	void setDepth(float depth);
 };
 

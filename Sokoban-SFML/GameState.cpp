@@ -26,6 +26,8 @@ int GameState::getNumOfSprite(int i, int j) {
 		return CellData::FreeCell;
 	case 'x':   // goal
 		return CellData::GoalCell;
+	case '@':
+		return CellData::PlayerCell;
 	default:
 		return -1; // just for test
 	}
@@ -55,6 +57,10 @@ void GameState::init() {
 	for (int i = 0; i < sizeOfGridLine; ++i) { // y \|/
 		for (int j = 0; j < sizeOfGridLine; ++j) { // x ->
 			int numOfSprite = getNumOfSprite(i, j);
+			if (numOfSprite == CellData::PlayerCell) {
+				createObject(new Player(_context, j * widthOfSprite, i * widthOfSprite));
+				//_objects.back()->getSprite().setPosition(static_cast<float>(j) * widthOfSprite, static_cast<float>(i) * widthOfSprite);
+			}
 			if (numOfSprite == CellData::WallCell) {
 				createObject(new Wall(_context, j * widthOfSprite, i * widthOfSprite));
 				//_objects.back()->getSprite().setPosition(static_cast<float>(j) * widthOfSprite, static_cast<float>(i) * widthOfSprite);
@@ -76,7 +82,7 @@ void GameState::init() {
 			*/
 		}
 	}
-	createObject(new Player(_context, 0, 0));
+	//createObject(new Player(_context, 0, 0));
 }
 
 void GameState::handleInput(const sf::Time deltaTime) {
@@ -92,6 +98,10 @@ void GameState::update(const sf::Time deltaTime) {
 	//_player.update(deltaTime);
 }
 
+bool depthLessComparator(Entity* lhs, Entity* rhs) {
+	return lhs->getDepth() < rhs->getDepth();
+}
+
 void GameState::render(sf::RenderWindow* window) {
 	// render background
 	_context->_window->draw(_background);
@@ -100,13 +110,16 @@ void GameState::render(sf::RenderWindow* window) {
 	for (int i = 0; i < sizeOfGridLine; ++i) {
 		for (int j = 0; j < sizeOfGridLine; ++j) {
 			int numOfSprite = getNumOfSprite(i, j);
-			if (numOfSprite == CellData::FreeCell || numOfSprite == CellData::GoalCell) {
+			if (numOfSprite == CellData::FreeCell || numOfSprite == CellData::GoalCell || numOfSprite == CellData::PlayerCell) {
 				_sprite.setTextureRect(sf::IntRect(CellData::FreeCell * widthOfSprite, 0, widthOfSprite, widthOfSprite));
 				_sprite.setPosition(static_cast<float>(j) * widthOfSprite, static_cast<float>(i) * widthOfSprite);
 				_context->_window->draw(_sprite);
 			}
 		}
 	}
+
+	// sorting by depth
+	std::sort(_objects.begin(), _objects.end(), depthLessComparator);
 
 	// render objects
 	for (Entity* o : _objects) {
