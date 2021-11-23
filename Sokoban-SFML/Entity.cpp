@@ -1,11 +1,15 @@
 #include "Entity.hpp"
 
-Entity::Entity(std::shared_ptr<Context>& context, int x, int y, const std::string& resource) :
+Entity::Entity(std::shared_ptr<Context>& context, int x, int y, const std::string& resource, int horizontalFrames, int verticalFrames) :
 	_context(context),
 	_startPos(x, y),
 	_prevPos(x, y),
 	_visible(true),
-	_depth(0)
+	_depth(0),
+	_horizontalFrames(horizontalFrames),
+	_verticalFrames(verticalFrames),
+	_imageIndex(0),
+	_imageSpeed(0)
 {
 	if (resource != "") {
 		_sprite.setTexture((_context->_assets->getTexture(resource)));
@@ -18,12 +22,18 @@ Entity::~Entity() {
 }
 
 void Entity::update(const sf::Time deltaTime) {
-	
+	// Animantion component
+	setImageIndex(getImageIndex() + getImageSpeed());
 }
 
 void Entity::render(sf::RenderWindow* window) {
 	//window->draw(_shape);
 	if (isVisible()) {
+		int x = static_cast<int>(getImageIndex()) % _horizontalFrames;
+		int y = static_cast<int>(getImageIndex()) / _horizontalFrames;
+		//std::cout << "\t Getting " << x << " " << y << " sprite" << std::endl;
+		_sprite.setTextureRect(sf::IntRect(x * getSpriteWidth(), y * getSpriteHeight(), 
+								getSpriteWidth(), getSpriteHeight()));
 		_context->_window->draw(_sprite);
 	}
 }
@@ -94,4 +104,35 @@ float Entity::getDepth() {
 
 void Entity::setDepth(float depth) {
 	_depth = depth;
+}
+
+float Entity::getImageIndex() {
+	return _imageIndex;
+}
+
+void Entity::setImageIndex(float value) {
+	value = fmod(value, _horizontalFrames * _verticalFrames);
+	
+	// check for negative value
+	if (value < 0) {
+		value += _horizontalFrames * _verticalFrames;
+	}
+
+	_imageIndex = value;
+}
+
+float Entity::getImageSpeed() {
+	return _imageSpeed;
+}
+
+void Entity::setImageSpeed(float value) {
+	_imageSpeed = value;
+}
+
+int Entity::getSpriteWidth() {
+	return _sprite.getTexture()->getSize().x / _horizontalFrames;
+}
+
+int Entity::getSpriteHeight() {
+	return _sprite.getTexture()->getSize().y / _verticalFrames;
 }

@@ -2,6 +2,7 @@
 
 #include <string>
 #include <memory>
+#include <cmath>
 #include <SFML/Graphics.hpp>
 #include "Game.hpp"
 
@@ -16,8 +17,13 @@ private:
 	bool _visible;
 	float _depth;
 	
+	int _horizontalFrames;
+	int _verticalFrames;
+	float _imageIndex;
+	float _imageSpeed;
+	
 public:
-	Entity(std::shared_ptr<Context>& context, int x, int y, const std::string& resource);
+	Entity(std::shared_ptr<Context>& context, int x, int y, const std::string& resource, int horizontalFrames = 1, int verticalFrames = 1);
 	virtual ~Entity();
 
 	virtual void update(const sf::Time deltaTime);
@@ -47,5 +53,16 @@ public:
 
 	float getDepth();
 	void setDepth(float depth);
+
+	// Animation
+
+	float getImageIndex();
+	void setImageIndex(float value);
+
+	float getImageSpeed();
+	void setImageSpeed(float value);
+
+	int getSpriteWidth();
+	int getSpriteHeight();
 };
 

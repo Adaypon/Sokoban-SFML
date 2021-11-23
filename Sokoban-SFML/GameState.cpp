@@ -40,7 +40,7 @@ void GameState::init() {
 	_context->_assets->AddTexture("Free", "assets/sprites/free.png");
 	_context->_assets->AddTexture("Goal", "assets/sprites/goal.png");
 	_context->_assets->AddTexture("Tileset", "assets/sprites/tileset.png");
-	_context->_assets->AddTexture("Player", "assets/sprites/player.png");
+	_context->_assets->AddTexture("Player", "assets/sprites/player_tileset.png");
 
 	_background.setTexture(_context->_assets->getTexture("Background"));
 	_background.setTextureRect(_context->_window->getViewport(_context->_window->getDefaultView()));
@@ -73,7 +73,6 @@ void GameState::init() {
 				createObject(new Goal(_context, j * widthOfSprite, i * widthOfSprite));
 				//_objects.back()->getSprite().setPosition(static_cast<float>(j) * widthOfSprite, static_cast<float>(i) * widthOfSprite);
 			}
-
 			
 			/*
 			_sprite.setTextureRect(sf::IntRect(numOfSprite * widthOfSprite, 0, widthOfSprite, widthOfSprite));
