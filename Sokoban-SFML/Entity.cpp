@@ -1,7 +1,8 @@
 #include "Entity.hpp"
 
 Entity::Entity(std::shared_ptr<Context>& context, int x, int y, const std::string& resource) :
-	_context(context)
+	_context(context),
+	_startPos(x, y)
 {
 	if (resource != "") {
 		_sprite.setTexture((_context->_assets->getTexture(resource)));
@@ -44,4 +45,20 @@ float Entity::Y() {
 
 void Entity::setY(float y) {
 	_sprite.setPosition(X(), y);
+}
+
+float Entity::XStart() {
+	return _startPos.x;
+}
+
+void Entity::setXStart(float x) {
+	_startPos.x = x;
+}
+
+float Entity::YStart() {
+	return _startPos.y;
+}
+
+void Entity::setYStart(float y) {
+	_startPos.y = y;
 }

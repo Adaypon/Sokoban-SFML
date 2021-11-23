@@ -11,6 +11,7 @@ class Entity
 private:
 	std::shared_ptr<Context> _context;
 	sf::Sprite _sprite;
+	sf::Vector2f _startPos;
 	float _movementSpeed = 15.f; // TODO remove later
 public:
 	Entity(std::shared_ptr<Context>& context, int x, int y, const std::string& resource);
@@ -27,5 +28,11 @@ public:
 
 	float Y();
 	void setY(float y);
+
+	float XStart();
+	void setXStart(float x);
+
+	float YStart();
+	void setYStart(float y);
 };
 
