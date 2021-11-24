@@ -147,13 +147,11 @@
   <ItemGroup>
     <ClCompile Include="Box.cpp" />
     <ClCompile Include="Entity.cpp" />
-    <ClCompile Include="ExitState.cpp" />
     <ClCompile Include="Free.cpp" />
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="GameState.cpp" />
     <ClCompile Include="Goal.cpp" />
     <ClCompile Include="Level.cpp" />
-    <ClCompile Include="LevelSelectState.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="MenuState.cpp" />
     <ClCompile Include="Player.cpp" />
@@ -166,13 +164,11 @@
   <ItemGroup>
     <ClInclude Include="Box.hpp" />
     <ClInclude Include="Entity.hpp" />
-    <ClInclude Include="ExitState.hpp" />
     <ClInclude Include="Free.hpp" />
     <ClInclude Include="Game.hpp" />
     <ClInclude Include="GameState.hpp" />
     <ClInclude Include="Goal.hpp" />
     <ClInclude Include="Level.hpp" />
-    <ClInclude Include="LevelSelectState.hpp" />
     <ClInclude Include="MenuState.hpp" />
     <ClInclude Include="Player.hpp" />
     <ClInclude Include="SceneManager.hpp" />

@@ -46,7 +46,7 @@ void GameState::init() {
 	_background.setTextureRect(_context->_window->getViewport(_context->_window->getDefaultView()));
 
 	_sprite.setTexture(_context->_assets->getTexture("Tileset"));
-	
+
 	/*
 	createObject(new Box(_context));
 	createObject(new Wall(_context));
@@ -73,7 +73,7 @@ void GameState::init() {
 				createObject(new Goal(_context, j * widthOfSprite, i * widthOfSprite));
 				//_objects.back()->getSprite().setPosition(static_cast<float>(j) * widthOfSprite, static_cast<float>(i) * widthOfSprite);
 			}
-			
+
 			/*
 			_sprite.setTextureRect(sf::IntRect(numOfSprite * widthOfSprite, 0, widthOfSprite, widthOfSprite));
 			_sprite.setPosition(static_cast<float>(j) * widthOfSprite, static_cast<float>(i) * widthOfSprite);
@@ -85,7 +85,7 @@ void GameState::init() {
 }
 
 void GameState::handleInput(const sf::Time deltaTime) {
-	
+
 }
 
 void GameState::update(const sf::Time deltaTime) {
