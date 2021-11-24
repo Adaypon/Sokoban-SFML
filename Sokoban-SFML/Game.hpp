@@ -11,6 +11,8 @@
 #include "StateManager.hpp"
 #include "SceneManager.hpp"
 
+class StateManager;
+
 // Data of states, assets and window
 struct Context {
 	std::unique_ptr<StateManager> _states;

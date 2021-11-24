@@ -24,10 +24,10 @@ private:
     sf::Sprite _background;
     sf::Sprite _sprite;
 
-    std::vector<Entity*> _objects;
+    //std::vector<Entity*> _objects;
 public:
     GameState(std::shared_ptr<Context>& context);
-    ~GameState();
+    //~GameState();
 
     void init() override;
     void handleInput(const sf::Time deltaTime) override;
@@ -36,7 +36,7 @@ public:
     void pause() override;
     void resume() override;
 
-    void createObject(Entity* object);
+    //void createObject(Entity* object);
 
     // TODO Cells as entities
 
@@ -71,4 +71,3 @@ public:
 
     // ____________________________________________________________
 };
-

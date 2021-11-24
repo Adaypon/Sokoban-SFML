@@ -1,19 +1,18 @@
 #include "GameState.hpp"
 
 GameState::GameState(std::shared_ptr<Context>& context) :
-	_context(context),
-	_objects()
+	_context(context)
 {
 
 }
-
+/*
 GameState::~GameState() {
 	for (Entity* o : _objects) {
 		delete o;
 	}
 	_objects.clear();
 }
-
+*/
 int GameState::getNumOfSprite(int i, int j) {
 	switch (board1[i][j]) {
 	case '#':   // wall
@@ -47,11 +46,11 @@ void GameState::init() {
 
 	_sprite.setTexture(_context->_assets->getTexture("Tileset"));
 
-	/*
-	createObject(new Box(_context));
-	createObject(new Wall(_context));
-	createObject(new Goal(_context));
-	*/
+	
+	//createObject(new Box(_context));
+	//createObject(new Wall(_context));
+	//createObject(new Goal(_context));
+	
 
 	// level
 	for (int i = 0; i < sizeOfGridLine; ++i) { // y \|/
@@ -74,11 +73,11 @@ void GameState::init() {
 				//_objects.back()->getSprite().setPosition(static_cast<float>(j) * widthOfSprite, static_cast<float>(i) * widthOfSprite);
 			}
 
-			/*
-			_sprite.setTextureRect(sf::IntRect(numOfSprite * widthOfSprite, 0, widthOfSprite, widthOfSprite));
-			_sprite.setPosition(static_cast<float>(j) * widthOfSprite, static_cast<float>(i) * widthOfSprite);
-			_context->_window->draw(_sprite);
-			*/
+			
+			//_sprite.setTextureRect(sf::IntRect(numOfSprite * widthOfSprite, 0, widthOfSprite, widthOfSprite));
+			//_sprite.setPosition(static_cast<float>(j) * widthOfSprite, static_cast<float>(i) * widthOfSprite);
+			//_context->_window->draw(_sprite);
+			
 		}
 	}
 	//createObject(new Player(_context, 0, 0));
@@ -91,16 +90,21 @@ void GameState::handleInput(const sf::Time deltaTime) {
 void GameState::update(const sf::Time deltaTime) {
 	handleInput(deltaTime);
 	std::cout << "Hello from GameState" << std::endl;
+	/*
 	for (Entity* o : _objects) {
 		o->update(deltaTime);
 	}
+	*/
+
+	State::update(deltaTime);
+
 	//_player.update(deltaTime);
 }
-
+/*
 bool depthLessComparator(Entity* lhs, Entity* rhs) {
 	return lhs->getDepth() < rhs->getDepth();
 }
-
+*/
 void GameState::render(sf::RenderWindow* window) {
 	// render background
 	_context->_window->draw(_background);
@@ -118,12 +122,15 @@ void GameState::render(sf::RenderWindow* window) {
 	}
 
 	// sorting by depth
-	std::sort(_objects.begin(), _objects.end(), depthLessComparator);
+	//std::sort(_objects.begin(), _objects.end(), depthLessComparator);
 
 	// render objects
+	/*
 	for (Entity* o : _objects) {
 		o->render(_context->_window.get());
 	}
+	*/
+	State::render(_context->_window.get());
 
 	//_player.render(_context->_window.get());
 }
@@ -135,7 +142,8 @@ void GameState::pause() {
 void GameState::resume() {
 
 }
-
+/*
 void GameState::createObject(Entity* object) {
 	_objects.push_back(object);
 }
+*/

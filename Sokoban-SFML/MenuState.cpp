@@ -6,11 +6,11 @@ MenuState::MenuState(std::shared_ptr<Context>& context) :
 {
 
 }
-
+/*
 MenuState::~MenuState() {
 
 }
-
+*/
 void MenuState::init() {
 	_context->_assets->AddFont("Main font", "assets/fonts/font.ttf");
 	_text.setFont(_context->_assets->getFont("Main font"));

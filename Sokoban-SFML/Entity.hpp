@@ -6,6 +6,8 @@
 #include <SFML/Graphics.hpp>
 #include "Game.hpp"
 
+struct Context;
+
 // Base class for all objects
 class Entity
 {

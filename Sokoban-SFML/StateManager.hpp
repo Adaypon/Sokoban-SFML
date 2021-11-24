@@ -4,17 +4,19 @@
 #include <memory>
 #include "State.hpp"
 
+class State;
+
 typedef std::unique_ptr<State> StateRef;	
 
 class StateManager {
 private:
 	// should be modified at the start of next update() cycle
-	std::stack<std::unique_ptr<State>> _stateStack;
+	std::stack<StateRef> _stateStack;
 
 	// storing the new state being added to stack
 	// because it's not necessary to push a new state
 	// while other state is executing it's update() method
-	std::unique_ptr<State> _newState;
+	StateRef _newState;
 
 	bool _isAdding;
 	bool _isReplacing;
