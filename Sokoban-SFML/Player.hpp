@@ -14,6 +14,7 @@ private:
 		RIGHT
 	};
 	int _direction = _dirEnum::DOWN;
+	bool _isMoving;
 	std::shared_ptr<Context> _contextPlayer; // ךמסעûûûûûûכü
 
 public:
