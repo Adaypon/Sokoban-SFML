@@ -6,7 +6,11 @@
 #include <SFML/Graphics.hpp>
 #include "Game.hpp"
 
+//class State;
+
 struct Context;
+//Context* createContextPtr(); // tried to fix C2027
+
 
 // Base class for all objects
 class Entity
@@ -67,6 +71,18 @@ public:
 	int getSpriteWidth();
 	int getSpriteHeight();
 
-	bool isPointWithinSpriteBounds(int x, int y);
+	bool isPointWithinSpriteBounds(float x, float y);
+	/*
+	template<typename T>
+	std::vector<T> getObjectsAtPos(float x, float y);
+	*/
+
+
 };
 
+/*
+template<typename T>
+inline std::vector<T> Entity::getObjectsAtPos(float x, float y) {
+	return createContextPtr()->_states->getCurrentState()->getObjectsAtPos<T>(x, y);
+}
+*/

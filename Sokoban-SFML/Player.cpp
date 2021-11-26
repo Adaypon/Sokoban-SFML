@@ -1,4 +1,6 @@
 #include "Player.hpp"
+#include "SolidObject.hpp"
+#include "Box.hpp"
 
 Player::Player(std::shared_ptr<Context>& context, int x, int y) :
 	Entity(context, x, y, "Player", 4, 4)
@@ -25,7 +27,7 @@ void Player::update(const sf::Time deltaTime) {
 	// TODO remake keyboard input cause of too much calls
 	
 	Entity::update(deltaTime);
-
+	std::cout << "Player: " << X() << " " << Y() << std::endl;
 	// TODO try switch-case 
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::A) ||
 		sf::Keyboard::isKeyPressed(sf::Keyboard::D) ||
@@ -34,21 +36,54 @@ void Player::update(const sf::Time deltaTime) {
 	{
 		setImageSpeed(0.175f);
 		_isMoving = true;
+		sf::FloatRect bounds = getSprite().getGlobalBounds();
 		if (sf::Keyboard::isKeyPressed(sf::Keyboard::A)) {
 			_direction = _dirEnum::LEFT;
-			move(deltaTime, -1.f, 0.f);
+			bounds.left -= 1.f;
+			std::vector<SolidObject*> solids = _contextPlayer->_states->getCurrentState()->getObjectsAtRect<SolidObject*>(bounds);
+			//std::vector<SolidObject*> solids = _contextPlayer->_states->getCurrentState()->getObjectsAtPos<SolidObject*>(X() - getSpriteWidth(), Y());
+			for (auto solid : solids) {
+				std::cout << "\tSolid: " << solid->X() << " " << solid->Y() << std::endl;
+			}
+			if (solids.empty()) {
+				move(deltaTime, -1.f, 0.f);
+			}
 		}
 		if (sf::Keyboard::isKeyPressed(sf::Keyboard::D)) {
 			_direction = _dirEnum::RIGHT;
-			move(deltaTime, 1.f, 0.f);
+			bounds.width += 1.f;
+			std::vector<SolidObject*> solids = _contextPlayer->_states->getCurrentState()->getObjectsAtRect<SolidObject*>(bounds);
+			//std::vector<SolidObject*> solids = _contextPlayer->_states->getCurrentState()->getObjectsAtPos<SolidObject*>(X() + getSpriteWidth(), Y());
+			for (auto solid : solids) {
+				std::cout << "\tSolid: " << solid->X() << " " << solid->Y() << std::endl;
+			}
+			if (solids.empty()) {
+				move(deltaTime, 1.f, 0.f);
+			}
 		}
 		if (sf::Keyboard::isKeyPressed(sf::Keyboard::W)) {
 			_direction = _dirEnum::UP;
-			move(deltaTime, 0.f, -1.f);
+			bounds.top -= 1.f;
+			std::vector<SolidObject*> solids = _contextPlayer->_states->getCurrentState()->getObjectsAtRect<SolidObject*>(bounds);
+			//std::vector<SolidObject*> solids = _contextPlayer->_states->getCurrentState()->getObjectsAtPos<SolidObject*>(X(), Y() - getSpriteHeight());
+			for (auto solid : solids) {
+				std::cout << "\tSolid: " << solid->X() << " " << solid->Y() << std::endl;
+			}
+			if (solids.empty()) {
+				move(deltaTime, 0.f, -1.f);
+			}
 		}
 		if (sf::Keyboard::isKeyPressed(sf::Keyboard::S)) {
 			_direction = _dirEnum::DOWN;
-			move(deltaTime, 0.f, 1.f);
+			bounds.height += 1.f;
+			std::vector<SolidObject*> solids = _contextPlayer->_states->getCurrentState()->getObjectsAtRect<SolidObject*>(bounds);
+			//std::vector<SolidObject*> solids = _contextPlayer->_states->getCurrentState()->getObjectsAtPos<SolidObject*>(X(), Y() + getSpriteHeight());
+			for (auto solid : solids) {
+				std::cout << "\tSolid: " << solid->X() << " " << solid->Y() << std::endl;
+			}
+			if (solids.empty()) {
+				move(deltaTime, 0.f, 1.f);
+			}
 		}
 	}
 	else {

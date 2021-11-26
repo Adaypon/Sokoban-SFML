@@ -46,7 +46,7 @@ void GameState::init() {
 
 	_sprite.setTexture(_context->_assets->getTexture("Tileset"));
 
-	
+
 	//createObject(new Box(_context));
 	//createObject(new Wall(_context));
 	//createObject(new Goal(_context));
