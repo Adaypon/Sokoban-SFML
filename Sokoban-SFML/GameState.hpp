@@ -24,6 +24,8 @@ private:
     sf::Sprite _background;
     sf::Sprite _sprite;
 
+    float _offsetX;
+    float _offsetY;
     //std::vector<Entity*> _objects;
 public:
     GameState(std::shared_ptr<Context>& context);

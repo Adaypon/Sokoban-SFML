@@ -46,38 +46,45 @@ void GameState::init() {
 
 	_sprite.setTexture(_context->_assets->getTexture("Tileset"));
 
+	auto windowSize = _context->_window->getSize();
+	_offsetX = windowSize.x / 2;
+	_offsetY = windowSize.y / 2;
+
+	_offsetX -= (sizeOfGridLine / 2.f) * widthOfSprite;
+	_offsetY -= (sizeOfGridLine / 2.f) * widthOfSprite; // TODO change to height
+
 
 	//createObject(new Box(_context));
 	//createObject(new Wall(_context));
 	//createObject(new Goal(_context));
-	
+
 
 	// level
 	for (int i = 0; i < sizeOfGridLine; ++i) { // y \|/
 		for (int j = 0; j < sizeOfGridLine; ++j) { // x ->
 			int numOfSprite = getNumOfSprite(i, j);
 			if (numOfSprite == CellData::PlayerCell) {
-				createObject(new Player(_context, j * widthOfSprite, i * widthOfSprite));
+				createObject(new Player(_context, _offsetX + j * widthOfSprite, _offsetY + i * widthOfSprite));
 				//_objects.back()->getSprite().setPosition(static_cast<float>(j) * widthOfSprite, static_cast<float>(i) * widthOfSprite);
 			}
 			if (numOfSprite == CellData::WallCell) {
-				createObject(new Wall(_context, j * widthOfSprite, i * widthOfSprite));
+				createObject(new Wall(_context, _offsetX + j * widthOfSprite, _offsetY + i * widthOfSprite));
 				//_objects.back()->getSprite().setPosition(static_cast<float>(j) * widthOfSprite, static_cast<float>(i) * widthOfSprite);
 			}
 			if (numOfSprite == CellData::BoxCell) {
-				createObject(new Box(_context, j * widthOfSprite, i * widthOfSprite));
+				createObject(new Box(_context, _offsetX + j * widthOfSprite, _offsetY + i * widthOfSprite));
 				//_objects.back()->getSprite().setPosition(static_cast<float>(j) * widthOfSprite, static_cast<float>(i) * widthOfSprite);
 			}
 			if (numOfSprite == CellData::GoalCell) {
-				createObject(new Goal(_context, j * widthOfSprite, i * widthOfSprite));
+				createObject(new Goal(_context, _offsetX + j * widthOfSprite, _offsetY + i * widthOfSprite));
 				//_objects.back()->getSprite().setPosition(static_cast<float>(j) * widthOfSprite, static_cast<float>(i) * widthOfSprite);
 			}
 
-			
+
 			//_sprite.setTextureRect(sf::IntRect(numOfSprite * widthOfSprite, 0, widthOfSprite, widthOfSprite));
 			//_sprite.setPosition(static_cast<float>(j) * widthOfSprite, static_cast<float>(i) * widthOfSprite);
 			//_context->_window->draw(_sprite);
-			
+
 		}
 	}
 	//createObject(new Player(_context, 0, 0));
@@ -89,7 +96,7 @@ void GameState::handleInput(const sf::Time deltaTime) {
 
 void GameState::update(const sf::Time deltaTime) {
 	handleInput(deltaTime);
-	std::cout << "Hello from GameState" << std::endl;
+	//std::cout << "Hello from GameState" << std::endl;
 	/*
 	for (Entity* o : _objects) {
 		o->update(deltaTime);
@@ -115,7 +122,7 @@ void GameState::render(sf::RenderWindow* window) {
 			int numOfSprite = getNumOfSprite(i, j);
 			if (numOfSprite == CellData::FreeCell || numOfSprite == CellData::GoalCell || numOfSprite == CellData::PlayerCell) {
 				_sprite.setTextureRect(sf::IntRect(CellData::FreeCell * widthOfSprite, 0, widthOfSprite, widthOfSprite));
-				_sprite.setPosition(static_cast<float>(j) * widthOfSprite, static_cast<float>(i) * widthOfSprite);
+				_sprite.setPosition(_offsetX + static_cast<float>(j) * widthOfSprite, _offsetY + static_cast<float>(i) * widthOfSprite);
 				_context->_window->draw(_sprite);
 			}
 		}
