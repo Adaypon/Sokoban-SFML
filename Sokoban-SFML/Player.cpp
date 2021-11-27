@@ -25,6 +25,7 @@ void Player::move(const sf::Time deltaTime, const float dir_x, const float dir_y
 
 void Player::update(const sf::Time deltaTime) {
 	// TODO remake keyboard input cause of too much calls
+	// TODO moves by one sprite at once
 	
 	Entity::update(deltaTime);
 	std::cout << "Player: " << X() << " " << Y() << std::endl;
@@ -48,6 +49,18 @@ void Player::update(const sf::Time deltaTime) {
 			if (solids.empty()) {
 				move(deltaTime, -1.f, 0.f);
 			}
+			else {
+				std::vector<Box*> boxes = _contextPlayer->_states->getCurrentState()->getObjectsAtRect<Box*>(bounds);
+				if (boxes.size() == 1) {
+					sf::FloatRect nextSolidBounds = getSprite().getGlobalBounds();
+					nextSolidBounds.left -= getSpriteWidth() * 2;
+					std::vector<SolidObject*> nextSolids = _contextPlayer->_states->getCurrentState()->getObjectsAtRect<SolidObject*>(nextSolidBounds);
+					if (nextSolids.empty()) {
+						// TODO slowed down animation of push
+						boxes[0]->setX(boxes[0]->X() - boxes[0]->getSpriteWidth());
+					}
+				}
+			}
 		}
 		if (sf::Keyboard::isKeyPressed(sf::Keyboard::D)) {
 			_direction = _dirEnum::RIGHT;
@@ -59,6 +72,18 @@ void Player::update(const sf::Time deltaTime) {
 			}
 			if (solids.empty()) {
 				move(deltaTime, 1.f, 0.f);
+			}
+			else {
+				std::vector<Box*> boxes = _contextPlayer->_states->getCurrentState()->getObjectsAtRect<Box*>(bounds);
+				if (boxes.size() == 1) {
+					sf::FloatRect nextSolidBounds = getSprite().getGlobalBounds();
+					nextSolidBounds.left += getSpriteWidth() * 2;
+					std::vector<SolidObject*> nextSolids = _contextPlayer->_states->getCurrentState()->getObjectsAtRect<SolidObject*>(nextSolidBounds);
+					if (nextSolids.empty()) {
+						// TODO slowed down animation of push
+						boxes[0]->setX(boxes[0]->X() + boxes[0]->getSpriteWidth());
+					}
+				}
 			}
 		}
 		if (sf::Keyboard::isKeyPressed(sf::Keyboard::W)) {
@@ -72,6 +97,18 @@ void Player::update(const sf::Time deltaTime) {
 			if (solids.empty()) {
 				move(deltaTime, 0.f, -1.f);
 			}
+			else {
+				std::vector<Box*> boxes = _contextPlayer->_states->getCurrentState()->getObjectsAtRect<Box*>(bounds);
+				if (boxes.size() == 1) {
+					sf::FloatRect nextSolidBounds = getSprite().getGlobalBounds();
+					nextSolidBounds.top -= getSpriteWidth() * 2;
+					std::vector<SolidObject*> nextSolids = _contextPlayer->_states->getCurrentState()->getObjectsAtRect<SolidObject*>(nextSolidBounds);
+					if (nextSolids.empty()) {
+						// TODO slowed down animation of push
+						boxes[0]->setY(boxes[0]->Y() - boxes[0]->getSpriteHeight());
+					}
+				}
+			}
 		}
 		if (sf::Keyboard::isKeyPressed(sf::Keyboard::S)) {
 			_direction = _dirEnum::DOWN;
@@ -83,6 +120,18 @@ void Player::update(const sf::Time deltaTime) {
 			}
 			if (solids.empty()) {
 				move(deltaTime, 0.f, 1.f);
+			}
+			else {
+				std::vector<Box*> boxes = _contextPlayer->_states->getCurrentState()->getObjectsAtRect<Box*>(bounds);
+				if (boxes.size() == 1) {
+					sf::FloatRect nextSolidBounds = getSprite().getGlobalBounds();
+					nextSolidBounds.top += getSpriteWidth() * 2;
+					std::vector<SolidObject*> nextSolids = _contextPlayer->_states->getCurrentState()->getObjectsAtRect<SolidObject*>(nextSolidBounds);
+					if (nextSolids.empty()) {
+						// TODO slowed down animation of push
+						boxes[0]->setY(boxes[0]->Y() + boxes[0]->getSpriteHeight());
+					}
+				}
 			}
 		}
 	}

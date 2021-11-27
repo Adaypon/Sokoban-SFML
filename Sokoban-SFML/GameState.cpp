@@ -119,12 +119,9 @@ void GameState::render(sf::RenderWindow* window) {
 	// render grid (free cells)
 	for (int i = 0; i < sizeOfGridLine; ++i) {
 		for (int j = 0; j < sizeOfGridLine; ++j) {
-			int numOfSprite = getNumOfSprite(i, j);
-			if (numOfSprite == CellData::FreeCell || numOfSprite == CellData::GoalCell || numOfSprite == CellData::PlayerCell) {
-				_sprite.setTextureRect(sf::IntRect(CellData::FreeCell * widthOfSprite, 0, widthOfSprite, widthOfSprite));
-				_sprite.setPosition(_offsetX + static_cast<float>(j) * widthOfSprite, _offsetY + static_cast<float>(i) * widthOfSprite);
-				_context->_window->draw(_sprite);
-			}
+			_sprite.setTextureRect(sf::IntRect(CellData::FreeCell * widthOfSprite, 0, widthOfSprite, widthOfSprite));
+			_sprite.setPosition(_offsetX + static_cast<float>(j) * widthOfSprite, _offsetY + static_cast<float>(i) * widthOfSprite);
+			_context->_window->draw(_sprite);
 		}
 	}
 
