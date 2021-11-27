@@ -23,6 +23,10 @@ private:
 	bool _visible;
 	float _depth;
 	
+	float _movementSpeed;
+	int _direction;
+	bool _isMoving;
+
 	int _horizontalFrames;
 	int _verticalFrames;
 	float _imageIndex;
@@ -35,6 +39,15 @@ public:
 	virtual void update(const sf::Time deltaTime);
 	virtual void render(sf::RenderWindow* window);
 	sf::Sprite& getSprite();
+
+	enum dirEnum {
+		DIR_UP,
+		DIR_DOWN,
+		DIR_LEFT,
+		DIR_RIGHT
+	};
+
+	void move(const sf::Time deltaTime, const float dir_x, const float dir_y);
 
 	float X();
 	void setX(float x);
@@ -59,6 +72,17 @@ public:
 
 	float getDepth();
 	void setDepth(float depth);
+
+	// Movement
+
+	float getMovementSpeed();
+	void setMovementSpeed(float speed);
+
+	int getDirection();
+	void setDirection(int dir);
+
+	bool isMoving();
+	void setMoving(bool flag);
 
 	// Animation
 

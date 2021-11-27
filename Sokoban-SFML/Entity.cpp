@@ -50,6 +50,10 @@ void Entity::setX(float x) {
 	_sprite.setPosition(x, Y());
 }
 
+void Entity::move(const sf::Time deltaTime, const float dir_x, const float dir_y) {
+	_sprite.move(dir_x * _movementSpeed * deltaTime.asSeconds(), dir_y * _movementSpeed * deltaTime.asSeconds());
+}
+
 float Entity::Y() {
 	return _sprite.getPosition().y;
 }
@@ -121,6 +125,14 @@ void Entity::setImageIndex(float value) {
 	_imageIndex = value;
 }
 
+float Entity::getMovementSpeed() {
+	return _movementSpeed;
+}
+
+void Entity::setMovementSpeed(float speed) {
+	_movementSpeed = speed;
+}
+
 float Entity::getImageSpeed() {
 	return _imageSpeed;
 }
@@ -129,12 +141,28 @@ void Entity::setImageSpeed(float value) {
 	_imageSpeed = value;
 }
 
+int Entity::getDirection() {
+	return _direction;
+}
+
+void Entity::setDirection(int dir) {
+	_direction = dir;
+}
+
 int Entity::getSpriteWidth() {
 	return _sprite.getTexture()->getSize().x / _horizontalFrames;
 }
 
 int Entity::getSpriteHeight() {
 	return _sprite.getTexture()->getSize().y / _verticalFrames;
+}
+
+bool Entity::isMoving() {
+	return _isMoving;
+}
+
+void Entity::setMoving(bool flag) {
+	_isMoving = flag;
 }
 
 bool Entity::isPointWithinSpriteBounds(float x, float y) {
