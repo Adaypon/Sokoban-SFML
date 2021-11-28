@@ -7,7 +7,7 @@ Player::Player(std::shared_ptr<Context>& context, int x, int y) :
 {
 	_contextPlayer = context;
 	setMoving(false);
-	setDepth(1);
+	setDepth(3);
 	setMovementSpeed(0),
 	setDirection(dirEnum::DIR_DOWN),
 	setImageSpeed(0);
@@ -57,7 +57,7 @@ void Player::update(const sf::Time deltaTime) {
 				std::vector<Box*> boxes = _contextPlayer->_states->getCurrentState()->getObjectsAtRect<Box*>(bounds);
 				if (boxes.size() == 1) {
 					std::cout << "\t\t!!!Solid is box" << std::endl;
-					sf::FloatRect nextSolidBounds = getSprite().getGlobalBounds();
+						sf::FloatRect nextSolidBounds = getSprite().getGlobalBounds();
 					nextSolidBounds.left -= getSpriteWidth() * 2;
 					std::vector<SolidObject*> nextSolids = _contextPlayer->_states->getCurrentState()->getObjectsAtRect<SolidObject*>(nextSolidBounds);
 					for (auto solid : nextSolids) {
@@ -66,7 +66,7 @@ void Player::update(const sf::Time deltaTime) {
 					if (nextSolids.empty()) {
 						// TODO slowed down animation of push
 						boxes[0]->setX(boxes[0]->X() - boxes[0]->getSpriteWidth());
-					}
+					}					
 				}
 			}
 		}

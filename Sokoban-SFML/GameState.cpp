@@ -97,15 +97,28 @@ void GameState::handleInput(const sf::Time deltaTime) {
 void GameState::update(const sf::Time deltaTime) {
 	handleInput(deltaTime);
 	//std::cout << "Hello from GameState" << std::endl;
-	/*
-	for (Entity* o : _objects) {
-		o->update(deltaTime);
+	
+	// check win
+	// - get vector of all objects of type Goal
+	// - for every goal get vector of boxes at goal bounds
+	// - if boxes.size() != 1 -- break, not winning yet
+	// - if bool won == true -- hooray, pop GameState
+	bool won = true;
+	std::vector<Goal*> goals = getAllObjectsOfType<Goal*>();
+	for (Goal* g : goals) {
+		std::vector<Box*> boxes = getObjectsAtRect<Box*>(g->getSprite().getGlobalBounds());
+		if (boxes.size() != 1) {
+			won = false;
+			break;
+		}
 	}
-	*/
+	if (won) {
+		std::cout << "Win" << std::endl;
+		_context->_states->popState();
+	}
 
 	State::update(deltaTime);
-
-	//_player.update(deltaTime);
+	
 }
 /*
 bool depthLessComparator(Entity* lhs, Entity* rhs) {

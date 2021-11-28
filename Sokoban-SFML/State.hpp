@@ -41,7 +41,10 @@ public:
 
 	template<typename T>
 	std::vector<T> getObjectsAtRect(sf::FloatRect bounds);
-	
+
+	template<typename T>
+	std::vector<T> getAllObjectsOfType();
+
 };
 
 template<typename T>
@@ -67,6 +70,18 @@ inline std::vector<T> State::getObjectsAtRect(sf::FloatRect bounds) {
 			if (o->getSprite().getGlobalBounds().intersects(bounds)) {
 				resultObjects.push_back(cast);
 			}
+		}
+	}
+	return resultObjects;
+}
+
+template<typename T>
+inline std::vector<T> State::getAllObjectsOfType() {
+	std::vector<T> resultObjects;
+	for (Entity* o : _objects) {
+		T cast = dynamic_cast<T>(o);
+		if (cast != nullptr) {
+			resultObjects.push_back(cast);
 		}
 	}
 	return resultObjects;
