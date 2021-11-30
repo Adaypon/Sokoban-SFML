@@ -156,12 +156,6 @@ void Player::update(const sf::Time deltaTime) {
 		setImageSpeed(0);
 		setMoving(false);
 	}
-
-	if (sf::Keyboard::isKeyPressed(sf::Keyboard::R)) {
-		setDirection(DIR_DOWN);
-		setX(XStart());
-		setY(YStart());
-	}
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space)) {
 		setVisible(!isVisible());
 	}

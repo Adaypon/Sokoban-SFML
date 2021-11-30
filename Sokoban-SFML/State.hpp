@@ -36,6 +36,8 @@ public:
 
 	void createObject(Entity* object);
 
+	void restartObjectsPositions();
+
 	template<typename T>
 	std::vector<T> getObjectsAtPos(float x, float y);
 

@@ -40,6 +40,13 @@ void State::createObject(Entity* object) {
 	_objects.push_back(object);
 }
 
+void State::restartObjectsPositions() {
+	for (Entity* o : _objects) {
+		o->setX(o->XStart());
+		o->setY(o->YStart());
+	}
+}
+
 /*
 Game* State::getGame() const {
 	return _game;
