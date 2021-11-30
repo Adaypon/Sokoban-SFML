@@ -38,12 +38,16 @@ private:
 	unsigned _windowHeight;
 	bool _VSyncFlag;
 	std::string _titleBarText;
-	sf::Time _timePerFrame; // how much time should elapse before each update and render of one frame
+	sf::Time _timePerFrame; // How much time should elapse before each update and render of one frame
 	
 	// TODO remove _currentState and _states as they're in StateManager
 	//State* _currentState;
 	//std::array<State*, State::eState::STATE_COUNT> _states;
+
+	// Initialization of states
 	void _initStates();
+
+	// Initialization of window
 	void _initWindow();
 
 public:
@@ -59,17 +63,33 @@ public:
 	//State* getCurrentState() const;
 	//void changeState(State::eState state);
 
+	// Get render window pointer
 	sf::RenderWindow* getWindow() const;
 
+	// Get goal FPS
 	float getFPS() const;
+	
+	// Set goal FPS
 	void setFPS(float fps);
 
-	bool getVSync() const;
+
+	// Get VSync flag
+	bool getVSync() const; 
+	
+	// Set VSync flag
 	void setVSync(bool flag);
 
-	sf::Vector2u getResolution() const;
-	void setResolution(unsigned width, unsigned height);
 
+	// Get window resolution
+	sf::Vector2u getResolution() const; 
+	
+	// Set window resolution
+	void setResolution(unsigned width, unsigned height); 
+
+
+	// Get title bar text
 	std::string getTitleBarText() const;
+
+	// Set title bar text
 	void setTitleBarText(const std::string& text);
 };

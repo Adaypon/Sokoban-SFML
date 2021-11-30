@@ -29,15 +29,26 @@ private:
 
 	int _horizontalFrames;
 	int _verticalFrames;
-	float _imageIndex;
-	float _imageSpeed;
+	float _imageIndex; // Index of image in tileset 
+	float _imageSpeed; // Speed of image changing
 	
 public:
 	Entity(std::shared_ptr<Context>& context, int x, int y, const std::string& resource, int horizontalFrames = 1, int verticalFrames = 1);
 	virtual ~Entity();
 
+	/**
+	* Updating method
+	* @param deltaTime Elapsed time since the last call
+	*/
 	virtual void update(const sf::Time deltaTime);
+
+	/**
+	* Drawing method
+	* @param deltaTime Pointer to the window for drawing
+	*/
 	virtual void render(sf::RenderWindow* window);
+	
+	// Get sprite of entity
 	sf::Sprite& getSprite();
 
 	enum dirEnum {
@@ -47,33 +58,73 @@ public:
 		DIR_RIGHT
 	};
 
+	/**
+	* Move entity
+	* @param deltaTime
+	* @param dir_x X-Direction
+	* @param dir_y Y-Direction
+	*/
 	void move(const sf::Time deltaTime, const float dir_x, const float dir_y);
 
+	// Get x coordinate
 	float X();
+
+	// Set x coordinate
 	void setX(float x);
 
+
+	// Get y coordinate
 	float Y();
+
+	// Set y coordinate
 	void setY(float y);
 
+
+	// Get start x coordinate
 	float XStart();
+
+	// Set start x coordinate
 	void setXStart(float x);
 
+
+	// Get start y coordinate
 	float YStart();
+
+	// Set start y coordinate
 	void setYStart(float y);
 
+
+	// Get previous x coordinate
 	float XPrev();
+
+	// Set previous x coordinate
 	void setXPrev(float x);
 
+
+	// Get previous y coordinate
 	float YPrev();
+
+	// Set previous y coordinate
 	void setYPrev(float y);
 
+
+	// Checking of entity displaying 
 	bool isVisible();
+
+	// Set visibility
 	void setVisible(bool visibleFlag);
 
+
+	// Get depth layer
 	float getDepth();
+
+	// Set depth layer
 	void setDepth(float depth);
 
-	// Movement
+	
+	/**
+	* Movement Section
+	*/
 
 	float getMovementSpeed();
 	void setMovementSpeed(float speed);

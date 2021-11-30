@@ -11,8 +11,9 @@ class Entity;
 
 class State {
 private:
-	std::vector<Entity*> _objects;
+	std::vector<Entity*> _objects; // The main objects of State
 public:
+	/*
 	enum eState {
 		Menu,
 		LevelSelect,
@@ -20,30 +21,69 @@ public:
 		Exit,
 		STATE_COUNT
 	};
+	*/
 
 	State();
 	virtual ~State();
 
+	// Initialization
 	virtual void init();
-	virtual void handleInput(const sf::Time deltaTime);
+
+	/**
+	* Handle the events
+	* @param deltaTime Elapsed time since the last call
+	*/
+	virtual void handleInput(const sf::Time deltaTime); 
+
+	/**
+	* Updating method
+	* @param deltaTime Elapsed time since the last call
+	*/
 	virtual void update(const sf::Time deltaTime);
+
+	/**
+	* Drawing method
+	* @param deltaTime Pointer to the window for drawing
+	*/
 	virtual void render(sf::RenderWindow* window);
 
-	// required only for some of the states
+	/**
+	* pause() and resume() required only for some of the states
+	*/
+
+	// Pause the current state
 	virtual void pause() {};
+
+	// Start the current state
 	virtual void resume() {};
 
-
+	// Create object
 	void createObject(Entity* object);
 
+	// Place all objects to their start position
 	void restartObjectsPositions();
 
+	/**
+	* Get all objects at the point
+	* @param x The x-coordinate of the point
+	* @param y The y-coordinate of the point
+	* @return Vector of objects
+	*/
 	template<typename T>
 	std::vector<T> getObjectsAtPos(float x, float y);
 
+	/**
+	* Get all objects at bounds
+	* @param bounds Global bounding rectangle of the entity
+	* @return Vector of objects
+	*/
 	template<typename T>
 	std::vector<T> getObjectsAtRect(sf::FloatRect bounds);
 
+	/**
+	* Get all objects of a certain type
+	* @return Vector of objects
+	*/
 	template<typename T>
 	std::vector<T> getAllObjectsOfType();
 
