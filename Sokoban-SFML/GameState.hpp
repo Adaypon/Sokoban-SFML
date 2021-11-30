@@ -69,7 +69,9 @@ public:
 
     int getNumOfSprite(int i, int j);
     const int widthOfSprite = 60;
-    const int sizeOfGridLine = 7;
+    const int heightOfSprite = 60;
+    const int widthOfGridLine = 7;
+    const int heightOfGridLine = 7;
 
     // ____________________________________________________________
 };
