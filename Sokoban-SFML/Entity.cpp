@@ -176,3 +176,11 @@ bool Entity::isPointWithinSpriteBounds(float x, float y) {
 	}
 	return false;
 }
+
+int Entity::getHorizontalFramesNum() {
+	return _horizontalFrames;
+}
+
+int Entity::getVerticalFramesNum() {
+	return _verticalFrames;
+}

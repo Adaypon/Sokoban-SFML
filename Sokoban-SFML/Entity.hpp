@@ -147,6 +147,10 @@ public:
 	int getSpriteHeight();
 
 	bool isPointWithinSpriteBounds(float x, float y);
+
+	int getHorizontalFramesNum();
+	int getVerticalFramesNum();
+
 	/*
 	template<typename T>
 	std::vector<T> getObjectsAtPos(float x, float y);

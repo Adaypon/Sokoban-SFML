@@ -172,15 +172,14 @@ void Player::render(sf::RenderWindow* window) {
 	if (isVisible()) {
 		int x, y;
 		if (isMoving()) {
-			x = static_cast<int>(getImageIndex()) % 4; // TODO remove hardcode
+			x = static_cast<int>(getImageIndex()) % getHorizontalFramesNum();
 		}
 		else {
 			x = 0;
 		}
 
 		y = getDirection();
-		//int y = static_cast<int>(getImageIndex()) / 3;
-		
+				
 		//std::cout << "\t Getting " << x << " " << y << " sprite" << std::endl;
 		getSprite().setTextureRect(sf::IntRect(x * getSpriteWidth(), y * getSpriteHeight(),
 											   getSpriteWidth(), getSpriteHeight()));
