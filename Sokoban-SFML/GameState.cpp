@@ -130,11 +130,13 @@ void GameState::render(sf::RenderWindow* window) {
 	_context->_window->draw(_background);
 
 	// render grid (free cells)
+	_sprite.setTextureRect(sf::IntRect(CellData::FreeCell * widthOfSprite, 0, widthOfSprite, heightOfSprite));
 	for (int i = 0; i < heightOfGridLine; ++i) {
 		for (int j = 0; j < widthOfGridLine; ++j) {
-			_sprite.setTextureRect(sf::IntRect(CellData::FreeCell * widthOfSprite, 0, widthOfSprite, heightOfSprite));
-			_sprite.setPosition(_offsetX + static_cast<float>(j) * widthOfSprite, _offsetY + static_cast<float>(i) * heightOfSprite);
-			_context->_window->draw(_sprite);
+			if (getNumOfSprite(i, j) != -1) {
+				_sprite.setPosition(_offsetX + static_cast<float>(j) * widthOfSprite, _offsetY + static_cast<float>(i) * heightOfSprite);
+				_context->_window->draw(_sprite);
+			}			
 		}
 	}
 

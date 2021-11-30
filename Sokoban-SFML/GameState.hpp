@@ -55,7 +55,7 @@ public:
         PlayerCell
     };
 
-
+    /*
     std::vector<std::string> board1 = {
         "#######",
         "#@....#",
@@ -72,6 +72,32 @@ public:
     const int heightOfSprite = 60;
     const int widthOfGridLine = 7;
     const int heightOfGridLine = 7;
+
+    */
+
+
+
+    std::vector<std::string> board1 = {
+        "//###////",
+        "//#x#////",
+        "//#.####/",
+        "###B.Bx#/",
+        "#x.B@###/",
+        "####B#///",
+        "///#x#///",
+        "///###///",
+        "/////////"
+    };
+
+
+    int getNumOfSprite(int i, int j);
+    const int widthOfSprite = 60;
+    const int heightOfSprite = 60;
+    const int widthOfGridLine = 9;
+    const int heightOfGridLine = 9;
+
+
+
 
     // ____________________________________________________________
 };
