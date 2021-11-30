@@ -65,18 +65,10 @@ public:
         "#..x..#",
         "#######"
     };
-
-
-    int getNumOfSprite(int i, int j);
-    const int widthOfSprite = 60;
-    const int heightOfSprite = 60;
-    const int widthOfGridLine = 7;
-    const int heightOfGridLine = 7;
-
     */
 
 
-
+    
     std::vector<std::string> board1 = {
         "//###////",
         "//#x#////",
@@ -88,16 +80,13 @@ public:
         "///###///",
         "/////////"
     };
-
+    
 
     int getNumOfSprite(int i, int j);
     const int widthOfSprite = 60;
     const int heightOfSprite = 60;
-    const int widthOfGridLine = 9;
-    const int heightOfGridLine = 9;
-
-
-
+    const int widthOfGridLine = board1[0].size();
+    const int heightOfGridLine = board1.size();
 
     // ____________________________________________________________
 };
