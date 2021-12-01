@@ -13,16 +13,6 @@ class State {
 private:
 	std::vector<Entity*> _objects; // The main objects of State
 public:
-	/*
-	enum eState {
-		Menu,
-		LevelSelect,
-		Play,
-		Exit,
-		STATE_COUNT
-	};
-	*/
-
 	State();
 	virtual ~State();
 

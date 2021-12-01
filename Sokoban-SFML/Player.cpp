@@ -20,11 +20,6 @@ Player::~Player()
 }
 */
 
-/*
-void Player::move(const sf::Time deltaTime, const float dir_x, const float dir_y) {
-	getSprite().move(dir_x * _movementSpeed * deltaTime.asSeconds(), dir_y * _movementSpeed * deltaTime.asSeconds());
-}
-*/
 
 void Player::update(const sf::Time deltaTime) {
 	// TODO remake keyboard input cause of too much calls
@@ -168,7 +163,6 @@ void Player::update(const sf::Time deltaTime) {
 }
 
 void Player::render(sf::RenderWindow* window) {
-	//window->draw(_shape);
 	if (isVisible()) {
 		int x, y;
 		if (isMoving()) {

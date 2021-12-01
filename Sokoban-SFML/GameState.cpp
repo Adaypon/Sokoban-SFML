@@ -25,10 +25,10 @@ int GameState::getNumOfSprite(int i, int j) {
 		return CellData::FreeCell;
 	case 'x':   // goal
 		return CellData::GoalCell;
-	case '@':
+	case '@':	// player
 		return CellData::PlayerCell;
 	default:
-		return -1; // just for test
+		return -1;
 	}
 }
 
@@ -53,41 +53,24 @@ void GameState::init() {
 	_offsetX -= (widthOfGridLine / 2.f) * widthOfSprite;
 	_offsetY -= (heightOfGridLine / 2.f) * heightOfSprite;
 
-
-	//createObject(new Box(_context));
-	//createObject(new Wall(_context));
-	//createObject(new Goal(_context));
-
-
-	// level
+	// creating objects
 	for (int i = 0; i < heightOfGridLine; ++i) { // y \|/
 		for (int j = 0; j < widthOfGridLine; ++j) { // x ->
 			int numOfSprite = getNumOfSprite(i, j);
 			if (numOfSprite == CellData::PlayerCell) {
 				createObject(new Player(_context, _offsetX + j * widthOfSprite, _offsetY + i * heightOfSprite));
-				//_objects.back()->getSprite().setPosition(static_cast<float>(j) * widthOfSprite, static_cast<float>(i) * widthOfSprite);
 			}
 			if (numOfSprite == CellData::WallCell) {
 				createObject(new Wall(_context, _offsetX + j * widthOfSprite, _offsetY + i * heightOfSprite));
-				//_objects.back()->getSprite().setPosition(static_cast<float>(j) * widthOfSprite, static_cast<float>(i) * widthOfSprite);
 			}
 			if (numOfSprite == CellData::BoxCell) {
 				createObject(new Box(_context, _offsetX + j * widthOfSprite, _offsetY + i * heightOfSprite));
-				//_objects.back()->getSprite().setPosition(static_cast<float>(j) * widthOfSprite, static_cast<float>(i) * widthOfSprite);
 			}
 			if (numOfSprite == CellData::GoalCell) {
 				createObject(new Goal(_context, _offsetX + j * widthOfSprite, _offsetY + i * heightOfSprite));
-				//_objects.back()->getSprite().setPosition(static_cast<float>(j) * widthOfSprite, static_cast<float>(i) * widthOfSprite);
 			}
-
-
-			//_sprite.setTextureRect(sf::IntRect(numOfSprite * widthOfSprite, 0, widthOfSprite, widthOfSprite));
-			//_sprite.setPosition(static_cast<float>(j) * widthOfSprite, static_cast<float>(i) * widthOfSprite);
-			//_context->_window->draw(_sprite);
-
 		}
 	}
-	//createObject(new Player(_context, 0, 0));
 }
 
 void GameState::handleInput(const sf::Time deltaTime) {
@@ -122,11 +105,7 @@ void GameState::update(const sf::Time deltaTime) {
 	State::update(deltaTime);
 	
 }
-/*
-bool depthLessComparator(Entity* lhs, Entity* rhs) {
-	return lhs->getDepth() < rhs->getDepth();
-}
-*/
+
 void GameState::render(sf::RenderWindow* window) {
 	// render background
 	_context->_window->draw(_background);
@@ -142,18 +121,8 @@ void GameState::render(sf::RenderWindow* window) {
 		}
 	}
 
-	// sorting by depth
-	//std::sort(_objects.begin(), _objects.end(), depthLessComparator);
-
 	// render objects
-	/*
-	for (Entity* o : _objects) {
-		o->render(_context->_window.get());
-	}
-	*/
 	State::render(_context->_window.get());
-
-	//_player.render(_context->_window.get());
 }
 
 void GameState::pause() {
@@ -163,8 +132,3 @@ void GameState::pause() {
 void GameState::resume() {
 
 }
-/*
-void GameState::createObject(Entity* object) {
-	_objects.push_back(object);
-}
-*/

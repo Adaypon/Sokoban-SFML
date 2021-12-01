@@ -166,12 +166,8 @@ void Entity::setMoving(bool flag) {
 }
 
 bool Entity::isPointWithinSpriteBounds(float x, float y) {
-	//std::cout << "\t\t !checking" << x << " " << y << std::endl;
 	if (x >= X() && x < (X() + getSpriteWidth()) &&
 		y >= Y() && y < (Y() + getSpriteHeight())) {
-		//std::cout << X() << "<= x=" << x << " < " << X() + getSpriteWidth() << std::endl;
-		//std::cout << Y() << "<= y=" << y << " < " << Y() + getSpriteHeight() << std::endl;
-		//std::getchar();
 		return true;
 	}
 	return false;

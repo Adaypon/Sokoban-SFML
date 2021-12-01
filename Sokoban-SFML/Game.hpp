@@ -40,10 +40,6 @@ private:
 	std::string _titleBarText;
 	sf::Time _timePerFrame; // How much time should elapse before each update and render of one frame
 	
-	// TODO remove _currentState and _states as they're in StateManager
-	//State* _currentState;
-	//std::array<State*, State::eState::STATE_COUNT> _states;
-
 	// Initialization of states
 	void _initStates();
 
@@ -58,10 +54,6 @@ public:
 	void update();
 	void render();
 	void run();
-
-	// TODO remove this methods as they're in StateManager
-	//State* getCurrentState() const;
-	//void changeState(State::eState state);
 
 	// Get render window pointer
 	sf::RenderWindow* getWindow() const;

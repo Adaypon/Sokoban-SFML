@@ -46,9 +46,3 @@ void State::restartObjectsPositions() {
 		o->setY(o->YStart());
 	}
 }
-
-/*
-Game* State::getGame() const {
-	return _game;
-}
-*/
