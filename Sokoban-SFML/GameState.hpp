@@ -58,9 +58,9 @@ public:
         "#######"
     };
     */
-
-
     
+
+
     std::vector<std::string> board1 = {
         "//###////",
         "//#x#////",
@@ -72,7 +72,7 @@ public:
         "///###///",
         "/////////"
     };
-    
+
 
     int getNumOfSprite(int i, int j);
     const int widthOfSprite = 60;
