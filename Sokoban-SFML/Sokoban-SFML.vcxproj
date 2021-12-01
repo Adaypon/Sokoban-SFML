@@ -156,6 +156,7 @@
     <ClCompile Include="MenuState.cpp" />
     <ClCompile Include="Player.cpp" />
     <ClCompile Include="SceneManager.cpp" />
+    <ClCompile Include="SettingsMenuState.cpp" />
     <ClCompile Include="SolidObject.cpp" />
     <ClCompile Include="State.cpp" />
     <ClCompile Include="StateManager.cpp" />
@@ -172,6 +173,7 @@
     <ClInclude Include="MenuState.hpp" />
     <ClInclude Include="Player.hpp" />
     <ClInclude Include="SceneManager.hpp" />
+    <ClInclude Include="SettingsMenuState.hpp" />
     <ClInclude Include="SolidObject.hpp" />
     <ClInclude Include="State.hpp" />
     <ClInclude Include="StateManager.hpp" />

@@ -1,5 +1,6 @@
 #include "MenuState.hpp"
 #include "GameState.hpp"
+#include "SettingsMenuState.hpp"
 
 MenuState::MenuState(std::shared_ptr<Context>& context) :
 	_context(context)
@@ -28,6 +29,9 @@ void MenuState::init() {
 void MenuState::handleInput(const sf::Time deltaTime) {
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Enter)) {
 		_context->_states->addState(std::make_unique<GameState>(_context));
+	}
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Tab)) {
+		_context->_states->addState(std::make_unique<SettingsMenuState>(_context));
 	}
 }
 
