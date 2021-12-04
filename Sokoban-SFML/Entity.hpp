@@ -11,8 +11,9 @@ struct Context;
 // Base class for all objects
 class Entity
 {
-private:
+protected:
 	std::shared_ptr<Context> _context;
+private:
 	sf::Sprite _sprite;
 	sf::Vector2f _startPos;
 	sf::Vector2f _prevPos;
