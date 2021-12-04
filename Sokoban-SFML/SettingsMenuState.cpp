@@ -11,21 +11,20 @@ SettingsMenuState::SettingsMenuState(std::shared_ptr<Context>& context) :
 void SettingsMenuState::init() {
     _gui.setTarget(*(_context->_window.get()));
 
+    auto videoModes = sf::VideoMode::getFullscreenModes();
     auto comboBox = tgui::ComboBox::create();
     comboBox->setSize(120, 21);
     comboBox->setPosition(420, 40);
-    comboBox->addItem("Item 1");
-    comboBox->addItem("Item 2");
-    comboBox->addItem("Item 3");
-    comboBox->setSelectedItem("Item 2");
+    for (auto& mode : videoModes) {
+        comboBox->addItem(std::to_string(mode.width) + "x" + std::to_string(mode.height));
+    }
+    comboBox->setSelectedItem(std::to_string(videoModes[0].width) + "x" + std::to_string(videoModes[0].height));
     _gui.add(comboBox);
 
     auto button = tgui::Button::create();
     button->setPosition(_gui.getView().getSize().x - 115.f, _gui.getView().getSize().y - 50.f);
     button->setText("Exit");
     button->setSize(100, 40);
-
-    
     _gui.add(button);
 }
 
