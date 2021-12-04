@@ -60,7 +60,7 @@ public:
     */
     
     
-
+    
     std::vector<std::string> board1 = {
         "//###////",
         "//#x#////",
