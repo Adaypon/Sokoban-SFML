@@ -43,7 +43,7 @@ public:
 	* Drawing method
 	* @param deltaTime Pointer to the window for drawing
 	*/
-	virtual void render(sf::RenderWindow* window);
+	virtual void render();
 	
 	// Get sprite of entity
 	sf::Sprite& getSprite();

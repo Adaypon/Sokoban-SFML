@@ -40,7 +40,7 @@ void MenuState::update(const sf::Time deltaTime) {
 	std::cout << "Hello from Menu" << std::endl;
 }
 
-void MenuState::render(sf::RenderWindow* window) {
+void MenuState::render() {
 	_context->_window->draw(_sprite);
 	_context->_window->draw(_text);
 }

@@ -29,10 +29,10 @@ bool depthLessComparator(Entity* lhs, Entity* rhs) {
 	return lhs->getDepth() < rhs->getDepth();
 }
 
-void State::render(sf::RenderWindow* window) {
+void State::render() {
 	std::sort(_objects.begin(), _objects.end(), depthLessComparator);
 	for (Entity* o : _objects) {
-		o->render(window);
+		o->render();
 	}
 }
 

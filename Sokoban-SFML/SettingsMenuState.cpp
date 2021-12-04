@@ -39,6 +39,6 @@ void SettingsMenuState::update(const sf::Time deltaTime) {
     handleInput(deltaTime);
 }
 
-void SettingsMenuState::render(sf::RenderWindow* window) {
+void SettingsMenuState::render() {
     _gui.mainLoop(); // TODO break main loop
 }

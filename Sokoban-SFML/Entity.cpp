@@ -26,7 +26,7 @@ void Entity::update(const sf::Time deltaTime) {
 	setImageIndex(getImageIndex() + getImageSpeed());
 }
 
-void Entity::render(sf::RenderWindow* window) {
+void Entity::render() {
 	//window->draw(_shape);
 	if (isVisible()) {
 		int x = static_cast<int>(getImageIndex()) % _horizontalFrames;

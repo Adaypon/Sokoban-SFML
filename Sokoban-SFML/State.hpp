@@ -35,7 +35,7 @@ public:
 	* Drawing method
 	* @param deltaTime Pointer to the window for drawing
 	*/
-	virtual void render(sf::RenderWindow* window);
+	virtual void render();
 
 	/**
 	* pause() and resume() required only for some of the states

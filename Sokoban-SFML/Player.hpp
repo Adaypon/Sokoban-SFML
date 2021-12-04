@@ -9,6 +9,6 @@ public:
 	//~Player();
 	
 	void update(const sf::Time deltaTime) override;
-	void render(sf::RenderWindow* window) override;
+	void render() override;
 };
 

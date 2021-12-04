@@ -47,7 +47,7 @@ void Game::update() {
 
 void Game::render() {
     _context->_window->clear();
-    _context->_states->getCurrentState()->render(getWindow());
+    _context->_states->getCurrentState()->render();
     _context->_window->display();
 }
 

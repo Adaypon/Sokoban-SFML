@@ -227,7 +227,7 @@ void Player::update(const sf::Time deltaTime) {
 	}
 }
 
-void Player::render(sf::RenderWindow* window) {
+void Player::render() {
 	if (isVisible()) {
 		int x, y;
 		if (isMoving()) {

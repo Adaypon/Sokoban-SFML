@@ -106,7 +106,7 @@ void GameState::update(const sf::Time deltaTime) {
 	
 }
 
-void GameState::render(sf::RenderWindow* window) {
+void GameState::render() {
 	// render background
 	_context->_window->draw(_background);
 
@@ -122,7 +122,7 @@ void GameState::render(sf::RenderWindow* window) {
 	}
 
 	// render objects
-	State::render(_context->_window.get());
+	State::render();
 }
 
 void GameState::pause() {
