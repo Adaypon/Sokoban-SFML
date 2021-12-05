@@ -29,7 +29,7 @@ private:
     float _offsetX = 0;
     float _offsetY = 0;
 
-    int _levelsCount = 2;
+    int _levelsCount = 4;
 public:
     GameState(std::shared_ptr<Context>& context, int levelNum);
     //~GameState();

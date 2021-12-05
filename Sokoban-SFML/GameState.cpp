@@ -87,6 +87,10 @@ void GameState::init() {
 			if (numOfSprite == CellData::GoalCell) {
 				createObject(new Goal(_context, _offsetX + j * widthOfSprite, _offsetY + i * heightOfSprite));
 			}
+			if (numOfSprite == CellData::BoxOnGoalCell) {
+				createObject(new Goal(_context, _offsetX + j * widthOfSprite, _offsetY + i * heightOfSprite));
+				createObject(new Box(_context, _offsetX + j * widthOfSprite, _offsetY + i * heightOfSprite));
+			}
 		}
 	}
 }
