@@ -1,9 +1,27 @@
 #include "GameState.hpp"
 
-GameState::GameState(std::shared_ptr<Context>& context) :
-	_context(context)
+GameState::GameState(std::shared_ptr<Context>& context, int levelNum) :
+	_context(context),
+	_levelNum(levelNum),
+	_boardData()
 {
+	const std::string fileName = "lvl_" + std::to_string(_levelNum) + ".txt";
+	std::cout << "Trying to open " << fileName << std::endl;
+	std::ifstream fin;
+	fin.open(fileName);
+	if (!fin.is_open()) {
+		std::cerr << "Can't open file" << std::endl;
+	}
+	std::string strLine;
+	while (std::getline(fin, strLine)) {
+		if (strLine.size() > 0) {
+			_boardData.push_back(strLine);
+		}
+	}
+	fin.close();
 
+	_widthOfGridLine = _boardData[0].size();
+	_heightOfGridLine = _boardData.size();
 }
 /*
 GameState::~GameState() {
@@ -14,7 +32,7 @@ GameState::~GameState() {
 }
 */
 int GameState::getNumOfSprite(int i, int j) {
-	switch (board1[i][j]) {
+	switch (_boardData[i][j]) {
 	case '#':   // wall
 		return CellData::WallCell;
 	case 'B':   // box
@@ -50,12 +68,12 @@ void GameState::init() {
 	_offsetX = windowSize.x / 2;
 	_offsetY = windowSize.y / 2;
 
-	_offsetX -= (widthOfGridLine / 2.f) * widthOfSprite;
-	_offsetY -= (heightOfGridLine / 2.f) * heightOfSprite;
+	_offsetX -= (_widthOfGridLine / 2.f) * widthOfSprite;
+	_offsetY -= (_heightOfGridLine / 2.f) * heightOfSprite;
 
 	// creating objects
-	for (int i = 0; i < heightOfGridLine; ++i) { // y \|/
-		for (int j = 0; j < widthOfGridLine; ++j) { // x ->
+	for (int i = 0; i < _heightOfGridLine; ++i) { // y \|/
+		for (int j = 0; j < _widthOfGridLine; ++j) { // x ->
 			int numOfSprite = getNumOfSprite(i, j);
 			if (numOfSprite == CellData::PlayerCell) {
 				createObject(new Player(_context, _offsetX + j * widthOfSprite, _offsetY + i * heightOfSprite));
@@ -76,6 +94,9 @@ void GameState::init() {
 void GameState::handleInput(const sf::Time deltaTime) {
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::R)) {
 		restartObjectsPositions();
+	}
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Q)) {
+		_context->_states->popState();
 	}
 }
 
@@ -99,7 +120,12 @@ void GameState::update(const sf::Time deltaTime) {
 	}
 	if (won) {
 		std::cout << "Win" << std::endl;
-		_context->_states->popState();
+		if (_levelNum == _levelsCount) {
+			_context->_states->popState();
+		}
+		else {
+			_context->_states->addState(std::make_unique<GameState>(_context, ++_levelNum), true);
+		}
 	}
 
 	State::update(deltaTime);
@@ -112,8 +138,8 @@ void GameState::render() {
 
 	// render grid (free cells)
 	_sprite.setTextureRect(sf::IntRect(CellData::FreeCell * widthOfSprite, 0, widthOfSprite, heightOfSprite));
-	for (int i = 0; i < heightOfGridLine; ++i) {
-		for (int j = 0; j < widthOfGridLine; ++j) {
+	for (int i = 0; i < _heightOfGridLine; ++i) {
+		for (int j = 0; j < _widthOfGridLine; ++j) {
 			if (getNumOfSprite(i, j) != -1) {
 				_sprite.setPosition(_offsetX + static_cast<float>(j) * widthOfSprite, _offsetY + static_cast<float>(i) * heightOfSprite);
 				_context->_window->draw(_sprite);

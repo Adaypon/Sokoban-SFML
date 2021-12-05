@@ -28,7 +28,7 @@ void MenuState::init() {
 
 void MenuState::handleInput(const sf::Time deltaTime) {
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Enter)) {
-		_context->_states->addState(std::make_unique<GameState>(_context));
+		_context->_states->addState(std::make_unique<GameState>(_context, 1));
 	}
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Tab)) {
 		_context->_states->addState(std::make_unique<SettingsMenuState>(_context));

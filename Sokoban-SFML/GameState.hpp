@@ -1,5 +1,6 @@
 #pragma once
 
+#include <fstream>
 #include <memory>
 #include <SFML/Graphics.hpp>
 #include <vector>
@@ -17,14 +18,20 @@ class GameState : public State
 {
 private:
     std::shared_ptr<Context> _context;
+    int _levelNum;
+    std::vector<std::string> _boardData;
+    int _widthOfGridLine;
+    int _heightOfGridLine;
     
     sf::Sprite _background;
     sf::Sprite _sprite;
 
     float _offsetX = 0;
     float _offsetY = 0;
+
+    int _levelsCount = 2;
 public:
-    GameState(std::shared_ptr<Context>& context);
+    GameState(std::shared_ptr<Context>& context, int levelNum);
     //~GameState();
 
     void init() override;
@@ -33,9 +40,6 @@ public:
     void render() override;
     void pause() override;
     void resume() override;
-
-    // Just for testing
-    // ____________________________________________________________
 
     enum CellData {
         WallCell,
@@ -47,38 +51,7 @@ public:
         PlayerCell
     };
 
-    /*
-    std::vector<std::string> board1 = {
-        "#######",
-        "#@....#",
-        "#.....#",
-        "#..B..#",
-        "#.xB..#",
-        "#..x..#",
-        "#######"
-    };
-    */
-    
-    
-    
-    std::vector<std::string> board1 = {
-        "//###////",
-        "//#x#////",
-        "//#.####/",
-        "###B.Bx#/",
-        "#x.B@###/",
-        "####B#///",
-        "///#x#///",
-        "///###///",
-        "/////////"
-    };
-
-
     int getNumOfSprite(int i, int j);
     const int widthOfSprite = 60;
     const int heightOfSprite = 60;
-    const int widthOfGridLine = board1[0].size();
-    const int heightOfGridLine = board1.size();
-
-    // ____________________________________________________________
 };
