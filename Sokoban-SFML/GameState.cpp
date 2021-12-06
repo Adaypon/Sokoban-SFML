@@ -60,13 +60,12 @@ void GameState::init() {
 	_context->_assets->AddTexture("Player", "assets/sprites/player_tileset.png");
 
 	_background.setTexture(_context->_assets->getTexture("Background"));
-	_background.setTextureRect(_context->_window->getViewport(_context->_window->getDefaultView()));
+	_background.setTextureRect(_context->_window->getViewport(_context->_window->getView()));
 
 	_sprite.setTexture(_context->_assets->getTexture("Tileset"));
 
-	auto windowSize = _context->_window->getSize();
-	_offsetX = windowSize.x / 2;
-	_offsetY = windowSize.y / 2;
+	_offsetX = _context->_window->getView().getSize().x / 2;
+	_offsetY = _context->_window->getView().getSize().y / 2;
 
 	_offsetX -= (_widthOfGridLine / 2.f) * widthOfSprite;
 	_offsetY -= (_heightOfGridLine / 2.f) * heightOfSprite;
@@ -104,7 +103,6 @@ void GameState::handleInput(const sf::Time deltaTime) {
 void GameState::update(const sf::Time deltaTime) {
 	handleInput(deltaTime);
 	//std::cout << "Hello from GameState" << std::endl;
-	
 	// check win
 	// - get vector of all objects of type Goal
 	// - for every goal get vector of boxes at goal bounds

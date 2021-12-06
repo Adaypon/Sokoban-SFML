@@ -19,7 +19,7 @@ Game::~Game() {
 }
 
 void Game::_initWindow() {
-    _context->_window->create(sf::VideoMode(_windowWidth, _windowHeight), _titleBarText);
+    _context->_window->create(sf::VideoMode(_windowWidth, _windowHeight), _titleBarText, sf::Style::Close);
     _context->_window->setFramerateLimit(_framesPerSecond);
     _context->_window->setVerticalSyncEnabled(_VSyncFlag);
 }
