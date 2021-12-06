@@ -125,12 +125,27 @@ void GameState::update(const sf::Time deltaTime) {
 	handleInput(deltaTime);
 	//std::cout << "Hello from GameState" << std::endl;
 	
+
+	if (_win) {
+		std::cout << "Win" << std::endl;
+		timer(3);
+		if (_levelNum >= _levelsCount) {
+			_context->_states->popState();
+		}
+		else {
+			_context->_states->addState(std::make_unique<GameState>(_context, ++_levelNum), true);
+		}
+		
+		return;
+	}
+
 	// check valid boxes
 	// - box may be unmovable in some moments
 	// - to check that, we should look, if box is in corner with other solids
 	_boxTrouble = false;
 	std::vector<Box*> boxes = getAllObjectsOfType<Box*>();
 	for (size_t i = 0; i < boxes.size(); ++i) {
+		boxes[i]->update(deltaTime); // for sure it's on goal
 		if (!boxes[i]->isOnGoal()) {
 			std::cout << "Checking " << i << " box at pos: " << boxes[i]->X() << " " << boxes[i]->Y() << std::endl;
 			sf::FloatRect boxBounds = boxes[i]->getSprite().getGlobalBounds();
@@ -150,10 +165,8 @@ void GameState::update(const sf::Time deltaTime) {
 				solids.clear();
 			}
 
-			checkBounds = boxBounds;
-			checkBounds.left += checkBounds.width / 2.f;
-			checkBounds.top -= checkBounds.height / 2.f;
-
+			checkBounds.left += checkBounds.width;
+			
 			solids = getObjectsAtRect<SolidObject*>(checkBounds);
 			if (solids.size() == 4) {
 				for (SolidObject* solid : solids) {
@@ -166,9 +179,7 @@ void GameState::update(const sf::Time deltaTime) {
 				solids.clear();
 			}
 
-			checkBounds = boxBounds;
-			checkBounds.left -= checkBounds.width / 2.f;
-			checkBounds.top += checkBounds.height / 2.f;
+			checkBounds.top += checkBounds.height;
 
 			solids = getObjectsAtRect<SolidObject*>(checkBounds);
 			if (solids.size() == 4) {
@@ -183,9 +194,8 @@ void GameState::update(const sf::Time deltaTime) {
 			}
 			
 
-			checkBounds = boxBounds;
-			checkBounds.left += checkBounds.width / 2.f;
-			checkBounds.top += checkBounds.height / 2.f;
+			
+			checkBounds.left -= checkBounds.width;
 
 			solids = getObjectsAtRect<SolidObject*>(checkBounds);
 			if (solids.size() == 4) {
@@ -211,17 +221,6 @@ void GameState::update(const sf::Time deltaTime) {
 	// - for every goal get vector of boxes at goal bounds
 	// - if boxes.size() != 1 -- break, not winning yet
 	// - if bool won == true -- hooray, pop GameState
-	if (_win) {
-		std::cout << "Win" << std::endl;
-		timer(3);
-		if (_levelNum >= _levelsCount) {
-			_context->_states->popState();
-		}
-		else {
-			_context->_states->addState(std::make_unique<GameState>(_context, ++_levelNum), true);
-		}
-	}
-	
 	_win = true;
 	std::vector<Goal*> goals = getAllObjectsOfType<Goal*>();
 	for (Goal* g : goals) {
@@ -234,7 +233,7 @@ void GameState::update(const sf::Time deltaTime) {
 	
 
 	State::update(deltaTime);
-	
+
 }
 
 void GameState::render() {
@@ -256,8 +255,26 @@ void GameState::render() {
 	// render objects
 	State::render();
 
+	if (_win) {
+		sf::Text winTitle;
+		winTitle.setFont(_context->_assets->getFont("Main font"));
+		winTitle.setString("Level complete!");
+		winTitle.setCharacterSize(36);
+		winTitle.setOutlineThickness(2);
+		winTitle.setOutlineColor(sf::Color::Black);
+		winTitle.setOrigin(winTitle.getLocalBounds().width / 2, winTitle.getLocalBounds().height / 2);
+		winTitle.setPosition(_context->_window->getView().getSize().x / 2, _context->_window->getView().getSize().y / 2);
+
+		_context->_window->draw(winTitle);
+		return;
+	}
+
 	_context->_window->draw(_debugText);
-	if (_boxTrouble) {
+	
+
+	
+
+	if (_boxTrouble && !_win) {
 		sf::Text boxTroubleText;
 		boxTroubleText.setFont(_context->_assets->getFont("Main font"));
 		boxTroubleText.setString("Looks like you have a trouble!\nPress R to restart");
@@ -268,19 +285,6 @@ void GameState::render() {
 		boxTroubleText.setPosition(_context->_window->getView().getSize().x - 375.f, 10);
 
 		_context->_window->draw(boxTroubleText);
-	}
-
-	if (_win) {
-		sf::Text winTitle;
-		winTitle.setFont(_context->_assets->getFont("Main font"));
-		winTitle.setString("Level complete!");
-		winTitle.setCharacterSize(36);
-		winTitle.setOutlineThickness(2);
-		winTitle.setOutlineColor(sf::Color::Black);
-		winTitle.setOrigin(winTitle.getLocalBounds().width / 2, winTitle.getLocalBounds().height / 2);
-		winTitle.setPosition(_context->_window->getView().getSize().x / 2, _context->_window->getView().getSize().y / 2);
-		
-		_context->_window->draw(winTitle);
 	}
 	
 }
