@@ -69,10 +69,11 @@ void GameState::init() {
 	_context->_assets->AddTexture("Player", "assets/sprites/player_tileset.png");
 
 	_debugText.setFont(_context->_assets->getFont("Main font"));
+	_debugText.setCharacterSize(24);
 	_debugText.setOutlineThickness(2);
 	_debugText.setOutlineColor(sf::Color::Black);
-	_debugText.setPosition(_context->_window->getView().getSize().x - 350.f, _context->_window->getView().getSize().y - 250.f);
-	_debugText.setString("PgUp - next level\nPgDn - prev level\nR - restart\nSpacebar - visibility\nNum+ - increase depth\nNum- - decrease depth\nQ - exit\n");
+	_debugText.setPosition(_context->_window->getView().getSize().x - 250.f, _context->_window->getView().getSize().y - 50.f);
+	_debugText.setString("Tab - debug buttons");
 
 	_background.setTexture(_context->_assets->getTexture("Background"));
 	_background.setTextureRect(_context->_window->getViewport(_context->_window->getView()));
@@ -118,6 +119,10 @@ void GameState::handleInput(const sf::Time deltaTime) {
 	}
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Q)) {
 		_context->_states->popState();
+	}
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Tab)) {
+		_debugText.setPosition(_context->_window->getView().getSize().x - 350.f, _context->_window->getView().getSize().y - 250.f);
+		_debugText.setString("PgUp - next level\nPgDn - prev level\nR - restart\nSpacebar - visibility\nNum+ - increase depth\nNum- - decrease depth\nQ - exit\n");
 	}
 }
 
