@@ -71,8 +71,8 @@ void GameState::init() {
 	_debugText.setFont(_context->_assets->getFont("Main font"));
 	_debugText.setOutlineThickness(2);
 	_debugText.setOutlineColor(sf::Color::Black);
-	_debugText.setPosition(_context->_window->getView().getSize().x - 300.f, _context->_window->getView().getSize().y - 150.f);
-	_debugText.setString("PgUp - next level\nPgDn - prev level\nQ - exit");
+	_debugText.setPosition(_context->_window->getView().getSize().x - 350.f, _context->_window->getView().getSize().y - 250.f);
+	_debugText.setString("PgUp - next level\nPgDn - prev level\nR - restart\nSpacebar - visibility\nNum+ - increase depth\nNum- - decrease depth\nQ - exit\n");
 
 	_background.setTexture(_context->_assets->getTexture("Background"));
 	_background.setTextureRect(_context->_window->getViewport(_context->_window->getView()));
