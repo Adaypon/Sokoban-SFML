@@ -124,6 +124,88 @@ void GameState::handleInput(const sf::Time deltaTime) {
 void GameState::update(const sf::Time deltaTime) {
 	handleInput(deltaTime);
 	//std::cout << "Hello from GameState" << std::endl;
+	
+	// check valid boxes
+	// - box may be unmovable in some moments
+	// - to check that, we should look, if box is in corner with other solids
+	_boxTrouble = false;
+	std::vector<Box*> boxes = getAllObjectsOfType<Box*>();
+	for (size_t i = 0; i < boxes.size(); ++i) {
+		if (!boxes[i]->isOnGoal()) {
+			std::cout << "Checking " << i << " box at pos: " << boxes[i]->X() << " " << boxes[i]->Y() << std::endl;
+			sf::FloatRect boxBounds = boxes[i]->getSprite().getGlobalBounds();
+			sf::FloatRect checkBounds = boxBounds;
+			checkBounds.left -= checkBounds.width / 2.f;
+			checkBounds.top -= checkBounds.height / 2.f;
+
+			std::vector<SolidObject*> solids = getObjectsAtRect<SolidObject*>(checkBounds);
+			if (solids.size() == 4) {
+				for (SolidObject* solid : solids) {
+					std::cout << "Solid: " << solid->X() << " " << solid->Y() << std::endl;
+				}
+				_boxTrouble = true;
+				break;
+			}
+			else {
+				solids.clear();
+			}
+
+			checkBounds = boxBounds;
+			checkBounds.left += checkBounds.width / 2.f;
+			checkBounds.top -= checkBounds.height / 2.f;
+
+			solids = getObjectsAtRect<SolidObject*>(checkBounds);
+			if (solids.size() == 4) {
+				for (SolidObject* solid : solids) {
+					std::cout << "Solid: " << solid->X() << " " << solid->Y() << std::endl;
+				}
+				_boxTrouble = true;
+				break;
+			}
+			else {
+				solids.clear();
+			}
+
+			checkBounds = boxBounds;
+			checkBounds.left -= checkBounds.width / 2.f;
+			checkBounds.top += checkBounds.height / 2.f;
+
+			solids = getObjectsAtRect<SolidObject*>(checkBounds);
+			if (solids.size() == 4) {
+				for (SolidObject* solid : solids) {
+					std::cout << "Solid: " << solid->X() << " " << solid->Y() << std::endl;
+				}
+				_boxTrouble = true;
+				break;
+			}
+			else {
+				solids.clear();
+			}
+			
+
+			checkBounds = boxBounds;
+			checkBounds.left += checkBounds.width / 2.f;
+			checkBounds.top += checkBounds.height / 2.f;
+
+			solids = getObjectsAtRect<SolidObject*>(checkBounds);
+			if (solids.size() == 4) {
+				for (SolidObject* solid : solids) {
+					std::cout << "Solid: " << solid->X() << " " << solid->Y() << std::endl;
+				}
+				_boxTrouble = true;
+				break;
+			}
+			else {
+				solids.clear();
+			}
+		}
+	}
+	
+	if (_boxTrouble) {
+		std::cout << "Looks like a trouble!" << std::endl;
+	}
+	
+	
 	// check win
 	// - get vector of all objects of type Goal
 	// - for every goal get vector of boxes at goal bounds
@@ -175,6 +257,19 @@ void GameState::render() {
 	State::render();
 
 	_context->_window->draw(_debugText);
+	if (_boxTrouble) {
+		sf::Text boxTroubleText;
+		boxTroubleText.setFont(_context->_assets->getFont("Main font"));
+		boxTroubleText.setString("Looks like you have a trouble!\nPress R to restart");
+		boxTroubleText.setFillColor(sf::Color::Red);
+		boxTroubleText.setCharacterSize(24);
+		boxTroubleText.setOutlineThickness(2);
+		boxTroubleText.setOutlineColor(sf::Color::Black);
+		boxTroubleText.setPosition(_context->_window->getView().getSize().x - 375.f, 10);
+
+		_context->_window->draw(boxTroubleText);
+	}
+
 	if (_win) {
 		sf::Text winTitle;
 		winTitle.setFont(_context->_assets->getFont("Main font"));

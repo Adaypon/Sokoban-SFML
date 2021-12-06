@@ -34,6 +34,7 @@ private:
     sf::Text _debugText;
 
     bool _win = false;
+    bool _boxTrouble = false;
 public:
     GameState(std::shared_ptr<Context>& context, int levelNum);
     //~GameState();

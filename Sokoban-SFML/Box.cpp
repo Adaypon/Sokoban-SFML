@@ -14,8 +14,14 @@ void Box::update(const sf::Time deltaTime) {
 	//std::vector<Goal*> goals = _contextBox->_states->getCurrentState()->getObjectsAtRect<Goal*>(getSprite().getGlobalBounds());
 	if (goals.size() == 1) {
 		getSprite().setColor(sf::Color::Green);
+		_isOnGoal = true;
 	}
 	else {
 		getSprite().setColor(sf::Color::White);
+		_isOnGoal = false;
 	}
+}
+
+bool Box::isOnGoal() {
+	return _isOnGoal;
 }
