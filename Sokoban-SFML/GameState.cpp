@@ -96,9 +96,6 @@ void GameState::init() {
 }
 
 void GameState::handleInput(const sf::Time deltaTime) {
-	if (sf::Keyboard::isKeyPressed(sf::Keyboard::R)) {
-		restartObjectsPositions();
-	}
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Q)) {
 		_context->_states->popState();
 	}

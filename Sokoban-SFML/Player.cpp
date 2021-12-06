@@ -10,6 +10,12 @@ Player::Player(std::shared_ptr<Context>& context, int x, int y) :
 	setMovementSpeed(0),
 	setDirection(dirEnum::DIR_DOWN),
 	setImageSpeed(0);
+
+
+	_pushesText.setFont(_context->_assets->getFont("Main font"));
+	_pushesText.setOutlineThickness(2);
+	_pushesText.setOutlineColor(sf::Color::Black);
+	_pushesText.setPosition(5, 5);
 }
 
 /*
@@ -76,6 +82,7 @@ void Player::update(const sf::Time deltaTime) {
 					}
 					if (nextSolids.empty()) {
 						boxes[0]->setX(boxes[0]->X() - boxes[0]->getSpriteWidth());
+						++_pushes;
 					}
 				}
 			}
@@ -119,6 +126,7 @@ void Player::update(const sf::Time deltaTime) {
 					}
 					if (nextSolids.empty()) {
 						boxes[0]->setX(boxes[0]->X() + boxes[0]->getSpriteWidth());
+						++_pushes;
 					}
 				}
 			}
@@ -163,6 +171,7 @@ void Player::update(const sf::Time deltaTime) {
 					if (nextSolids.empty()) {
 						// TODO slowed down animation of push
 						boxes[0]->setY(boxes[0]->Y() - boxes[0]->getSpriteHeight());
+						++_pushes;
 					}
 				}
 			}
@@ -207,6 +216,7 @@ void Player::update(const sf::Time deltaTime) {
 					if (nextSolids.empty()) {
 						// TODO slowed down animation of push
 						boxes[0]->setY(boxes[0]->Y() + boxes[0]->getSpriteHeight());
+						++_pushes;
 					}
 				}
 			}
@@ -225,9 +235,15 @@ void Player::update(const sf::Time deltaTime) {
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Subtract)) {
 		setDepth(getDepth() - 1);
 	}
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::R)) {
+		_context->_states->getCurrentState()->restartObjectsPositions();
+		_pushes = 0;
+	}
 }
 
 void Player::render() {
+	_pushesText.setString("PUSHES: " + std::to_string(_pushes));
+	_context->_window->draw(_pushesText);
 	if (isVisible()) {
 		int x, y;
 		if (isMoving()) {
