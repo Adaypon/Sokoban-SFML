@@ -17,7 +17,7 @@ GameState::GameState(std::shared_ptr<Context>& context, int levelNum) :
 	const std::string fileName = "lvl_" + std::to_string(_levelNum) + ".txt";
 	std::cout << "Trying to open " << fileName << std::endl;
 	std::ifstream fin;
-	fin.open(fileName);
+	fin.open("levels/" + fileName);
 	if (!fin.is_open()) {
 		std::cerr << "Can't open file" << std::endl;
 	}
