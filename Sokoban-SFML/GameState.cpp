@@ -1,5 +1,14 @@
 #include "GameState.hpp"
 
+float ftime = 0;
+void timer(int x) {
+	sf::Clock clock;
+	while (ftime < x) {
+		ftime = clock.getElapsedTime().asSeconds();
+	}
+	ftime = 0;
+}
+
 GameState::GameState(std::shared_ptr<Context>& context, int levelNum) :
 	_context(context),
 	_levelNum(levelNum),
@@ -59,6 +68,12 @@ void GameState::init() {
 	_context->_assets->AddTexture("Tileset", "assets/sprites/tileset.png");
 	_context->_assets->AddTexture("Player", "assets/sprites/player_tileset.png");
 
+	_debugText.setFont(_context->_assets->getFont("Main font"));
+	_debugText.setOutlineThickness(2);
+	_debugText.setOutlineColor(sf::Color::Black);
+	_debugText.setPosition(_context->_window->getView().getSize().x - 300.f, _context->_window->getView().getSize().y - 150.f);
+	_debugText.setString("PgUp - next level\nPgDn - prev level\nQ - exit");
+
 	_background.setTexture(_context->_assets->getTexture("Background"));
 	_background.setTextureRect(_context->_window->getViewport(_context->_window->getView()));
 
@@ -95,6 +110,12 @@ void GameState::init() {
 }
 
 void GameState::handleInput(const sf::Time deltaTime) {
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::PageUp) && _levelNum < _levelsCount) {
+		_context->_states->addState(std::make_unique<GameState>(_context, ++_levelNum), true);
+	}
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::PageDown) && _levelNum > 1) {
+		_context->_states->addState(std::make_unique<GameState>(_context, --_levelNum), true);
+	}
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Q)) {
 		_context->_states->popState();
 	}
@@ -108,24 +129,27 @@ void GameState::update(const sf::Time deltaTime) {
 	// - for every goal get vector of boxes at goal bounds
 	// - if boxes.size() != 1 -- break, not winning yet
 	// - if bool won == true -- hooray, pop GameState
-	bool won = true;
-	std::vector<Goal*> goals = getAllObjectsOfType<Goal*>();
-	for (Goal* g : goals) {
-		std::vector<Box*> boxes = getObjectsAtRect<Box*>(g->getSprite().getGlobalBounds());
-		if (boxes.size() != 1) {
-			won = false;
-			break;
-		}
-	}
-	if (won) {
+	if (_win) {
 		std::cout << "Win" << std::endl;
-		if (_levelNum == _levelsCount) {
+		timer(3);
+		if (_levelNum >= _levelsCount) {
 			_context->_states->popState();
 		}
 		else {
 			_context->_states->addState(std::make_unique<GameState>(_context, ++_levelNum), true);
 		}
 	}
+	
+	_win = true;
+	std::vector<Goal*> goals = getAllObjectsOfType<Goal*>();
+	for (Goal* g : goals) {
+		std::vector<Box*> boxes = getObjectsAtRect<Box*>(g->getSprite().getGlobalBounds());
+		if (boxes.size() != 1) {
+			_win = false;
+			break;
+		}
+	}
+	
 
 	State::update(deltaTime);
 	
@@ -134,6 +158,7 @@ void GameState::update(const sf::Time deltaTime) {
 void GameState::render() {
 	// render background
 	_context->_window->draw(_background);
+	
 
 	// render grid (free cells)
 	_sprite.setTextureRect(sf::IntRect(CellData::FreeCell * widthOfSprite, 0, widthOfSprite, heightOfSprite));
@@ -148,6 +173,21 @@ void GameState::render() {
 
 	// render objects
 	State::render();
+
+	_context->_window->draw(_debugText);
+	if (_win) {
+		sf::Text winTitle;
+		winTitle.setFont(_context->_assets->getFont("Main font"));
+		winTitle.setString("Level complete!");
+		winTitle.setCharacterSize(36);
+		winTitle.setOutlineThickness(2);
+		winTitle.setOutlineColor(sf::Color::Black);
+		winTitle.setOrigin(winTitle.getLocalBounds().width / 2, winTitle.getLocalBounds().height / 2);
+		winTitle.setPosition(_context->_window->getView().getSize().x / 2, _context->_window->getView().getSize().y / 2);
+		
+		_context->_window->draw(winTitle);
+	}
+	
 }
 
 void GameState::pause() {

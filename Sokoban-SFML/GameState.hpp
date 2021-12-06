@@ -30,6 +30,10 @@ private:
     float _offsetY = 0;
 
     int _levelsCount = 4;
+
+    sf::Text _debugText;
+
+    bool _win = false;
 public:
     GameState(std::shared_ptr<Context>& context, int levelNum);
     //~GameState();
