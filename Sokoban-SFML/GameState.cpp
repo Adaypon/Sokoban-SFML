@@ -12,25 +12,11 @@ void timer(int x) {
 GameState::GameState(std::shared_ptr<Context>& context, int levelNum) :
 	_context(context),
 	_levelNum(levelNum),
+	_win(false),
+	_boxTrouble(false),
 	_boardData()
 {
-	const std::string fileName = "lvl_" + std::to_string(_levelNum) + ".txt";
-	std::cout << "Trying to open " << fileName << std::endl;
-	std::ifstream fin;
-	fin.open("levels/" + fileName);
-	if (!fin.is_open()) {
-		std::cerr << "Can't open file" << std::endl;
-	}
-	std::string strLine;
-	while (std::getline(fin, strLine)) {
-		if (strLine.size() > 0) {
-			_boardData.push_back(strLine);
-		}
-	}
-	fin.close();
-
-	_widthOfGridLine = _boardData[0].size();
-	_heightOfGridLine = _boardData.size();
+	
 }
 /*
 GameState::~GameState() {
@@ -60,6 +46,27 @@ int GameState::getNumOfSprite(int i, int j) {
 }
 
 void GameState::init() {
+	const std::string fileName = "lvl_" + std::to_string(_levelNum) + ".txt";
+	std::cout << "Trying to open " << fileName << std::endl;
+	std::ifstream fin;
+	fin.open("levels/" + fileName);
+	if (!fin.is_open()) {
+		std::cerr << "Can't open file" << std::endl; // TODO think about what should it do after that
+		_context->_states->popState();
+		return;
+	}
+	std::string strLine;
+	while (std::getline(fin, strLine)) {
+		if (strLine.size() > 0) {
+			_boardData.push_back(strLine);
+		}
+	}
+	fin.close();
+
+	_widthOfGridLine = _boardData[0].size();
+	_heightOfGridLine = _boardData.size();
+
+
 	_context->_assets->AddTexture("Background", "assets/sprites/bg.png", true);
 	_context->_assets->AddTexture("Wall", "assets/sprites/wall.png");
 	_context->_assets->AddTexture("Box", "assets/sprites/box.png");
@@ -225,11 +232,15 @@ void GameState::update(const sf::Time deltaTime) {
 	// - for every goal get vector of boxes at goal bounds
 	// - if boxes.size() != 1 -- break, not winning yet
 	// - if bool won == true -- hooray, pop GameState
-	_win = true;
 	std::vector<Goal*> goals = getAllObjectsOfType<Goal*>();
 	for (Goal* g : goals) {
 		std::vector<Box*> boxes = getObjectsAtRect<Box*>(g->getSprite().getGlobalBounds());
-		if (boxes.size() != 1) {
+		if (boxes.size() == 1) {
+			if (!_win) {
+				_win = true;
+			}
+		}
+		else {
 			_win = false;
 			break;
 		}
