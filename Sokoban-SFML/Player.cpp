@@ -10,7 +10,7 @@ Player::Player(std::shared_ptr<Context>& context, int x, int y) :
 	setMovementSpeed(0),
 	setDirection(dirEnum::DIR_DOWN),
 	setImageSpeed(0);
-
+	_pushes = 0;
 
 	_pushesText.setFont(_context->_assets->getFont("Main font"));
 	_pushesText.setOutlineThickness(2);
