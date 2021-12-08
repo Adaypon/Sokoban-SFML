@@ -20,6 +20,12 @@ Game::~Game() {
 
 void Game::_initWindow() {
     _context->_window->create(sf::VideoMode(_windowWidth, _windowHeight), _titleBarText, sf::Style::Close);
+    
+    // TODO set icon as method
+    sf::Image icon;
+    icon.loadFromFile("assets/icon.png");
+    _context->_window->setIcon(icon.getSize().x, icon.getSize().y, icon.getPixelsPtr());
+    
     _context->_window->setFramerateLimit(_framesPerSecond);
     _context->_window->setVerticalSyncEnabled(_VSyncFlag);
 }
