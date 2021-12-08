@@ -9,6 +9,7 @@
 
 class Entity;
 
+// Base class of all states
 class State {
 private:
 	std::vector<Entity*> _objects; // The main objects of State
@@ -47,7 +48,10 @@ public:
 	// Start the current state
 	virtual void resume() {};
 
-	// Create object
+	/**
+	* Create object
+	* @param object pointer of a new entity
+	*/
 	void createObject(Entity* object);
 
 	// Place all objects to their start position

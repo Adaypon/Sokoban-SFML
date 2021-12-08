@@ -6,6 +6,8 @@
 #include <exception>
 #include <SFML/Graphics.hpp>
 
+
+// Class of assets management
 class SceneManager {
 private:
 	std::map<std::string, std::unique_ptr<sf::Texture>> _textures;

@@ -8,6 +8,7 @@ class State;
 
 typedef std::unique_ptr<State> StateRef;	
 
+// Class of state management
 class StateManager {
 private:
 	// Stack for storing the states. Should be modified at the start of next update() cycle
