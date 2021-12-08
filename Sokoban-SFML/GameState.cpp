@@ -65,7 +65,6 @@ void GameState::init() {
 	_context->_assets->AddTexture("Box", "assets/sprites/box.png");
 	_context->_assets->AddTexture("Free", "assets/sprites/free.png");
 	_context->_assets->AddTexture("Goal", "assets/sprites/goal.png");
-	_context->_assets->AddTexture("Tileset", "assets/sprites/tileset.png");
 	_context->_assets->AddTexture("Player", "assets/sprites/player_tileset.png");
 
 	_debugText.setFont(_context->_assets->getFont("Main font"));
@@ -78,7 +77,7 @@ void GameState::init() {
 	_background.setTexture(_context->_assets->getTexture("Background"));
 	_background.setTextureRect(_context->_window->getViewport(_context->_window->getView()));
 
-	_sprite.setTexture(_context->_assets->getTexture("Tileset"));
+	_free.setTexture(_context->_assets->getTexture("Free"));
 
 	_offsetX = _context->_window->getView().getSize().x / 2;
 	_offsetY = _context->_window->getView().getSize().y / 2;
@@ -247,12 +246,11 @@ void GameState::render() {
 	
 
 	// render grid (free cells)
-	_sprite.setTextureRect(sf::IntRect(CellData::FreeCell * widthOfSprite, 0, widthOfSprite, heightOfSprite));
 	for (int i = 0; i < _heightOfGridLine; ++i) {
 		for (int j = 0; j < _widthOfGridLine; ++j) {
 			if (getNumOfSprite(i, j) != -1) {
-				_sprite.setPosition(_offsetX + static_cast<float>(j) * widthOfSprite, _offsetY + static_cast<float>(i) * heightOfSprite);
-				_context->_window->draw(_sprite);
+				_free.setPosition(_offsetX + static_cast<float>(j) * widthOfSprite, _offsetY + static_cast<float>(i) * heightOfSprite);
+				_context->_window->draw(_free);
 			}			
 		}
 	}

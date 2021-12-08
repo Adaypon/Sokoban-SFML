@@ -24,7 +24,7 @@ private:
     int _heightOfGridLine;
     
     sf::Sprite _background;
-    sf::Sprite _sprite;
+    sf::Sprite _free;
 
     float _offsetX = 0;
     float _offsetY = 0;
