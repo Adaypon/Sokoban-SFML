@@ -74,8 +74,8 @@ void Player::update(const sf::Time deltaTime) {
 						*/
 
 						std::cout << "\t\t!!!Solid is box" << std::endl;
-						sf::FloatRect nextSolidBounds = getSprite().getGlobalBounds();
-						nextSolidBounds.left -= getSpriteWidth() * 2;
+						sf::FloatRect nextSolidBounds = boxes[0]->getSprite().getGlobalBounds();
+						nextSolidBounds.left -= nextSolidBounds.width;
 						std::vector<SolidObject*> nextSolids = _context->_states->getCurrentState()->getObjectsAtRect<SolidObject*>(nextSolidBounds);
 						for (auto solid : nextSolids) {
 							std::cout << "\tNext solid: " << solid->X() << " " << solid->Y() << std::endl;
@@ -100,7 +100,8 @@ void Player::update(const sf::Time deltaTime) {
 				}
 				else {
 					std::vector<Box*> boxes = _context->_states->getCurrentState()->getObjectsAtRect<Box*>(bounds);
-					if (boxes.size() == 1) {
+					if (boxes.size() == 1 && solids.size() < 2) {
+						std::cout << "\t\t!!!Solid is box" << std::endl;
 						/*
 						auto boxBounds = boxes[0]->getSprite().getGlobalBounds();
 						//std::cout << "\tBox bounds: left=" << boxBounds.left << " top=" << bounds.top << std::endl;
@@ -118,8 +119,8 @@ void Player::update(const sf::Time deltaTime) {
 						*/
 
 
-						sf::FloatRect nextSolidBounds = getSprite().getGlobalBounds();
-						nextSolidBounds.left += getSpriteWidth() * 2;
+						sf::FloatRect nextSolidBounds = boxes[0]->getSprite().getGlobalBounds();
+						nextSolidBounds.left += nextSolidBounds.width;
 						std::vector<SolidObject*> nextSolids = _context->_states->getCurrentState()->getObjectsAtRect<SolidObject*>(nextSolidBounds);
 						for (auto solid : nextSolids) {
 							std::cout << "\tNext solid: " << solid->X() << " " << solid->Y() << std::endl;
@@ -144,7 +145,8 @@ void Player::update(const sf::Time deltaTime) {
 				}
 				else {
 					std::vector<Box*> boxes = _context->_states->getCurrentState()->getObjectsAtRect<Box*>(bounds);
-					if (boxes.size() == 1) {
+					if (boxes.size() == 1 && solids.size() < 2) {
+						std::cout << "\t\t!!!Solid is box" << std::endl;
 						/*
 						auto boxBounds = boxes[0]->getSprite().getGlobalBounds();
 						//std::cout << "\tBox bounds: left=" << boxBounds.left << " top=" << bounds.top << std::endl;
@@ -162,8 +164,8 @@ void Player::update(const sf::Time deltaTime) {
 						*/
 
 
-						sf::FloatRect nextSolidBounds = getSprite().getGlobalBounds();
-						nextSolidBounds.top -= getSpriteWidth() * 2;
+						sf::FloatRect nextSolidBounds = boxes[0]->getSprite().getGlobalBounds();
+						nextSolidBounds.top -= nextSolidBounds.height;
 						std::vector<SolidObject*> nextSolids = _context->_states->getCurrentState()->getObjectsAtRect<SolidObject*>(nextSolidBounds);
 						for (auto solid : nextSolids) {
 							std::cout << "\tNext solid: " << solid->X() << " " << solid->Y() << std::endl;
@@ -189,7 +191,8 @@ void Player::update(const sf::Time deltaTime) {
 				}
 				else {
 					std::vector<Box*> boxes = _context->_states->getCurrentState()->getObjectsAtRect<Box*>(bounds);
-					if (boxes.size() == 1) {
+					if (boxes.size() == 1 && solids.size() < 2) {
+						std::cout << "\t\t!!!Solid is box" << std::endl;
 						/*
 						auto boxBounds = boxes[0]->getSprite().getGlobalBounds();
 						//std::cout << "\tBox bounds: left=" << boxBounds.left << " top=" << bounds.top << std::endl;
@@ -207,8 +210,8 @@ void Player::update(const sf::Time deltaTime) {
 						*/
 
 
-						sf::FloatRect nextSolidBounds = getSprite().getGlobalBounds();
-						nextSolidBounds.top += getSpriteWidth() * 2;
+						sf::FloatRect nextSolidBounds = boxes[0]->getSprite().getGlobalBounds();
+						nextSolidBounds.top += nextSolidBounds.height;
 						std::vector<SolidObject*> nextSolids = _context->_states->getCurrentState()->getObjectsAtRect<SolidObject*>(nextSolidBounds);
 						for (auto solid : nextSolids) {
 							std::cout << "\tNext solid: " << solid->X() << " " << solid->Y() << std::endl;
