@@ -7,6 +7,8 @@ class Player : public Entity
 private:
 	int _pushes;
 	sf::Text _pushesText;
+	sf::RectangleShape _boundsShape;
+	bool _isBoundsShapeVisible = false;
 public:
 	Player(std::shared_ptr<Context>& context, int x, int y);
 	//~Player();

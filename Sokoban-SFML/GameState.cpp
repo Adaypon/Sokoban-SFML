@@ -128,7 +128,7 @@ void GameState::handleInput(const sf::Time deltaTime) {
 	}
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Tab)) {
 		_debugText.setPosition(_context->_window->getView().getSize().x - 300.f, _context->_window->getView().getSize().y - 250.f);
-		_debugText.setString("WASD - move\nR - restart\nQ - quit\nPgUp - next level\nPgDn - prev level\nSpacebar - visibility\nNum+ - increase depth\nNum- - decrease depth");
+		_debugText.setString("WASD - move\nR - restart\nQ - quit\nPgUp - next level\nPgDn - prev level\nSpacebar - visibility\nNum+ - increase depth\nNum- - decrease depth\nNum0 - bounds of player");
 	}
 }
 
