@@ -64,7 +64,7 @@ void Player::update(const sf::Time deltaTime) {
 				else {
 					_boundsShape.setFillColor(sf::Color(255, 0, 0, 128));
 					std::vector<Box*> boxes = _context->_states->getCurrentState()->getObjectsAtRect<Box*>(bounds);
-					if (boxes.size() == 1) {
+					if (boxes.size() == 1 && solids.size() < 2) {
 						// TODO animation of push, after fixing moving function
 						/*
 						auto boxBounds = boxes[0]->getSprite().getGlobalBounds();
