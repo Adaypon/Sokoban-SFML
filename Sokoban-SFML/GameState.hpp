@@ -29,7 +29,7 @@ private:
     float _offsetX = 0;
     float _offsetY = 0;
 
-    int _levelsCount = 4;
+    int _levelsCount = 7;
 
     sf::Text _debugText;
 
