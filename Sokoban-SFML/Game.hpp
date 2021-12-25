@@ -46,6 +46,8 @@ private:
 	// Initialization of window
 	void _initWindow();
 
+	bool _isRunning = false;
+
 public:
 	Game();
 	~Game();

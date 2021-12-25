@@ -11,7 +11,7 @@ Game::Game() :
     _timePerFrame(sf::seconds(1.0f / _framesPerSecond))
 {
     _initWindow();
-    _initStates();
+    //_initStates();
 }
 
 Game::~Game() {
@@ -61,6 +61,12 @@ void Game::render() {
 }
 
 void Game::run() {
+
+    if (!_isRunning) {
+        _initStates();
+        _isRunning = true;
+    }
+
     sf::Clock clock;
     sf::Time timeSinceLastUpdate = sf::Time::Zero;
 
@@ -114,6 +120,10 @@ void Game::setResolution(unsigned width, unsigned height) {
     _windowWidth = width;
     _windowHeight = height;
     _context->_window.reset(new sf::RenderWindow(sf::VideoMode(_windowWidth, _windowHeight), _titleBarText));
+    // TODO set icon as method
+    sf::Image icon;
+    icon.loadFromFile("assets/icon.png");
+    _context->_window->setIcon(icon.getSize().x, icon.getSize().y, icon.getPixelsPtr());
 }
 
 std::string Game::getTitleBarText() const {

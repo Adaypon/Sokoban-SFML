@@ -8,24 +8,44 @@ SettingsMenuState::SettingsMenuState(std::shared_ptr<Context>& context) :
 
 // TODO handleEvent
 
+
+
 void SettingsMenuState::init() {
     _gui.setTarget(*(_context->_window.get()));
 
     auto videoModes = sf::VideoMode::getFullscreenModes();
-    auto comboBox = tgui::ComboBox::create();
-    comboBox->setSize(120, 21);
-    comboBox->setPosition(420, 40);
+    _resolutionComboBox = tgui::ComboBox::create();
+    _resolutionComboBox->setSize(120, 21);
+    _resolutionComboBox->setPosition(420, 40);
     for (auto& mode : videoModes) {
-        comboBox->addItem(std::to_string(mode.width) + "x" + std::to_string(mode.height));
+        _resolutionComboBox->addItem(std::to_string(mode.width) + "x" + std::to_string(mode.height));
     }
-    comboBox->setSelectedItem(std::to_string(videoModes[0].width) + "x" + std::to_string(videoModes[0].height));
-    _gui.add(comboBox);
+    
+    _resolutionComboBox->setSelectedItem(std::to_string((int)_gui.getView().getSize().x) + "x" + std::to_string((int)_gui.getView().getSize().y));
+    _gui.add(_resolutionComboBox);
 
     auto button = tgui::Button::create();
     button->setPosition(_gui.getView().getSize().x - 115.f, _gui.getView().getSize().y - 50.f);
     button->setText("Exit");
     button->setSize(100, 40);
-    button->onPress([&] { _context->_states->popState(); });
+    button->onPress([&] { 
+        std::ofstream fout;
+        fout.open("config.ini");
+        if (fout.is_open()) {
+            auto resolution = _resolutionComboBox->getSelectedItem();
+            auto width = resolution.substr(0, resolution.find('x'));
+            auto height = resolution.substr(resolution.find('x') + 1);
+
+            fout << width << std::endl;
+            fout << height << std::endl;
+        }
+        else {
+            std::cerr << "Can't open file" << std::endl;
+        }
+        fout.close();
+        _context->_states->popState();
+        
+        });
     _gui.add(button);
 }
 
@@ -37,6 +57,8 @@ void SettingsMenuState::handleInput(const sf::Time deltaTime) {
 
 void SettingsMenuState::update(const sf::Time deltaTime) {
     handleInput(deltaTime);
+    std::cout << "Resolution: " << _resolutionComboBox->getSelectedItem() << std::endl;
+    std::cout << std::to_string((int)_gui.getView().getSize().x) + "x" + std::to_string((int)_gui.getView().getSize().y) << std::endl;
 }
 
 void SettingsMenuState::render() {
@@ -45,4 +67,36 @@ void SettingsMenuState::render() {
 
 void SettingsMenuState::updateSFMLEvents(sf::Event& SFMLEvent) {
     _gui.handleEvent(SFMLEvent);
+}
+
+
+
+void SettingsMenuState::callBackButton() {
+    std::ofstream fout;
+    fout.open("config.ini");
+    if (fout.is_open()) {
+        auto resolution = _resolutionComboBox->getSelectedItem();
+        auto width = resolution.substr(0, resolution.find('x'));
+        auto height = resolution.substr(resolution.find('x') + 1);
+
+        fout << width << std::endl;
+        fout << height << std::endl;
+        
+
+            /*
+            for (const auto& elem : _data) {
+                fout << "[" << elem.first << "]" << std::endl;
+                for (const auto& elem2 : _data.at(elem.first)) {
+                    fout << elem2.first << "=" << elem2.second << std::endl;
+                }
+                fout << std::endl;
+            }
+            */
+    }
+    else {
+        std::cerr << "Can't open file" << std::endl;
+    }
+    fout.close();
+    _context->_states->popState();
+
 }
