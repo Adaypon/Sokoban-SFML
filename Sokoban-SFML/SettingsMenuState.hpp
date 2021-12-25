@@ -15,5 +15,7 @@ public:
 	void handleInput(const sf::Time deltaTime) override;
 	void update(const sf::Time deltaTime) override;
 	void render() override;
+
+	void updateSFMLEvents(sf::Event& SFMLEvent) override;
 };
 

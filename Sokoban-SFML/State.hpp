@@ -48,6 +48,9 @@ public:
 	// Start the current state
 	virtual void resume() {};
 
+
+	virtual void updateSFMLEvents(sf::Event& SFMLEvent) {};
+
 	/**
 	* Create object
 	* @param object pointer of a new entity

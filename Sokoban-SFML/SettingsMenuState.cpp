@@ -25,6 +25,7 @@ void SettingsMenuState::init() {
     button->setPosition(_gui.getView().getSize().x - 115.f, _gui.getView().getSize().y - 50.f);
     button->setText("Exit");
     button->setSize(100, 40);
+    button->onPress([&] { _context->_states->popState(); });
     _gui.add(button);
 }
 
@@ -39,5 +40,9 @@ void SettingsMenuState::update(const sf::Time deltaTime) {
 }
 
 void SettingsMenuState::render() {
-    _gui.mainLoop(); // TODO break main loop
+    _gui.draw();
+}
+
+void SettingsMenuState::updateSFMLEvents(sf::Event& SFMLEvent) {
+    _gui.handleEvent(SFMLEvent);
 }
