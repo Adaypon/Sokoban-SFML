@@ -14,6 +14,7 @@ public:
 	//~Player();
 	
 	void update(const sf::Time deltaTime) override;
+	void updateSFMLEvents(sf::Event& SFMLEvent) override;
 	void render() override;
 };
 

@@ -265,26 +265,37 @@ void Player::update(const sf::Time deltaTime) {
 			_boundsShape.setPosition(getSprite().getGlobalBounds().left, getSprite().getGlobalBounds().top);
 		}
 	}
-	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space)) {
-		setVisible(!isVisible());
-	}
-	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Add)) {
-		setDepth(getDepth() + 1);
-	}
-	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Subtract)) {
-		setDepth(getDepth() - 1);
-	}
-	if (sf::Keyboard::isKeyPressed(sf::Keyboard::R)) {
-		_context->_states->getCurrentState()->restartObjectsPositions();
-		_pushes = 0;
-		_boundsShape.setPosition(getSprite().getGlobalBounds().left, getSprite().getGlobalBounds().top);
-	}
-	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Num0)) {
-		if (_isBoundsShapeVisible) {
-			_isBoundsShapeVisible = false;
-		}
-		else {
-			_isBoundsShapeVisible = true;
+	
+}
+
+void Player::updateSFMLEvents(sf::Event& SFMLEvent) {
+	if (SFMLEvent.type == sf::Event::KeyPressed) {
+		switch (SFMLEvent.key.code)
+		{
+		case (sf::Keyboard::Space):
+			setVisible(!isVisible());
+			break;
+		case (sf::Keyboard::Add):
+			setDepth(getDepth() + 1);
+			break;
+		case (sf::Keyboard::Subtract):
+			setDepth(getDepth() - 1);
+			break;
+		case (sf::Keyboard::R):
+			_context->_states->getCurrentState()->restartObjectsPositions();
+			_pushes = 0;
+			_boundsShape.setPosition(getSprite().getGlobalBounds().left, getSprite().getGlobalBounds().top);
+			break;
+		case (sf::Keyboard::Num0):
+			if (_isBoundsShapeVisible) {
+				_isBoundsShapeVisible = false;
+			}
+			else {
+				_isBoundsShapeVisible = true;
+			}
+			break;
+		default:
+			break;
 		}
 	}
 }

@@ -36,6 +36,12 @@ void State::render() {
 	}
 }
 
+void State::updateSFMLEvents(sf::Event& SFMLEvent) {
+	for (Entity* o : _objects) {
+		o->updateSFMLEvents(SFMLEvent);
+	}
+}
+
 void State::createObject(Entity* object) {
 	_objects.push_back(object);
 }

@@ -49,7 +49,7 @@ public:
 	virtual void resume() {};
 
 
-	virtual void updateSFMLEvents(sf::Event& SFMLEvent) {};
+	virtual void updateSFMLEvents(sf::Event& SFMLEvent);
 
 	/**
 	* Create object

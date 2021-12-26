@@ -28,6 +28,7 @@ void Game::_initWindow() {
     
     _context->_window->setFramerateLimit(_framesPerSecond);
     _context->_window->setVerticalSyncEnabled(_VSyncFlag);
+    _context->_window->setKeyRepeatEnabled(false);
 }
 
 void Game::_initStates() {

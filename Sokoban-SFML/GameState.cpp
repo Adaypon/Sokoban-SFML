@@ -117,18 +117,35 @@ void GameState::init() {
 }
 
 void GameState::handleInput(const sf::Time deltaTime) {
-	if (sf::Keyboard::isKeyPressed(sf::Keyboard::PageUp) && _levelNum < _levelsCount) {
-		_context->_states->addState(std::make_unique<GameState>(_context, ++_levelNum), true);
-	}
-	if (sf::Keyboard::isKeyPressed(sf::Keyboard::PageDown) && _levelNum > 1) {
-		_context->_states->addState(std::make_unique<GameState>(_context, --_levelNum), true);
-	}
-	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Q)) {
-		_context->_states->popState();
-	}
-	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Tab)) {
-		_debugText.setPosition(_context->_window->getView().getSize().x - 300.f, _context->_window->getView().getSize().y - 250.f);
-		_debugText.setString("WASD - move\nR - restart\nQ - quit\nPgUp - next level\nPgDn - prev level\nSpacebar - visibility\nNum+ - increase depth\nNum- - decrease depth\nNum0 - bounds of player");
+	
+}
+
+
+void GameState::updateSFMLEvents(sf::Event& SFMLEvent) {
+	State::updateSFMLEvents(SFMLEvent);
+	if (SFMLEvent.type == sf::Event::KeyPressed) {
+		switch (SFMLEvent.key.code)
+		{
+		case (sf::Keyboard::PageUp):
+			if (_levelNum < _levelsCount) {
+				_context->_states->addState(std::make_unique<GameState>(_context, ++_levelNum), true);
+			}
+			break;
+		case (sf::Keyboard::PageDown):
+			if (_levelNum > 1) {
+				_context->_states->addState(std::make_unique<GameState>(_context, --_levelNum), true);
+			}
+			break;
+		case (sf::Keyboard::Q):
+			_context->_states->popState();
+			break;
+		case (sf::Keyboard::Tab):
+			_debugText.setPosition(_context->_window->getView().getSize().x - 300.f, _context->_window->getView().getSize().y - 250.f);
+			_debugText.setString("WASD - move\nR - restart\nQ - quit\nPgUp - next level\nPgDn - prev level\nSpacebar - visibility\nNum+ - increase depth\nNum- - decrease depth\nNum0 - bounds of player");
+			break;
+		default:
+			break;
+		}
 	}
 }
 

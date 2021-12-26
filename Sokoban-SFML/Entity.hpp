@@ -41,6 +41,9 @@ public:
 	*/
 	virtual void update(const sf::Time deltaTime);
 
+
+	virtual void updateSFMLEvents(sf::Event& SFMLEvent) {};
+
 	/**
 		Drawing method
 	*/
