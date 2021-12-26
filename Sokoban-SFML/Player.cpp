@@ -51,9 +51,11 @@ void Player::update(const sf::Time deltaTime) {
 				bounds.left -= 1.f;
 
 				_boundsShape.setPosition(bounds.left, bounds.top);
-
+				auto testSprite = getSprite();
+				testSprite.setPosition(testSprite.getPosition().x - 2.f, testSprite.getPosition().y);
 				std::cout << "Check bounds: " << bounds.left << " " << bounds.top << " w=" << bounds.width << " h=" << bounds.height << std::endl;
-				std::vector<SolidObject*> solids = _context->_states->getCurrentState()->getObjectsAtRect<SolidObject*>(bounds);
+				std::vector<SolidObject*> solids = _context->_states->getCurrentState()->getObjectsCollidingAtSprite<SolidObject*>(testSprite);
+				//std::vector<SolidObject*> solids = _context->_states->getCurrentState()->getObjectsAtRect<SolidObject*>(bounds);
 				//std::vector<SolidObject*> solids = _contextPlayer->_states->getCurrentState()->getObjectsAtPos<SolidObject*>(X() - getSpriteWidth(), Y());
 				for (auto solid : solids) {
 					std::cout << "\tSolid: " << solid->X() << " " << solid->Y() << std::endl;
@@ -63,7 +65,8 @@ void Player::update(const sf::Time deltaTime) {
 				}
 				else {
 					_boundsShape.setFillColor(sf::Color(255, 0, 0, 128));
-					std::vector<Box*> boxes = _context->_states->getCurrentState()->getObjectsAtRect<Box*>(bounds);
+					std::vector<Box*> boxes = _context->_states->getCurrentState()->getObjectsCollidingAtSprite<Box*>(testSprite);
+					//std::vector<Box*> boxes = _context->_states->getCurrentState()->getObjectsAtRect<Box*>(bounds);
 					if (boxes.size() == 1 && solids.size() < 2) {
 						// TODO animation of push, after fixing moving function
 						/*
@@ -103,10 +106,12 @@ void Player::update(const sf::Time deltaTime) {
 				
 				
 				_boundsShape.setPosition(bounds.left, bounds.top);
-				
+				auto testSprite = getSprite();
+				testSprite.setPosition(testSprite.getPosition().x + 2.f, testSprite.getPosition().y);
 
 				std::cout << "Check bounds: " << bounds.left << " " << bounds.top << " w=" << bounds.width << " h=" << bounds.height << std::endl;
-				std::vector<SolidObject*> solids = _context->_states->getCurrentState()->getObjectsAtRect<SolidObject*>(bounds);
+				std::vector<SolidObject*> solids = _context->_states->getCurrentState()->getObjectsCollidingAtSprite<SolidObject*>(testSprite);
+				//std::vector<SolidObject*> solids = _context->_states->getCurrentState()->getObjectsAtRect<SolidObject*>(bounds);
 				//std::vector<SolidObject*> solids = _contextPlayer->_states->getCurrentState()->getObjectsAtPos<SolidObject*>(X() + getSpriteWidth(), Y());
 				
 				
@@ -118,7 +123,8 @@ void Player::update(const sf::Time deltaTime) {
 				}
 				else {
 					_boundsShape.setFillColor(sf::Color(255, 0, 0, 128));
-					std::vector<Box*> boxes = _context->_states->getCurrentState()->getObjectsAtRect<Box*>(bounds);
+					std::vector<Box*> boxes = _context->_states->getCurrentState()->getObjectsCollidingAtSprite<Box*>(testSprite);
+					//std::vector<Box*> boxes = _context->_states->getCurrentState()->getObjectsAtRect<Box*>(bounds);
 					if (boxes.size() == 1 && solids.size() < 2) {
 						std::cout << "\t\t!!!Solid is box" << std::endl;
 						/*
@@ -156,9 +162,13 @@ void Player::update(const sf::Time deltaTime) {
 				bounds.top -= 1.f;
 
 				_boundsShape.setPosition(bounds.left, bounds.top);
+				auto testSprite = getSprite();
+				testSprite.setPosition(testSprite.getPosition().x, testSprite.getPosition().y - 2.f);
+
 
 				std::cout << "Check bounds: " << bounds.left << " " << bounds.top << " w=" << bounds.width << " h=" << bounds.height << std::endl;
-				std::vector<SolidObject*> solids = _context->_states->getCurrentState()->getObjectsAtRect<SolidObject*>(bounds);
+				std::vector<SolidObject*> solids = _context->_states->getCurrentState()->getObjectsCollidingAtSprite<SolidObject*>(testSprite);
+				//std::vector<SolidObject*> solids = _context->_states->getCurrentState()->getObjectsAtRect<SolidObject*>(bounds);
 				//std::vector<SolidObject*> solids = _contextPlayer->_states->getCurrentState()->getObjectsAtPos<SolidObject*>(X(), Y() - getSpriteHeight());
 				
 
@@ -170,7 +180,8 @@ void Player::update(const sf::Time deltaTime) {
 				}
 				else {
 					_boundsShape.setFillColor(sf::Color(255, 0, 0, 128));
-					std::vector<Box*> boxes = _context->_states->getCurrentState()->getObjectsAtRect<Box*>(bounds);
+					std::vector<Box*> boxes = _context->_states->getCurrentState()->getObjectsCollidingAtSprite<Box*>(testSprite);
+					//std::vector<Box*> boxes = _context->_states->getCurrentState()->getObjectsAtRect<Box*>(bounds);
 					if (boxes.size() == 1 && solids.size() < 2) {
 						std::cout << "\t\t!!!Solid is box" << std::endl;
 						/*
@@ -209,9 +220,13 @@ void Player::update(const sf::Time deltaTime) {
 				bounds.top += 1.f;
 
 				_boundsShape.setPosition(bounds.left, bounds.top);
+				auto testSprite = getSprite();
+				testSprite.setPosition(testSprite.getPosition().x, testSprite.getPosition().y + 2.f);
+
 
 				std::cout << "Check bounds: " << bounds.left << " " << bounds.top << " w=" << bounds.width << " h=" << bounds.height << std::endl;
-				std::vector<SolidObject*> solids = _context->_states->getCurrentState()->getObjectsAtRect<SolidObject*>(bounds);
+				std::vector<SolidObject*> solids = _context->_states->getCurrentState()->getObjectsCollidingAtSprite<SolidObject*>(testSprite);
+				//std::vector<SolidObject*> solids = _context->_states->getCurrentState()->getObjectsAtRect<SolidObject*>(bounds);
 				//std::vector<SolidObject*> solids = _contextPlayer->_states->getCurrentState()->getObjectsAtPos<SolidObject*>(X(), Y() + getSpriteHeight());
 				
 				for (auto solid : solids) {
@@ -222,7 +237,8 @@ void Player::update(const sf::Time deltaTime) {
 				}
 				else {
 					_boundsShape.setFillColor(sf::Color(255, 0, 0, 128));
-					std::vector<Box*> boxes = _context->_states->getCurrentState()->getObjectsAtRect<Box*>(bounds);
+					std::vector<Box*> boxes = _context->_states->getCurrentState()->getObjectsCollidingAtSprite<Box*>(testSprite);
+					//std::vector<Box*> boxes = _context->_states->getCurrentState()->getObjectsAtRect<Box*>(bounds);
 					if (boxes.size() == 1 && solids.size() < 2) {
 						std::cout << "\t\t!!!Solid is box" << std::endl;
 						/*

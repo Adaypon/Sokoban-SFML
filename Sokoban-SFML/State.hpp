@@ -6,6 +6,7 @@
 #include <SFML/System.hpp>
 #include <SFML/Graphics.hpp>
 #include "Entity.hpp"
+#include "Collision.h"
 
 class Entity;
 
@@ -84,6 +85,15 @@ public:
 	template<typename T>
 	std::vector<T> getAllObjectsOfType();
 
+	/**
+	* Get all objects at sprite bitmask
+	* (Simple Collision Detection for SFML 2)
+	* @param testSprite Sprite of entity
+	* @return Vector of objects
+	*/
+	template<typename T>
+	std::vector<T> getObjectsCollidingAtSprite(sf::Sprite testSprite);
+
 };
 
 template<typename T>
@@ -121,6 +131,21 @@ inline std::vector<T> State::getAllObjectsOfType() {
 		T cast = dynamic_cast<T>(o);
 		if (cast != nullptr) {
 			resultObjects.push_back(cast);
+		}
+	}
+	return resultObjects;
+}
+
+template<typename T>
+inline std::vector<T> State::getObjectsCollidingAtSprite(sf::Sprite testSprite)
+{
+	std::vector<T> resultObjects;
+	for (Entity* o : _objects) {
+		T cast = dynamic_cast<T>(o);
+		if (cast != nullptr) {
+			if (Collision::PixelPerfectTest(testSprite, o->getSprite())) {
+				resultObjects.push_back(cast);
+			}
 		}
 	}
 	return resultObjects;
