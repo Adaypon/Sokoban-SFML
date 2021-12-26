@@ -16,7 +16,7 @@ void MenuState::init() {
 	_context->_assets->AddFont("Main font", "assets/fonts/font.ttf");
 	_text.setFont(_context->_assets->getFont("Main font"));
 	_text.setCharacterSize(42);
-	_text.setString("Alpha ver. Press Enter to start\nPress ESC to quit\nPress TAB for settings");
+	_text.setString("Beta ver. Press Enter to start\nPress ESC to quit\nPress TAB for settings");
 	_text.setOrigin(_text.getLocalBounds().width / 2, _text.getLocalBounds().height / 2);
 	_text.setPosition(_context->_window->getView().getSize().x / 2, _context->_window->getView().getSize().y / 2 + 150);
 
