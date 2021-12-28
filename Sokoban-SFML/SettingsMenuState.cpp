@@ -11,6 +11,7 @@ SettingsMenuState::SettingsMenuState(std::shared_ptr<Context>& context) :
 
 
 void SettingsMenuState::init() {
+    _context->_window->clear(sf::Color(189, 189, 189));
     _gui.setTarget(*(_context->_window.get()));
 
     auto videoModes = sf::VideoMode::getFullscreenModes();
@@ -26,7 +27,7 @@ void SettingsMenuState::init() {
 
     auto button = tgui::Button::create();
     button->setPosition(_gui.getView().getSize().x - 115.f, _gui.getView().getSize().y - 50.f);
-    button->setText("Exit");
+    button->setText("Back to Menu");
     button->setSize(100, 40);
     button->onPress([&] { 
         std::ofstream fout;
@@ -47,6 +48,13 @@ void SettingsMenuState::init() {
         
         });
     _gui.add(button);
+
+
+    auto label = tgui::Label::create();
+    label->setText("* Changing resolution requires restarting of the game");
+    label->setPosition(_resolutionComboBox->getPosition().x + 125.f, _resolutionComboBox->getPosition().y);
+    label->setTextSize(14);
+    _gui.add(label);
 }
 
 void SettingsMenuState::handleInput(const sf::Time deltaTime) {
@@ -62,6 +70,7 @@ void SettingsMenuState::update(const sf::Time deltaTime) {
 }
 
 void SettingsMenuState::render() {
+    _context->_window->clear(sf::Color(189, 189, 189));
     _gui.draw();
 }
 
@@ -98,5 +107,4 @@ void SettingsMenuState::callBackButton() {
     }
     fout.close();
     _context->_states->popState();
-
 }
