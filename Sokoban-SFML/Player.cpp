@@ -99,7 +99,7 @@ void Player::update(const sf::Time deltaTime) {
 					}
 				}
 			}
-			if (sf::Keyboard::isKeyPressed(sf::Keyboard::D)) {
+			else if (sf::Keyboard::isKeyPressed(sf::Keyboard::D)) {
 				setDirection(dirEnum::DIR_RIGHT);
 				bounds.left += 1.f;
 
@@ -157,7 +157,7 @@ void Player::update(const sf::Time deltaTime) {
 					}
 				}
 			}
-			if (sf::Keyboard::isKeyPressed(sf::Keyboard::W)) {
+			else if (sf::Keyboard::isKeyPressed(sf::Keyboard::W)) {
 				setDirection(dirEnum::DIR_UP);
 				bounds.top -= 1.f;
 
@@ -215,7 +215,7 @@ void Player::update(const sf::Time deltaTime) {
 					}
 				}
 			}
-			if (sf::Keyboard::isKeyPressed(sf::Keyboard::S)) {
+			else if (sf::Keyboard::isKeyPressed(sf::Keyboard::S)) {
 				setDirection(dirEnum::DIR_DOWN);
 				bounds.top += 1.f;
 
