@@ -72,6 +72,9 @@
     <ClCompile Include="Collision.cpp">
       <Filter>Исходные файлы</Filter>
     </ClCompile>
+    <ClCompile Include="PauseGameState.cpp">
+      <Filter>States</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Game.hpp">
@@ -118,6 +121,9 @@
     </ClInclude>
     <ClInclude Include="Collision.h">
       <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="PauseGameState.hpp">
+      <Filter>States</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

@@ -48,6 +48,9 @@ void MenuState::updateSFMLEvents(sf::Event& SFMLEvent) {
 		case sf::Keyboard::Tab:
 			_context->_states->addState(std::make_unique<SettingsMenuState>(_context));
 			break;
+		case sf::Keyboard::Escape:
+			_context->_window->close();
+			break;
 		default:
 			break;
 		}

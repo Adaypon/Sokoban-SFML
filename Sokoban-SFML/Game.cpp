@@ -42,9 +42,11 @@ void Game::updateSFMLEvents() {
         if (_event.type == sf::Event::Closed) {
             _context->_window->close();
         }
+        /*
         else if (_event.type == sf::Event::KeyPressed && _event.key.code == sf::Keyboard::Escape) {
             _context->_window->close();
         }
+        */
         else {
             _context->_states->getCurrentState()->updateSFMLEvents(_event);
         }

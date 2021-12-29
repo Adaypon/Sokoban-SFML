@@ -154,6 +154,7 @@
     <ClCompile Include="Goal.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="MenuState.cpp" />
+    <ClCompile Include="PauseGameState.cpp" />
     <ClCompile Include="Player.cpp" />
     <ClCompile Include="SceneManager.cpp" />
     <ClCompile Include="SettingsMenuState.cpp" />
@@ -171,6 +172,7 @@
     <ClInclude Include="GameState.hpp" />
     <ClInclude Include="Goal.hpp" />
     <ClInclude Include="MenuState.hpp" />
+    <ClInclude Include="PauseGameState.hpp" />
     <ClInclude Include="Player.hpp" />
     <ClInclude Include="SceneManager.hpp" />
     <ClInclude Include="SettingsMenuState.hpp" />

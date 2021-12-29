@@ -1,4 +1,5 @@
 #include "GameState.hpp"
+#include "PauseGameState.hpp"
 
 float ftime = 0;
 void timer(int x) {
@@ -142,6 +143,9 @@ void GameState::updateSFMLEvents(sf::Event& SFMLEvent) {
 		case (sf::Keyboard::Tab):
 			_debugText.setPosition(_context->_window->getView().getSize().x - 300.f, _context->_window->getView().getSize().y - 250.f);
 			_debugText.setString("WASD - move\nR - restart\nQ - quit\nPgUp - next level\nPgDn - prev level\nSpacebar - visibility\nNum+ - increase depth\nNum- - decrease depth\nNum0 - bounds of player");
+			break;
+		case (sf::Keyboard::Escape):
+			_context->_states->addState(std::make_unique<PauseGameState>(_context));
 			break;
 		default:
 			break;
