@@ -27,13 +27,34 @@ void MenuState::init() {
 }
 
 void MenuState::handleInput(const sf::Time deltaTime) {
+	/*
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Enter)) {
 		_context->_states->addState(std::make_unique<GameState>(_context, 1));
 	}
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Tab)) {
 		_context->_states->addState(std::make_unique<SettingsMenuState>(_context));
 	}
+	*/
 }
+
+void MenuState::updateSFMLEvents(sf::Event& SFMLEvent) {
+	State::updateSFMLEvents(SFMLEvent);
+	if (SFMLEvent.type == sf::Event::KeyPressed) {
+		switch (SFMLEvent.key.code) 
+		{
+		case sf::Keyboard::Enter:
+			_context->_states->addState(std::make_unique<GameState>(_context, 1));
+			break;
+		case sf::Keyboard::Tab:
+			_context->_states->addState(std::make_unique<SettingsMenuState>(_context));
+			break;
+		default:
+			break;
+		}
+	}
+}
+
+
 
 void MenuState::update(const sf::Time deltaTime) {
 	handleInput(deltaTime);
