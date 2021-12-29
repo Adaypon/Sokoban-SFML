@@ -17,7 +17,7 @@ void SettingsMenuState::init() {
     auto videoModes = sf::VideoMode::getFullscreenModes();
     _resolutionComboBox = tgui::ComboBox::create();
     _resolutionComboBox->setSize(120, 21);
-    _resolutionComboBox->setPosition(420, 40);
+    _resolutionComboBox->setPosition(115.f, 50.f);
     for (auto& mode : videoModes) {
         _resolutionComboBox->addItem(std::to_string(mode.width) + "x" + std::to_string(mode.height));
     }
