@@ -79,8 +79,8 @@ void GameState::init() {
 	_debugText.setCharacterSize(24);
 	_debugText.setOutlineThickness(2);
 	_debugText.setOutlineColor(sf::Color::Black);
-	_debugText.setPosition(_context->_window->getView().getSize().x - 250.f, _context->_window->getView().getSize().y - 100.f);
-	_debugText.setString("WASD - move\nR - restart\nQ - quit\nTab - debug options");
+	_debugText.setPosition(_context->_window->getView().getSize().x - 250.f, _context->_window->getView().getSize().y - 150.f);
+	_debugText.setString("WASD - move\nESC - pause\nR - restart\nQ - quit\nTab - debug options");
 
 	_background.setTexture(_context->_assets->getTexture("Background"));
 	_background.setTextureRect(_context->_window->getViewport(_context->_window->getView()));
@@ -142,7 +142,7 @@ void GameState::updateSFMLEvents(sf::Event& SFMLEvent) {
 			break;
 		case (sf::Keyboard::Tab):
 			_debugText.setPosition(_context->_window->getView().getSize().x - 300.f, _context->_window->getView().getSize().y - 250.f);
-			_debugText.setString("WASD - move\nR - restart\nQ - quit\nPgUp - next level\nPgDn - prev level\nSpacebar - visibility\nNum+ - increase depth\nNum- - decrease depth\nNum0 - bounds of player");
+			_debugText.setString("WASD - move\nESC - pause\nR - restart\nQ - quit\nPgUp - next level\nPgDn - prev level\nSpacebar - visibility\nNum+ - increase depth\nNum- - decrease depth\nNum0 - bounds of player");
 			break;
 		case (sf::Keyboard::Escape):
 			_context->_states->addState(std::make_unique<PauseGameState>(_context));
@@ -150,6 +150,9 @@ void GameState::updateSFMLEvents(sf::Event& SFMLEvent) {
 		default:
 			break;
 		}
+	}
+	else if (SFMLEvent.type == sf::Event::LostFocus) {
+		pause();
 	}
 }
 
@@ -338,7 +341,7 @@ void GameState::render() {
 }
 
 void GameState::pause() {
-
+	_context->_states->addState(std::make_unique<PauseGameState>(_context));
 }
 
 void GameState::resume() {
