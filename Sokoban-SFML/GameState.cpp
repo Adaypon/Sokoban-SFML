@@ -172,6 +172,15 @@ void GameState::update(const sf::Time deltaTime) {
 	// - to check that, we should look, if box is in corner with other solids
 	_boxTrouble = false;
 	std::vector<Box*> boxes = getAllObjectsOfType<Box*>();
+
+	for (size_t i = 0; i < boxes.size(); ++i) {
+		boxes[i]->update(deltaTime);  // for sure it's on goal
+		if (!boxes[i]->isAvaliable()) {
+			_boxTrouble = true;
+			break;
+		}
+	}
+	/*
 	for (size_t i = 0; i < boxes.size(); ++i) {
 		boxes[i]->update(deltaTime); // for sure it's on goal
 		if (!boxes[i]->isOnGoal()) {
@@ -238,9 +247,13 @@ void GameState::update(const sf::Time deltaTime) {
 			}
 		}
 	}
-	
+	*/
 	if (_boxTrouble) {
 		std::cout << "Looks like a trouble!" << std::endl;
+		// setting all boxes unavaliable
+		for (auto box : boxes) {
+			box->setAvaliable(false);
+		}
 	}
 	
 	

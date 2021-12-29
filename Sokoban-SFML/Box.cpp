@@ -25,3 +25,74 @@ void Box::update(const sf::Time deltaTime) {
 bool Box::isOnGoal() {
 	return _isOnGoal;
 }
+
+bool Box::isAvaliable() {
+	if (!isOnGoal()) {
+		//std::cout << "Checking " << i << " box at pos: " << boxes[i]->X() << " " << boxes[i]->Y() << std::endl;
+		sf::FloatRect boxBounds = getSprite().getGlobalBounds();
+		sf::FloatRect checkBounds = boxBounds;
+		checkBounds.left -= checkBounds.width / 2.f;
+		checkBounds.top -= checkBounds.height / 2.f;
+
+		std::vector<SolidObject*> solids = _context->_states->getCurrentState()->getObjectsAtRect<SolidObject*>(checkBounds);
+		if (solids.size() == 4) {
+			for (SolidObject* solid : solids) {
+				std::cout << "Solid: " << solid->X() << " " << solid->Y() << std::endl;
+			}
+			setAvaliable(false);
+			return _isAvaliable;
+		}
+		else {
+			solids.clear();
+		}
+
+		checkBounds.left += checkBounds.width;
+
+		solids = _context->_states->getCurrentState()->getObjectsAtRect<SolidObject*>(checkBounds);
+		if (solids.size() == 4) {
+			for (SolidObject* solid : solids) {
+				std::cout << "Solid: " << solid->X() << " " << solid->Y() << std::endl;
+			}
+			setAvaliable(false);
+			return _isAvaliable;
+		}
+		else {
+			solids.clear();
+		}
+
+		checkBounds.top += checkBounds.height;
+
+		solids = _context->_states->getCurrentState()->getObjectsAtRect<SolidObject*>(checkBounds);
+		if (solids.size() == 4) {
+			for (SolidObject* solid : solids) {
+				std::cout << "Solid: " << solid->X() << " " << solid->Y() << std::endl;
+			}
+			setAvaliable(false);
+			return _isAvaliable;
+		}
+		else {
+			solids.clear();
+		}
+
+
+
+		checkBounds.left -= checkBounds.width;
+
+		solids = _context->_states->getCurrentState()->getObjectsAtRect<SolidObject*>(checkBounds);
+		if (solids.size() == 4) {
+			for (SolidObject* solid : solids) {
+				std::cout << "Solid: " << solid->X() << " " << solid->Y() << std::endl;
+			}
+			setAvaliable(false);
+			return _isAvaliable;
+		}
+		else {
+			solids.clear();
+		}
+	}
+	return _isAvaliable;
+}
+
+void Box::setAvaliable(bool flag) {
+	_isAvaliable = flag;
+}
