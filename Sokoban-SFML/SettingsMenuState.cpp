@@ -26,7 +26,7 @@ void SettingsMenuState::init() {
     _gui.add(_resolutionComboBox);
 
     auto button = tgui::Button::create();
-    button->setPosition(_gui.getView().getSize().x - 115.f, _gui.getView().getSize().y - 50.f);
+    button->setPosition(_resolutionComboBox->getPosition().x, _resolutionComboBox->getPosition().y + 100.f);
     button->setText("Back to Menu");
     button->setSize(100, 40);
     button->onPress([&] { 
