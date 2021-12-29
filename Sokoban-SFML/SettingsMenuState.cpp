@@ -6,10 +6,6 @@ SettingsMenuState::SettingsMenuState(std::shared_ptr<Context>& context) :
 
 }
 
-// TODO handleEvent
-
-
-
 void SettingsMenuState::init() {
     _context->_window->clear(sf::Color(189, 189, 189));
     _gui.setTarget(*(_context->_window.get()));
@@ -65,8 +61,6 @@ void SettingsMenuState::handleInput(const sf::Time deltaTime) {
 
 void SettingsMenuState::update(const sf::Time deltaTime) {
     handleInput(deltaTime);
-    std::cout << "Resolution: " << _resolutionComboBox->getSelectedItem() << std::endl;
-    std::cout << std::to_string((int)_gui.getView().getSize().x) + "x" + std::to_string((int)_gui.getView().getSize().y) << std::endl;
 }
 
 void SettingsMenuState::render() {
@@ -79,7 +73,6 @@ void SettingsMenuState::updateSFMLEvents(sf::Event& SFMLEvent) {
 }
 
 
-
 void SettingsMenuState::callBackButton() {
     std::ofstream fout;
     fout.open("config.ini");
@@ -90,17 +83,6 @@ void SettingsMenuState::callBackButton() {
 
         fout << width << std::endl;
         fout << height << std::endl;
-        
-
-            /*
-            for (const auto& elem : _data) {
-                fout << "[" << elem.first << "]" << std::endl;
-                for (const auto& elem2 : _data.at(elem.first)) {
-                    fout << elem2.first << "=" << elem2.second << std::endl;
-                }
-                fout << std::endl;
-            }
-            */
     }
     else {
         std::cerr << "Can't open file" << std::endl;

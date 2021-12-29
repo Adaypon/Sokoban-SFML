@@ -7,11 +7,7 @@ MenuState::MenuState(std::shared_ptr<Context>& context) :
 {
 
 }
-/*
-MenuState::~MenuState() {
 
-}
-*/
 void MenuState::init() {
 	_context->_assets->AddFont("Main font", "assets/fonts/font.ttf");
 	_text.setFont(_context->_assets->getFont("Main font"));
@@ -27,14 +23,7 @@ void MenuState::init() {
 }
 
 void MenuState::handleInput(const sf::Time deltaTime) {
-	/*
-	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Enter)) {
-		_context->_states->addState(std::make_unique<GameState>(_context, 1));
-	}
-	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Tab)) {
-		_context->_states->addState(std::make_unique<SettingsMenuState>(_context));
-	}
-	*/
+
 }
 
 void MenuState::updateSFMLEvents(sf::Event& SFMLEvent) {
@@ -58,10 +47,8 @@ void MenuState::updateSFMLEvents(sf::Event& SFMLEvent) {
 }
 
 
-
 void MenuState::update(const sf::Time deltaTime) {
 	handleInput(deltaTime);
-	std::cout << "Hello from Menu" << std::endl;
 }
 
 void MenuState::render() {

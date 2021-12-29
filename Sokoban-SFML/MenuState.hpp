@@ -13,7 +13,6 @@ private:
 	sf::Sprite _sprite;
 public:
 	MenuState(std::shared_ptr<Context>& context);
-	//~MenuState();
 
 	void init() override;
 	void handleInput(const sf::Time deltaTime) override;

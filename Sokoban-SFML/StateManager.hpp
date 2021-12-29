@@ -44,6 +44,4 @@ public:
 	* @return Reference to unique pointer of State
 	*/
 	StateRef& getCurrentState();
-
 };
-

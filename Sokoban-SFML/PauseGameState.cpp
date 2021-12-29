@@ -31,11 +31,8 @@ void PauseGameState::updateSFMLEvents(sf::Event& SFMLEvent) {
 	}
 }
 
-
-
 void PauseGameState::update(const sf::Time deltaTime) {
 	handleInput(deltaTime);
-	std::cout << "Hello from Pause" << std::endl;
 }
 
 void PauseGameState::render() {

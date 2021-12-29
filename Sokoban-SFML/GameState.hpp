@@ -37,7 +37,6 @@ private:
     bool _boxTrouble = false;
 public:
     GameState(std::shared_ptr<Context>& context, int levelNum);
-    //~GameState();
 
     void init() override;
     void handleInput(const sf::Time deltaTime) override;

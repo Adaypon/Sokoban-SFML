@@ -27,7 +27,6 @@ void Entity::update(const sf::Time deltaTime) {
 }
 
 void Entity::render() {
-	//window->draw(_shape);
 	if (isVisible()) {
 		int x = static_cast<int>(getImageIndex()) % _horizontalFrames;
 		int y = static_cast<int>(getImageIndex()) / _horizontalFrames;

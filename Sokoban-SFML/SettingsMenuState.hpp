@@ -23,4 +23,3 @@ public:
 	void updateSFMLEvents(sf::Event& SFMLEvent) override;
 	void callBackButton();
 };
-

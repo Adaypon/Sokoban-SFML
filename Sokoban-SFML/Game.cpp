@@ -11,7 +11,6 @@ Game::Game() :
     _timePerFrame(sf::seconds(1.0f / _framesPerSecond))
 {
     _initWindow();
-    //_initStates();
 }
 
 Game::~Game() {
@@ -42,11 +41,6 @@ void Game::updateSFMLEvents() {
         if (_event.type == sf::Event::Closed) {
             _context->_window->close();
         }
-        /*
-        else if (_event.type == sf::Event::KeyPressed && _event.key.code == sf::Keyboard::Escape) {
-            _context->_window->close();
-        }
-        */
         else {
             _context->_states->getCurrentState()->updateSFMLEvents(_event);
         }
@@ -137,4 +131,3 @@ void Game::setTitleBarText(const std::string& text) {
     _titleBarText = text;
     _context->_window->setTitle(_titleBarText);
 }
-

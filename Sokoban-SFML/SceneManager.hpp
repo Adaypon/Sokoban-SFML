@@ -45,4 +45,3 @@ public:
 	*/
 	const sf::Font& getFont(const std::string& name) const;
 };
-

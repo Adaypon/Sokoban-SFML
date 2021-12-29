@@ -18,21 +18,10 @@ Player::Player(std::shared_ptr<Context>& context, int x, int y) :
 	_pushesText.setPosition(5, 5);
 }
 
-/*
-Player::~Player() 
-{
-
-}
-*/
-
-
 void Player::update(const sf::Time deltaTime) {
-	// TODO remake keyboard input cause of too much calls
-	// TODO moves by one sprite at once
 	if (isVisible()) {
 		Entity::update(deltaTime);
 		std::cout << "Player: " << X() << " " << Y() << std::endl;
-		// TODO try switch-case 
 		if (sf::Keyboard::isKeyPressed(sf::Keyboard::A) ||
 			sf::Keyboard::isKeyPressed(sf::Keyboard::D) ||
 			sf::Keyboard::isKeyPressed(sf::Keyboard::W) ||
@@ -56,7 +45,6 @@ void Player::update(const sf::Time deltaTime) {
 				std::cout << "Check bounds: " << bounds.left << " " << bounds.top << " w=" << bounds.width << " h=" << bounds.height << std::endl;
 				std::vector<SolidObject*> solids = _context->_states->getCurrentState()->getObjectsCollidingAtSprite<SolidObject*>(testSprite);
 				//std::vector<SolidObject*> solids = _context->_states->getCurrentState()->getObjectsAtRect<SolidObject*>(bounds);
-				//std::vector<SolidObject*> solids = _contextPlayer->_states->getCurrentState()->getObjectsAtPos<SolidObject*>(X() - getSpriteWidth(), Y());
 				for (auto solid : solids) {
 					std::cout << "\tSolid: " << solid->X() << " " << solid->Y() << std::endl;
 				}
@@ -112,7 +100,6 @@ void Player::update(const sf::Time deltaTime) {
 				std::cout << "Check bounds: " << bounds.left << " " << bounds.top << " w=" << bounds.width << " h=" << bounds.height << std::endl;
 				std::vector<SolidObject*> solids = _context->_states->getCurrentState()->getObjectsCollidingAtSprite<SolidObject*>(testSprite);
 				//std::vector<SolidObject*> solids = _context->_states->getCurrentState()->getObjectsAtRect<SolidObject*>(bounds);
-				//std::vector<SolidObject*> solids = _contextPlayer->_states->getCurrentState()->getObjectsAtPos<SolidObject*>(X() + getSpriteWidth(), Y());
 				
 				
 				for (auto solid : solids) {
@@ -169,7 +156,6 @@ void Player::update(const sf::Time deltaTime) {
 				std::cout << "Check bounds: " << bounds.left << " " << bounds.top << " w=" << bounds.width << " h=" << bounds.height << std::endl;
 				std::vector<SolidObject*> solids = _context->_states->getCurrentState()->getObjectsCollidingAtSprite<SolidObject*>(testSprite);
 				//std::vector<SolidObject*> solids = _context->_states->getCurrentState()->getObjectsAtRect<SolidObject*>(bounds);
-				//std::vector<SolidObject*> solids = _contextPlayer->_states->getCurrentState()->getObjectsAtPos<SolidObject*>(X(), Y() - getSpriteHeight());
 				
 
 				for (auto solid : solids) {
@@ -227,7 +213,6 @@ void Player::update(const sf::Time deltaTime) {
 				std::cout << "Check bounds: " << bounds.left << " " << bounds.top << " w=" << bounds.width << " h=" << bounds.height << std::endl;
 				std::vector<SolidObject*> solids = _context->_states->getCurrentState()->getObjectsCollidingAtSprite<SolidObject*>(testSprite);
 				//std::vector<SolidObject*> solids = _context->_states->getCurrentState()->getObjectsAtRect<SolidObject*>(bounds);
-				//std::vector<SolidObject*> solids = _contextPlayer->_states->getCurrentState()->getObjectsAtPos<SolidObject*>(X(), Y() + getSpriteHeight());
 				
 				for (auto solid : solids) {
 					std::cout << "\tSolid: " << solid->X() << " " << solid->Y() << std::endl;

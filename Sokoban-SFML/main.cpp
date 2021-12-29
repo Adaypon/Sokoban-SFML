@@ -30,7 +30,6 @@ int main() {
 	*/
 
 	game.setResolution(std::stoi(fileCache[0]), std::stoi(fileCache[1]));
-
-    game.run();
+	game.run();
     return 0;
 }

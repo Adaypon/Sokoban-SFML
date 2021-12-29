@@ -4,14 +4,12 @@
 Box::Box(std::shared_ptr<Context>& context, int x, int y) :
 	SolidObject(context, x, y, "Box")
 {
-	//_contextBox = context;
 	setDepth(2);
 }
 
 void Box::update(const sf::Time deltaTime) {
 	Entity::update(deltaTime);
 	std::vector<Goal*> goals = _context->_states->getCurrentState()->getObjectsAtRect<Goal*>(getSprite().getGlobalBounds());
-	//std::vector<Goal*> goals = _contextBox->_states->getCurrentState()->getObjectsAtRect<Goal*>(getSprite().getGlobalBounds());
 	if (goals.size() == 1) {
 		getSprite().setColor(sf::Color::Green);
 		_isOnGoal = true;
@@ -28,7 +26,6 @@ bool Box::isOnGoal() {
 
 bool Box::isAvaliable() {
 	if (!isOnGoal()) {
-		//std::cout << "Checking " << i << " box at pos: " << boxes[i]->X() << " " << boxes[i]->Y() << std::endl;
 		sf::FloatRect boxBounds = getSprite().getGlobalBounds();
 		sf::FloatRect checkBounds = boxBounds;
 		checkBounds.left -= checkBounds.width / 2.f;
@@ -73,8 +70,6 @@ bool Box::isAvaliable() {
 		else {
 			solids.clear();
 		}
-
-
 
 		checkBounds.left -= checkBounds.width;
 

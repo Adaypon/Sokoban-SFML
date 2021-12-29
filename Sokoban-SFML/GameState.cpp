@@ -157,9 +157,7 @@ void GameState::updateSFMLEvents(sf::Event& SFMLEvent) {
 }
 
 void GameState::update(const sf::Time deltaTime) {
-	handleInput(deltaTime);
-	//std::cout << "Hello from GameState" << std::endl;
-	
+	handleInput(deltaTime);	
 
 	if (_win) {
 		std::cout << "Win" << std::endl;
@@ -170,7 +168,6 @@ void GameState::update(const sf::Time deltaTime) {
 		else {
 			_context->_states->addState(std::make_unique<GameState>(_context, ++_levelNum), true);
 		}
-		
 		return;
 	}
 
@@ -224,7 +221,6 @@ void GameState::render() {
 	// render background
 	_context->_window->draw(_background);
 	
-
 	// render grid (free cells)
 	for (int i = 0; i < _heightOfGridLine; ++i) {
 		for (int j = 0; j < _widthOfGridLine; ++j) {
@@ -254,9 +250,6 @@ void GameState::render() {
 
 	_context->_window->draw(_debugText);
 	
-
-	
-
 	if (_boxTrouble && !_win) {
 		sf::Text boxTroubleText;
 		boxTroubleText.setFont(_context->_assets->getFont("Main font"));
@@ -269,7 +262,6 @@ void GameState::render() {
 
 		_context->_window->draw(boxTroubleText);
 	}
-	
 }
 
 void GameState::pause() {
