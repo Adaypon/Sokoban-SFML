@@ -49,7 +49,10 @@ public:
 	// Start the current state
 	virtual void resume() {};
 
-
+	/**
+	* Updating SFML events method
+	* @param SFMLEvent refernce to sf::Event object
+	*/
 	virtual void updateSFMLEvents(sf::Event& SFMLEvent);
 
 	/**

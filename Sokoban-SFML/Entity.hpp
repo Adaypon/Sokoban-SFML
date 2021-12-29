@@ -41,7 +41,10 @@ public:
 	*/
 	virtual void update(const sf::Time deltaTime);
 
-
+	/**
+	* Updating SFML events method
+	* @param SFMLEvent refernce to sf::Event object
+	*/
 	virtual void updateSFMLEvents(sf::Event& SFMLEvent) {};
 
 	/**
