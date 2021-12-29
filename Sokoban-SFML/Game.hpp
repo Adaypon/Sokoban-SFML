@@ -28,7 +28,6 @@ struct Context {
 
 class Game {
 private:
-	//sf::RenderWindow* _window;
 	std::shared_ptr<Context> _context;
 
 	sf::Event _event;

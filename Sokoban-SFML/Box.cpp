@@ -33,9 +33,6 @@ bool Box::isAvaliable() {
 
 		std::vector<SolidObject*> solids = _context->_states->getCurrentState()->getObjectsAtRect<SolidObject*>(checkBounds);
 		if (solids.size() == 4) {
-			for (SolidObject* solid : solids) {
-				std::cout << "Solid: " << solid->X() << " " << solid->Y() << std::endl;
-			}
 			setAvaliable(false);
 			return _isAvaliable;
 		}
@@ -47,9 +44,6 @@ bool Box::isAvaliable() {
 
 		solids = _context->_states->getCurrentState()->getObjectsAtRect<SolidObject*>(checkBounds);
 		if (solids.size() == 4) {
-			for (SolidObject* solid : solids) {
-				std::cout << "Solid: " << solid->X() << " " << solid->Y() << std::endl;
-			}
 			setAvaliable(false);
 			return _isAvaliable;
 		}
@@ -61,9 +55,6 @@ bool Box::isAvaliable() {
 
 		solids = _context->_states->getCurrentState()->getObjectsAtRect<SolidObject*>(checkBounds);
 		if (solids.size() == 4) {
-			for (SolidObject* solid : solids) {
-				std::cout << "Solid: " << solid->X() << " " << solid->Y() << std::endl;
-			}
 			setAvaliable(false);
 			return _isAvaliable;
 		}
@@ -75,9 +66,6 @@ bool Box::isAvaliable() {
 
 		solids = _context->_states->getCurrentState()->getObjectsAtRect<SolidObject*>(checkBounds);
 		if (solids.size() == 4) {
-			for (SolidObject* solid : solids) {
-				std::cout << "Solid: " << solid->X() << " " << solid->Y() << std::endl;
-			}
 			setAvaliable(false);
 			return _isAvaliable;
 		}

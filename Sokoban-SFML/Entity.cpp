@@ -30,7 +30,6 @@ void Entity::render() {
 	if (isVisible()) {
 		int x = static_cast<int>(getImageIndex()) % _horizontalFrames;
 		int y = static_cast<int>(getImageIndex()) / _horizontalFrames;
-		//std::cout << "\t Getting " << x << " " << y << " sprite" << std::endl;
 		_sprite.setTextureRect(sf::IntRect(x * getSpriteWidth(), y * getSpriteHeight(), 
 								getSpriteWidth(), getSpriteHeight()));
 		_context->_window->draw(_sprite);

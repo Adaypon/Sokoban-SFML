@@ -48,11 +48,10 @@ int GameState::getNumOfSprite(int i, int j) {
 
 void GameState::init() {
 	const std::string fileName = "lvl_" + std::to_string(_levelNum) + ".txt";
-	std::cout << "Trying to open " << fileName << std::endl;
 	std::ifstream fin;
 	fin.open("levels/" + fileName);
 	if (!fin.is_open()) {
-		std::cerr << "Can't open file" << std::endl; // TODO think about what should it do after that
+		std::cerr << "Can't open file lvl_" << _levelNum << ".txt" << std::endl; // TODO think about what should it do after that
 		_context->_states->popState();
 		return;
 	}
@@ -80,7 +79,7 @@ void GameState::init() {
 	_debugText.setOutlineThickness(2);
 	_debugText.setOutlineColor(sf::Color::Black);
 	_debugText.setPosition(_context->_window->getView().getSize().x - 250.f, _context->_window->getView().getSize().y - 150.f);
-	_debugText.setString("WASD - move\nESC - pause\nR - restart\nQ - quit\nTab - debug options");
+	_debugText.setString("WASD - move\nESC - pause\nR - restart\nQ - quit\n");
 
 	_background.setTexture(_context->_assets->getTexture("Background"));
 	_background.setTextureRect(_context->_window->getViewport(_context->_window->getView()));
@@ -127,22 +126,8 @@ void GameState::updateSFMLEvents(sf::Event& SFMLEvent) {
 	if (SFMLEvent.type == sf::Event::KeyPressed) {
 		switch (SFMLEvent.key.code)
 		{
-		case (sf::Keyboard::PageUp):
-			if (_levelNum < _levelsCount) {
-				_context->_states->addState(std::make_unique<GameState>(_context, ++_levelNum), true);
-			}
-			break;
-		case (sf::Keyboard::PageDown):
-			if (_levelNum > 1) {
-				_context->_states->addState(std::make_unique<GameState>(_context, --_levelNum), true);
-			}
-			break;
 		case (sf::Keyboard::Q):
 			_context->_states->popState();
-			break;
-		case (sf::Keyboard::Tab):
-			_debugText.setPosition(_context->_window->getView().getSize().x - 300.f, _context->_window->getView().getSize().y - 250.f);
-			_debugText.setString("WASD - move\nESC - pause\nR - restart\nQ - quit\nPgUp - next level\nPgDn - prev level\nSpacebar - visibility\nNum+ - increase depth\nNum- - decrease depth\nNum0 - bounds of player");
 			break;
 		case (sf::Keyboard::Escape):
 			_context->_states->addState(std::make_unique<PauseGameState>(_context));
@@ -160,7 +145,6 @@ void GameState::update(const sf::Time deltaTime) {
 	handleInput(deltaTime);	
 
 	if (_win) {
-		std::cout << "Win" << std::endl;
 		timer(3);
 		if (_levelNum >= _levelsCount) {
 			_context->_states->popState();
@@ -185,7 +169,6 @@ void GameState::update(const sf::Time deltaTime) {
 		}
 	}
 	if (_boxTrouble) {
-		std::cout << "Looks like a trouble!" << std::endl;
 		// setting all boxes unavaliable
 		for (auto box : boxes) {
 			box->setAvaliable(false);

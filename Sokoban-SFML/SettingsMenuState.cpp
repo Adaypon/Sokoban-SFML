@@ -37,11 +37,10 @@ void SettingsMenuState::init() {
             fout << height << std::endl;
         }
         else {
-            std::cerr << "Can't open file" << std::endl;
+            std::cerr << "Can't open file config.ini" << std::endl;
         }
         fout.close();
         _context->_states->popState();
-        
         });
     _gui.add(button);
 
@@ -85,7 +84,7 @@ void SettingsMenuState::callBackButton() {
         fout << height << std::endl;
     }
     else {
-        std::cerr << "Can't open file" << std::endl;
+        std::cerr << "Can't open file config.ini" << std::endl;
     }
     fout.close();
     _context->_states->popState();
